@@ -104,10 +104,7 @@ public class PanelBuscarLibro extends JPanel{
         });
 
     }
-    
-    
-
-        
+           
     /*
     Funcion para leer los suscriptores desde el txt
     directorio es el lugar donde esta el txt
