@@ -1,0 +1,38 @@
+[
+  {
+    "precioCompra": 500.0,
+    "isbn": "123456",
+    "paginas": 600,
+    "tema": 1,
+    "titulo": "Don Quijote de la Mancha",
+    "calificacion": 10,
+    "suscriptores": []
+  },
+  {
+    "precioCompra": 100.0,
+    "isbn": "123450",
+    "paginas": 20,
+    "tema": 2,
+    "titulo": "El gato con botas",
+    "calificacion": 9,
+    "suscriptores": []
+  },
+  {
+    "precioCompra": 200.0,
+    "isbn": "123451",
+    "paginas": 200,
+    "tema": 3,
+    "titulo": "Un mundo felíz",
+    "calificacion": 8,
+    "suscriptores": []
+  },
+  {
+    "precioCompra": 200.0,
+    "isbn": "123451",
+    "paginas": 200,
+    "tema": 3,
+    "titulo": "Un mundo felíz",
+    "calificacion": 8,
+    "suscriptores": []
+  }
+]

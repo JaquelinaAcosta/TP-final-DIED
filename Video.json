@@ -1,0 +1,32 @@
+[
+  {
+    "duracionEnSegundos": 7200,
+    "titulo": "La era del hielo",
+    "calificacion": 9,
+    "costo": 60.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 7200,
+    "titulo": "Video1",
+    "calificacion": 4,
+    "costo": 70.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 34,
+    "tema": "MATEMATICA",
+    "titulo": "asdsdadsa",
+    "calificacion": 3,
+    "costo": 123.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 123456,
+    "tema": "ENTRETENIMIENTO",
+    "titulo": "Hola Jaque",
+    "calificacion": 987654,
+    "costo": 123456.0,
+    "suscriptores": []
+  }
+]
