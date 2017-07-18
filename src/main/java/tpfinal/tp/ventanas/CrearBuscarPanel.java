@@ -67,14 +67,14 @@ public class CrearBuscarPanel extends JPanel{
     }
     
      
-public static void main(String[] args) {
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-            CrearBuscarPanel cbpanel = new CrearBuscarPanel();
-            cbpanel.createAndShowGUI();
-        }
-    });
-}
+//public static void main(String[] args) {
+//    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//        public void run() {
+//            CrearBuscarPanel cbpanel = new CrearBuscarPanel();
+//            cbpanel.createAndShowGUI();
+//        }
+//    });
+//}
 void createAndShowGUI() {
         ventana = new JFrame("Biblioteca");
         ventana.setSize(600, 200);

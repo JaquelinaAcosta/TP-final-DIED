@@ -94,6 +94,15 @@ public class PanelBuscarLibro extends JPanel{
         this.add(botonActualizar);
         this.add(botonBorrar);
         this.add(botonSalir);
+        
+        //Sale de todo
+        this.botonSalir.addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed (ActionEvent e){
+                   System.exit(0);
+               }
+        });
+
     }
     
     

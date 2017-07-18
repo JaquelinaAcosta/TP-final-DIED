@@ -94,7 +94,7 @@ public class Principal {
     }
     
     
-    //para cambiar a la pantalla de buscar y ordenar por.. segun lo que eigió      
+    //para cambiar a la pantalla de buscar y ordenar por.. segun lo que eligió      
     public void cambiarBuscarLibroVideoPublicacion() throws Exception{
         this.ventana.remove(this.panelCtrl);
         

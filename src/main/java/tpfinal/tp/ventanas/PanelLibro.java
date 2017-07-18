@@ -11,12 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.integrador.Libro;
+import tpfinal.tp.integrador.TemasMateriales;
 
 
 
@@ -30,7 +32,7 @@ public class PanelLibro extends JPanel{
     private JTextField txtPaginas;
     private JTextField txtPrecio;
     private JTextField txtCalificacion;
-    private JTextField txtTema;
+    private JComboBox comboTema;
     private Principal principal;
     private LibrosDao librosDao = new LibrosDao();
 
@@ -50,7 +52,9 @@ public class PanelLibro extends JPanel{
         this.txtIsbn=new JTextField(20);
         this.txtPaginas=new JTextField(20);
         this.txtPrecio=new JTextField(20);
-        this.txtTema=new JTextField(20);
+        //Para poder seleccion desde un ComboBox unon de los 3 temas que hay
+        TemasMateriales[] listaTemas = {TemasMateriales.ENTRETENIMIENTO, TemasMateriales.MATEMATICA, TemasMateriales.PROGRAMACION};
+        this.comboTema= new JComboBox<>(listaTemas);
         this.txtTitulo=new JTextField(20);
         
         
@@ -65,7 +69,7 @@ public class PanelLibro extends JPanel{
         this.add(new JLabel("Cantidad de pagnas"));
         this.add(txtPaginas);
         this.add(new JLabel("Tema"));
-        this.add(txtTema);
+        this.add(comboTema);
         this.add(new JLabel("Calificacion"));
         this.add(txtCalificacion);
         this.add(new JLabel("Precio"));
@@ -73,15 +77,27 @@ public class PanelLibro extends JPanel{
         this.add(botonAceptar);
         this.add(botonCancelar);
         
+        //Al presionar el boton Aceptar te guarda todos los datos que ingrasas en un archivo JSON 
+        //(como estamos trabajando con libro) el archivo se va a llamar Libros.jason y se va a guardar automaticamente en la carpeta de netbeans donde tenemos el tp integrador
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                Libro libro = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (txtTema.getText().toString()), Integer.parseInt(txtCalificacion.getText()));
+                //creamos un libro, poniendo en orden los campos de texto segun como lo tenemos en el constructor de la clase Libro que esta en el paquete Integrador
+                // con ctrl y seleccionando libro te lleva al consructor que también lo comenté
+                Libro libro = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
+                //creo un array porque guarda todos los datos en un array
+                //ArrayList<Libro>(librosDao.cargarLista()) eso si lo hago ArrayList<Libro>() sin la parte de adentro,o sea sin (librosDao.cargarLista(), me los guarda pero me va a ir borrando lo que tenia anteriormente,
+                //por eso llamo a cargarLista y al array que devuelve le agrego el nuevo (osea el array que estoy cargando actualmente)
                 ArrayList lista = new ArrayList<Libro>(librosDao.cargarLista());
                 lista.add(libro);
+                //En guardar lista guardaaas los anteriores y el nuevo
+                //cargarLista y guardarLista son de la clase LibrosDao del paquete guardarADisco, la cual es la encargada de exporta los datos al archivo Libros.json automaticacmente
                 librosDao.guardarLista(lista);
+                //despues todo lo que es exportar y como lo hace es problema de la clase LibrosDao que llama y maneja todo con la clase GenericDaoJSON
+                //Lo unico que hace esto es ir guardando datos en una lista, usando la clase LibrosDao, despues lo que es la exportacion es tema de LibrosDao y GenericDao y eso no lo tocas 
             }
         });
+
     }
     
      

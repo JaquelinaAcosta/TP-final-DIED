@@ -12,12 +12,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.integrador.Publicacion;
+import tpfinal.tp.integrador.TemasMateriales;
 
 
 public class PanelPublicacion extends JPanel{
@@ -29,9 +31,10 @@ public class PanelPublicacion extends JPanel{
     private JTextField txtPrecio;
     private JTextField txtCalificacion;
     private JTextField txtTema;
-    private Principal principal;
+    private JComboBox comboTema;
     private PublicacionesDao publicacionesDao = new PublicacionesDao();
-
+    private Principal principal;
+    
     public PanelPublicacion(){
         this.armarPanel();
     }
@@ -47,7 +50,10 @@ public class PanelPublicacion extends JPanel{
         this.txtCalificacion= new JTextField(20);
         this.txtFecha=new JTextField(20);
         this.txtPrecio=new JTextField(20);
-        this.txtTema=new JTextField(20);
+        //Para poder seleccion desde un ComboBox unon de los 3 temas que hay
+        TemasMateriales[] listaTemas = {TemasMateriales.ENTRETENIMIENTO, TemasMateriales.MATEMATICA, TemasMateriales.PROGRAMACION};
+        this.comboTema= new JComboBox<>(listaTemas);
+
         this.txtTitulo=new JTextField(20);
         
         
@@ -58,7 +64,7 @@ public class PanelPublicacion extends JPanel{
         this.add(new JLabel("Título"));
         this.add(txtTitulo);
         this.add(new JLabel("Tema"));
-        this.add(txtTema);
+        this.add(comboTema);
         this.add(new JLabel("Fecha"));
         this.add(txtFecha);
         this.add(new JLabel("Calificacion"));
@@ -71,7 +77,7 @@ public class PanelPublicacion extends JPanel{
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                Publicacion publicacion = new Publicacion(txtTitulo.getText(),(txtTema.getText().toString()), (txtFecha.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                Publicacion publicacion = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (txtFecha.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
                 ArrayList lista = new ArrayList<>(publicacionesDao.cargarLista());
                 lista.add(publicacion);
                 publicacionesDao.guardarLista(lista);

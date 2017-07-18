@@ -88,11 +88,21 @@ public class PanelBuscarOrdenar extends JPanel{
                public void actionPerformed (ActionEvent e){
                    try {
                        principal.cambiarBuscarLibroVideoPublicacion();
+                        //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
                    } catch (Exception ex) {
                        Logger.getLogger(PanelBuscarOrdenar.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
         });
+       
+       //Cierra la ventana
+       this.botonSalir.addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed (ActionEvent e){
+                   System.exit(0);
+               }
+        });
+
         
     }
     
