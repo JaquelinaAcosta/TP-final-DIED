@@ -12,10 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author jaque
- */
+
 public class PanelBorrar extends JPanel{
     
     private JButton botonSi;
