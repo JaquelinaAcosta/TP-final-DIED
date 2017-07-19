@@ -24,16 +24,15 @@ public final class Suscriptor {
         this.suscriptores= new LinkedHashMap();
     }    
     
-    public Suscriptor(String nombre,String apellido){
+    public Suscriptor(String nombre,String apellido,Integer dni,Double credito){
         this();
         this.nombre=nombre;
         this.nombre=apellido;
+        this.nroDocumento=dni;
+        this.credito=credito;
     }       
     
-    public Suscriptor(String nombre,String apellido,Integer nroDoc){
-        this(nombre,apellido);
-        this.nroDocumento=nroDoc;
-    }       
+      
 
     public Double getCredito() {
         return credito;

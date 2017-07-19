@@ -70,11 +70,11 @@ public class PanelSuscriptor extends JPanel {
                 //creamos un Suscriptor, poniendo en orden los campos de texto segun como lo tenemos en el constructor
                 //de la clase suscriptor que esta en el paquete Integrador
                 // con ctrl y seleccionando libro te lleva al consructor que también lo comenté
-                Suscriptor suscriptor = new Suscriptor(nombre.getText(),apellido.getText(),Integer.parseInt(credito.getText()));
+                Suscriptor suscriptor = new Suscriptor(nombre.getText(),apellido.getText(),Integer.parseInt(dni.getText()), Double.parseDouble(credito.getText()));
                 //creo un array porque guarda todos los datos en un array
                 //ArrayList<Suscriptor>(SuscriptorDao.cargarLista())
-                //eso si lo hago ArrayList<Libro>() sin la parte de adentro,o sea sin (librosDao.cargarLista(), me los guarda pero me va a ir borrando lo que tenia anteriormente,
-                //por eso llamo a cargarLista y al array que devuelve le agrego el nuevo (osea el array que estoy cargando actualmente)
+                //eso si lo hago ArrayList<sUSCRIPTOR>() sin la parte de adentro,o sea sin (librosDao.cargarLista(), me los guarda pero me va a ir borrando lo que tenia anteriormente,
+                //por eso llamo a cargarLista y al array que devuelve le agreg//o el nuevo (osea el array que estoy cargando actualmente)
  // Libro libro = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
 
                 ArrayList lista = new ArrayList<Suscriptor>(SuscriptorDao.cargarLista());
