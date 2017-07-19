@@ -1,32 +1,50 @@
 [
   {
-    "duracionEnSegundos": 7200,
-    "titulo": "La era del hielo",
-    "calificacion": 9,
-    "costo": 60.0,
-    "suscriptores": []
-  },
-  {
-    "duracionEnSegundos": 7200,
-    "titulo": "Video1",
-    "calificacion": 4,
-    "costo": 70.0,
-    "suscriptores": []
-  },
-  {
-    "duracionEnSegundos": 34,
-    "tema": "MATEMATICA",
-    "titulo": "asdsdadsa",
-    "calificacion": 3,
-    "costo": 123.0,
-    "suscriptores": []
-  },
-  {
-    "duracionEnSegundos": 123456,
+    "duracionEnSegundos": 300,
     "tema": "ENTRETENIMIENTO",
-    "titulo": "Hola Jaque",
-    "calificacion": 987654,
-    "costo": 123456.0,
+    "titulo": "video1",
+    "calificacion": 10,
+    "costo": 32.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 400,
+    "tema": "MATEMATICA",
+    "titulo": "video2",
+    "calificacion": 9,
+    "costo": 320.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 350,
+    "tema": "MATEMATICA",
+    "titulo": "video3",
+    "calificacion": 6,
+    "costo": 50.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 600,
+    "tema": "PROGRAMACION",
+    "titulo": "video4",
+    "calificacion": 8,
+    "costo": 55.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 500,
+    "tema": "PROGRAMACION",
+    "titulo": "video5",
+    "calificacion": 10,
+    "costo": 88.0,
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 500,
+    "tema": "ENTRETENIMIENTO",
+    "titulo": "video6",
+    "calificacion": 9,
+    "costo": 88.0,
     "suscriptores": []
   }
 ]

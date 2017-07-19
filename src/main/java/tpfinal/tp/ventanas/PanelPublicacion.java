@@ -6,11 +6,13 @@
 package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -27,7 +29,10 @@ public class PanelPublicacion extends JPanel{
     private JButton botonAceptar;
     private JButton botonCancelar;
     private JTextField txtTitulo;
-    private JTextField txtFecha;
+    private JTextField txtDia;
+    private JTextField txtMes;
+    private JTextField txtAño;
+    
     private JTextField txtPrecio;
     private JTextField txtCalificacion;
     private JTextField txtTema;
@@ -45,10 +50,23 @@ public class PanelPublicacion extends JPanel{
     }
    
     private void armarPanel(){
+        
+        this.txtDia=new JTextField(6);
+        this.txtMes=new JTextField (6);
+        this.txtAño=new JTextField (6);
+        // Panel de fecha
+        JPanel panelFecha = new JPanel();
+        panelFecha.setLayout(new FlowLayout());
+        panelFecha.add(txtDia);
+        panelFecha.add(new JLabel("/"));
+        panelFecha.add(txtMes);
+        panelFecha.add(new JLabel("/"));
+        panelFecha.add(txtAño);        
+        
         this.botonAceptar= new JButton("Aceptar");
         this.botonCancelar= new JButton("Cancelar");
         this.txtCalificacion= new JTextField(20);
-        this.txtFecha=new JTextField(20);
+//        this.txtFecha=new JTextField(20);
         this.txtPrecio=new JTextField(20);
         //Para poder seleccion desde un ComboBox unon de los 3 temas que hay
         TemasMateriales[] listaTemas = {TemasMateriales.ENTRETENIMIENTO, TemasMateriales.MATEMATICA, TemasMateriales.PROGRAMACION};
@@ -66,7 +84,7 @@ public class PanelPublicacion extends JPanel{
         this.add(new JLabel("Tema"));
         this.add(comboTema);
         this.add(new JLabel("Fecha"));
-        this.add(txtFecha);
+        this.add(panelFecha);
         this.add(new JLabel("Calificacion"));
         this.add(txtCalificacion);
         this.add(new JLabel("Precio"));
@@ -77,7 +95,8 @@ public class PanelPublicacion extends JPanel{
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                Publicacion publicacion = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (txtFecha.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                //hay que passar la fecha
+                Publicacion publicacion = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
                 ArrayList lista = new ArrayList<>(publicacionesDao.cargarLista());
                 lista.add(publicacion);
                 publicacionesDao.guardarLista(lista);
@@ -99,4 +118,12 @@ public class PanelPublicacion extends JPanel{
         ventana.pack();
         ventana.setVisible(true);
 }
+     public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                crearPublicacionShowGUI();
+
+            }
+        });
+    }
 }

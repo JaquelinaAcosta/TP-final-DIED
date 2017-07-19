@@ -1,38 +1,56 @@
 [
   {
-    "precioCompra": 500.0,
-    "isbn": "123456",
-    "paginas": 600,
-    "tema": 1,
-    "titulo": "Don Quijote de la Mancha",
+    "precioCompra": 56.0,
+    "isbn": "12340",
+    "paginas": 32,
+    "tema": "ENTRETENIMIENTO",
+    "titulo": "Libro1",
     "calificacion": 10,
     "suscriptores": []
   },
   {
-    "precioCompra": 100.0,
-    "isbn": "123450",
-    "paginas": 20,
-    "tema": 2,
-    "titulo": "El gato con botas",
+    "precioCompra": 120.0,
+    "isbn": "12341",
+    "paginas": 150,
+    "tema": "ENTRETENIMIENTO",
+    "titulo": "Libro2",
+    "calificacion": 8,
+    "suscriptores": []
+  },
+  {
+    "precioCompra": 200.0,
+    "isbn": "12342",
+    "paginas": 90,
+    "tema": "MATEMATICA",
+    "titulo": "Libro3",
     "calificacion": 9,
     "suscriptores": []
   },
   {
-    "precioCompra": 200.0,
-    "isbn": "123451",
-    "paginas": 200,
-    "tema": 3,
-    "titulo": "Un mundo felíz",
-    "calificacion": 8,
+    "precioCompra": 89.0,
+    "isbn": "12343",
+    "paginas": 120,
+    "tema": "PROGRAMACION",
+    "titulo": "Libro4",
+    "calificacion": 5,
     "suscriptores": []
   },
   {
-    "precioCompra": 200.0,
-    "isbn": "123451",
-    "paginas": 200,
-    "tema": 3,
-    "titulo": "Un mundo felíz",
-    "calificacion": 8,
+    "precioCompra": 250.0,
+    "isbn": "12344",
+    "paginas": 300,
+    "tema": "PROGRAMACION",
+    "titulo": "Libro5",
+    "calificacion": 10,
+    "suscriptores": []
+  },
+  {
+    "precioCompra": 135.0,
+    "isbn": "12345",
+    "paginas": 300,
+    "tema": "MATEMATICA",
+    "titulo": "Libro6",
+    "calificacion": 9,
     "suscriptores": []
   }
 ]

@@ -51,7 +51,7 @@ public class GenericDaoJSON<T> {
     
     public void guardar(List<T> t) {
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("dd/MM/yyyy").create();
 
         try {
     //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
@@ -67,7 +67,7 @@ public class GenericDaoJSON<T> {
     }
 
     public List<T> cargar(Type typeArgs) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
         List<T> models = null;
         try {
             //Creamos un archivo FileReader que obtiene lo que tenga el archivo
