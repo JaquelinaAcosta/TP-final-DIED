@@ -119,7 +119,7 @@ public final class Suscriptor {
 
      @Override
     public String toString() {
-        return "Suscriptor{" + "nombre" + nombre + ", " + "apellido" + apellido + "," + "dni" + nroDocumento + ",credito" + credito + '}';
+        return "Suscriptor{" + "nombre " + nombre + ", " + "apellido " + apellido + "," + "dni " + nroDocumento + ",credito " + credito + '}';
     }
 
     public void agregar(MaterialCapacitacion d){

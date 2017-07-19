@@ -5,6 +5,9 @@
  */
 package tpfinal.tp.ventanas;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -77,12 +80,20 @@ public class PanelBuscarLibro extends JPanel{
             }
         });
         
-  
+  //agrega un material a la lista del suscriptor si tiene credito
         botonAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    
+                    //cargar los uscriptores Suscriptores.json
+             ArrayList lista = new ArrayList<Suscriptor>(suscriptorDao.cargarLista());
+             System.out.println(lista);
+            
+      JsonParser parser = new JsonParser();
+      JsonArray gsonArr = parser.parse(Suscriptores.json).getAsJsonArray();
+
+           
+                   
                 }catch(Exception ex){
                     System.out.println("Error");
                 }
