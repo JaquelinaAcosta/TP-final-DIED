@@ -7,6 +7,8 @@ package tpfinal.tp.ventanas;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -24,9 +26,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import jdk.nashorn.internal.parser.JSONParser;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
 import tpfinal.tp.integrador.Suscriptor;
-
 
 
 public class PanelBuscarLibro extends JPanel{
@@ -53,7 +55,7 @@ public class PanelBuscarLibro extends JPanel{
         
         
        
-        String[] mensaje=this.leerFichero("C:\\Suscriptor.txt");
+       String[] mensaje=this.leerFichero("C:\\Suscriptor.txt");
 
         this.libro= new JLabel("Libro");
         this.suscriptor=new JLabel("Suscriptor");
@@ -84,21 +86,46 @@ public class PanelBuscarLibro extends JPanel{
         botonAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 try{
-                    //cargar los uscriptores Suscriptores.json
-             ArrayList lista = new ArrayList<Suscriptor>(suscriptorDao.cargarLista());
-             System.out.println(lista);
-            
-      JsonParser parser = new JsonParser();
-      JsonArray gsonArr = parser.parse(Suscriptores.json).getAsJsonArray();
-
-           
-                   
-                }catch(Exception ex){
+                            }catch(Exception ex){
                     System.out.println("Error");
                 }
             }
-        });//me lleva agregar un material de capacitacion*/
+        });
+                
+    
+                    //cargar los uscriptores Suscriptores.json
+           ///  ArrayList lista = new ArrayList<Suscriptor>(suscriptorDao.cargarLista());
+          
+   //   JsonArray gsonArr = parser.parse(Suscriptores.json).getAsJsonArray();
+//   JsonParser parser = new JsonParser();
+//   Object obj = parser.parse(new FileReader("C:\\Users\\hp\\Documents\\UTN\\TP-final-DIED\\Suscriptores.json"));
+//
+//			JsonObject jsonObject = (JsonObject) obj;
+//
+//			String nombre = (String)jsonObject.get("Nombre");
+//			System.out.println(nombre);
+//
+//			String temas = (String) JsonObject.get("Temas");
+//			System.out.println(temas);
+//			
+//			long inicio = (Long) JsonObject.get("Inicio");
+//		 	System.out.println(inicio);
+//
+//			JSONObject innerObject = (JSONObject) jsonObject.get("Posts");
+//			System.out.println(innerObject.toJSONString());
+//			
+//			// loop array
+//			JSONArray tags = (JSONArray) jsonObject.get("Tags");
+//			Iterator<String> iterator = tags.iterator();
+//			while (iterator.hasNext()) {
+//				System.out.println(iterator.next());
+
+
+           
+                   
+        //me lleva agregar un material de capacitacion*/
       
 
         this.add(botonAgregar);
@@ -115,7 +142,8 @@ public class PanelBuscarLibro extends JPanel{
         });
 
     }
-           
+      
+
     /*
     Funcion para leer los suscriptores desde el txt
     directorio es el lugar donde esta el txt
