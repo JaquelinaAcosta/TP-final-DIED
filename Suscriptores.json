@@ -1,20 +1,8 @@
 [
- {
-"nombre": "Miguel",
-+ "Apellido": "Perez",
-+ "NroDocumento": 11125,
-+ "Credito": 200.00
-},
-{
-"nombre": "Pedro",
- + "Apellido": "Arias",
- + "NroDocumento": 111254,
- + "Credito": 500.00
-},
-{
-"nombre": "Maria",
-+ "Apellido": "Dominguez",
-+ "NroDocumento": 111256,
-+ "Credito": 800.00
-}
- ]
+  {
+    "nombre": "perez",
+    "nroDocumento": 1111,
+    "credito": 200.0,
+    "suscriptores": {}
+  }
+]
