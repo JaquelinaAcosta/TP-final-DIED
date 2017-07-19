@@ -27,7 +27,7 @@ public final class Suscriptor {
     public Suscriptor(String nombre,String apellido,Integer dni,Double credito){
         this();
         this.nombre=nombre;
-        this.nombre=apellido;
+        this.apellido=apellido;
         this.nroDocumento=dni;
         this.credito=credito;
     }       

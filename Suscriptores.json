@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "nroDocumento": 11111111,
+    "credito": 600.0,
+    "suscriptores": {}
+  },
+  {
+    "nombre": "José",
+    "apellido": "Goméz",
+    "nroDocumento": 22222222,
+    "credito": 1000.0,
+    "suscriptores": {}
+  }
+]
