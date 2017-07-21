@@ -9,11 +9,13 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import tpfinal.tp.integrador.MaterialCapacitacion;
 
 
 public class PanelBuscarVideoPublicacion extends JPanel{
@@ -24,8 +26,15 @@ public class PanelBuscarVideoPublicacion extends JPanel{
     private JButton botonSalir;
     private JList lista;
     private Principal principal;
+    private List<? extends MaterialCapacitacion> listaMateriales;
 
     public PanelBuscarVideoPublicacion(){
+        this.armarPanel();
+    }
+    
+    public PanelBuscarVideoPublicacion(Principal principal, List<? extends MaterialCapacitacion> listaMateriales){
+        this.principal = principal;
+        this.listaMateriales = listaMateriales;
         this.armarPanel();
     }
     
@@ -38,7 +47,9 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.botonActualizar= new JButton("Actualizar");
         this.botonSalir= new JButton("Salir");
         this.botonBorrar= new JButton("Borrar");
-        this.lista= new JList();
+        //Para pasar la lista (listaMateriales) resultado de filtrar busqueda de panel BuscarOdenar, y que salga en el JList (lista),
+        //lo mismo deberias hacer en PanleBuscarLibro, va a ser lo unico que te va a faltar para mostrar la lista.
+        this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
         
         this.setLayout(new GridLayout(2,3, 10, 10));
         this.add(new JLabel("LISTA"));
@@ -47,7 +58,7 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.add(botonActualizar);
         this.add(botonBorrar);
         this.add(botonSalir);
-        
+           
         //Sale de todo
         this.botonSalir.addActionListener(new ActionListener(){
                @Override

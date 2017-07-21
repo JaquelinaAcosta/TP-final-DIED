@@ -13,7 +13,7 @@ public class Video extends MaterialCapacitacion {
     public Video() {
         super();
     }
-    
+     
     public Video (String titulo, TemasMateriales tema, Integer duracion, Integer calificacion, Double costo){
         super.titulo=titulo;
         super.tema=tema;

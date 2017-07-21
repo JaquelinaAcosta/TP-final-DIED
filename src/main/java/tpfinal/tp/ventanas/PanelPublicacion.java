@@ -118,12 +118,12 @@ public class PanelPublicacion extends JPanel{
         ventana.pack();
         ventana.setVisible(true);
 }
-     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                crearPublicacionShowGUI();
-
-            }
-        });
-    }
+//     public static void main(String[] args) {
+//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                crearPublicacionShowGUI();
+//
+//            }
+//        });
+//    }
 }

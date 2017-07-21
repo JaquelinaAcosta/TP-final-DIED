@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public class Publicacion extends MaterialCapacitacion{
     private String doi;
-    private Double factorImpacto;
-    private Double valorSuscripcionAnual;
+    private Double factorImpacto= 0.0;
+    private Double valorSuscripcionAnual=0.0;
 
     public Publicacion(){
         super();

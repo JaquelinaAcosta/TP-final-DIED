@@ -44,6 +44,7 @@ public abstract class MaterialCapacitacion implements Ordenable, Comparable<Mate
     protected Collection<Suscriptor> suscriptores;
     
     public MaterialCapacitacion() {
+        this.fechaPublicacion = new Date();
         suscriptores = new LinkedHashSet<>();
     }       
     public MaterialCapacitacion(String titulo) {
@@ -79,6 +80,10 @@ public abstract class MaterialCapacitacion implements Ordenable, Comparable<Mate
     public Double getCosto() {
         return costo;
     }
+    
+    public TemasMateriales getTema(){
+        return tema;
+    }
 
     public Date getFechaPublicacion() {
         return fechaPublicacion;
@@ -108,7 +113,7 @@ public abstract class MaterialCapacitacion implements Ordenable, Comparable<Mate
     
     @Override
     public String toString() {
-        return "{" + "titulo=" + titulo + " calificacion= "+this.calificacion + " fecha=" + this.fechaPublicacion() + " precio=" + this.precio() +'}'+"\r\n";
+        return "{" + "titulo=" + titulo + " calificacion= "+this.calificacion + " fecha=" + this.fechaPublicacion() + " precio=" + this.precio() + "tema=" + this.tema + '}'+"\r\n";
     }
 
     @Override

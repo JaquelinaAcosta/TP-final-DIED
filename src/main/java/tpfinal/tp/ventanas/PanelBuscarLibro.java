@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
+import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
 import tpfinal.tp.vista.PrincipalGrafo;
@@ -39,7 +41,8 @@ public class PanelBuscarLibro extends JPanel{
     private JPanel nuevoLibro;
     private SuscriptoresDao suscriptorDao= new SuscriptoresDao();//aca voy a leer todos los 
     private Principal principal;
-
+    private List<? extends MaterialCapacitacion> listaMateriales;
+    
     public PanelBuscarLibro() throws Exception{
         this.armarPanel();
     }
@@ -48,6 +51,13 @@ public class PanelBuscarLibro extends JPanel{
         this.principal= principal;
         this.armarPanel();
     }
+    
+    public PanelBuscarLibro(Principal principal, List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
+        this.principal = principal;
+        this.listaMateriales = listaMateriales;
+        this.armarPanel();
+    }
+
    
     private void armarPanel() throws Exception{
         

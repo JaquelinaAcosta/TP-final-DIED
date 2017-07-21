@@ -114,10 +114,8 @@ comparador
      */
     @Override
     public List<MaterialCapacitacion> ordenado() {
-        List<MaterialCapacitacion> lista = new ArrayList<MaterialCapacitacion>();
-        //implementar
-        this.inOrden();
-                
+        List<MaterialCapacitacion> lista = this.inOrden();
+        //implementar... lo habiamos hecho mal new List<MsterialCapacitacion>                
         return lista;    
     }
     

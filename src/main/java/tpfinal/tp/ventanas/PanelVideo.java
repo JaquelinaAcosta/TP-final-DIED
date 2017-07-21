@@ -31,7 +31,7 @@ public class PanelVideo extends JPanel{
     private JTextField txtCalificacion;
     private JComboBox comboTema;
     private Principal principal;
-     private VideosDao videosDao = new VideosDao();
+    private VideosDao videosDao = new VideosDao();
 
     public PanelVideo(){
         this.armarPanel();
