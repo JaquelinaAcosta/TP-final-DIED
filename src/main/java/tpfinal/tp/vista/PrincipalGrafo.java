@@ -10,14 +10,14 @@ import javax.swing.JFrame;
 import tpfinal.tp.controller.GrafoController;
 
 
-public class Principal {
-public static void main(String[] args) {
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-          createAndShowGUI();
-        }
-    });
-}
+public class PrincipalGrafo {
+//public static void main(String[] args) {
+//    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//        public void run() {
+//          createAndShowGUI();
+//        }
+//    });
+//}
 
  private static void createAndShowGUI() {
         JFrame f = new JFrame();

@@ -5,11 +5,6 @@
  */
 package tpfinal.tp.ventanas;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -26,9 +21,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import jdk.nashorn.internal.parser.JSONParser;
+import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
-import tpfinal.tp.integrador.Suscriptor;
+import tpfinal.tp.vista.ControlPanel;
+import tpfinal.tp.vista.GrafoPanel;
+import tpfinal.tp.vista.PrincipalGrafo;
 
 
 public class PanelBuscarLibro extends JPanel{
@@ -38,6 +35,7 @@ public class PanelBuscarLibro extends JPanel{
     private JLabel suscriptor;
     private JList listLibros;
     private JButton botonAgregar,botonActualizar,botonBorrar,botonSalir;
+    private JButton asignarRelaciones;
     private JPanel nuevoLibro;
     private SuscriptoresDao suscriptorDao= new SuscriptoresDao();//aca voy a leer todos los 
     private Principal principal;
@@ -64,7 +62,7 @@ public class PanelBuscarLibro extends JPanel{
         this.botonAgregar= new JButton("Agregar");
         this.botonBorrar= new JButton("Borrar");
         this.comboxSuscriptor= new JComboBox(mensaje);//aca muestra el suscriptor
- 
+        this.asignarRelaciones= new JButton("Asigar Relaciones");
         this.setLayout(new GridLayout(3,3, 10, 10));
         this.add(libro);
         this.add(suscriptor);
@@ -94,7 +92,28 @@ public class PanelBuscarLibro extends JPanel{
             }
         });
                 
-    
+        asignarRelaciones.addActionListener(new ActionListener(){
+             public void actionPerformed(ActionEvent e) {
+                try{
+                   
+                   JFrame f = new JFrame();
+                    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    ControlPanel panelCtrl = new ControlPanel();
+                    GrafoPanel panelGrf = new GrafoPanel();
+                    GrafoController gf = new GrafoController(panelGrf, panelCtrl);
+                    panelGrf.setController(gf);
+                    panelCtrl.setController(gf);
+
+                    f.add(panelCtrl, BorderLayout.PAGE_START);
+                    f.add(panelGrf);
+
+                    f.pack();
+                    f.setVisible(true);
+                }catch(Exception ex){
+                    System.out.println("Error");
+                }
+            }
+        });
                     //cargar los uscriptores Suscriptores.json
            ///  ArrayList lista = new ArrayList<Suscriptor>(suscriptorDao.cargarLista());
           
@@ -127,7 +146,7 @@ public class PanelBuscarLibro extends JPanel{
                    
         //me lleva agregar un material de capacitacion*/
       
-
+        this.add(asignarRelaciones);
         this.add(botonAgregar);
         this.add(botonActualizar);
         this.add(botonBorrar);
