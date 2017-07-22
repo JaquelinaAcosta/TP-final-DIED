@@ -16,16 +16,16 @@ public final class Suscriptor {
     private Double credito;
     private MaterialCapacitacion[] material; 
     
-    private Map<MaterialCapacitacion, Integer> suscriptores;
-    
-     
-    public Suscriptor(){
-        credito=0.0;
-        this.suscriptores= new LinkedHashMap();
-    }    
-    
+  private Map<MaterialCapacitacion, Integer> suscriptores;
+//    
+//     
+//    public Suscriptor(){
+//        credito=0.0;
+//        this.suscriptores= new LinkedHashMap();
+//    }    
+//    
     public Suscriptor(String nombre,String apellido,Integer dni,Double credito){
-        this();
+      
         this.nombre=nombre;
         this.apellido=apellido;
         this.nroDocumento=dni;

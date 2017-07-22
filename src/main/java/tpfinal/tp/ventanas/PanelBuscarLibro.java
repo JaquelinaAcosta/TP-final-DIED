@@ -5,6 +5,8 @@
  */
 package tpfinal.tp.ventanas;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -37,6 +40,7 @@ public class PanelBuscarLibro extends JPanel{
     private JLabel libro;
     private JLabel suscriptor;
     private JList listLibros;
+       private JList listSuscriptores;
     private JButton botonAgregar,botonActualizar,botonBorrar,botonSalir;
     private JButton asignarRelaciones;
     private JPanel nuevoLibro;
@@ -72,29 +76,41 @@ public class PanelBuscarLibro extends JPanel{
         this.botonSalir= new JButton("Salir");
         this.botonAgregar= new JButton("Agregar");
         this.botonBorrar= new JButton("Borrar");
-        this.comboxSuscriptor= new JComboBox(mensaje);//aca muestra el suscriptor
+        this.comboxSuscriptor= new JComboBox<String>();//aca muestra el suscriptor
         this.asignarRelaciones= new JButton("Asigar Relaciones");
         this.setLayout(new GridLayout(3,3, 10, 10));
         this.add(libro);
         this.add(suscriptor);
+        this.listSuscriptores=  new JList();
+              
 
-        this.add(comboxSuscriptor);//agrego la lista
-    //     this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
-      //  ObjectMapper mapper = new ObjectMapper();
-
-
-       
-        comboxSuscriptor.addActionListener(new ActionListener(){
-             public void actionPerformed(ActionEvent e) {
-                try{
-                    
-                }catch(Exception ex){
-                    System.out.println("Error");
-                }
-            }
-        });
+      
+  
+        List<Suscriptor> listaSuscriptor= suscriptorDao.cargarLista();
+        for(Suscriptor elem: listaSuscriptor)
+        {
+            String nombres = null;
+            Suscriptor elemento=elem;
+            for(int i=0;i<listaSuscriptor.size()-1;i++)
+            {
+                comboxSuscriptor.addItem(elem.getNombre());
         
-  //agrega un material a la lista del suscriptor si tiene credito
+            }
+          
+        }     
+  
+  
+                   
+        //me lleva agregar un material de capacitacion*/
+        this.add(comboxSuscriptor);
+        this.add(listSuscriptores);
+        this.add(asignarRelaciones);
+        this.add(botonAgregar);
+        this.add(botonActualizar);
+        this.add(botonBorrar);
+        this.add(botonSalir);
+        
+          //agrega un material a la lista del suscriptor si tiene credito
         botonAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,7 +122,8 @@ public class PanelBuscarLibro extends JPanel{
             }
         });
                 
-        asignarRelaciones.addActionListener(new ActionListener(){
+        
+          asignarRelaciones.addActionListener(new ActionListener(){
              public void actionPerformed(ActionEvent e) {
                 try{
                    
@@ -128,44 +145,6 @@ public class PanelBuscarLibro extends JPanel{
                 }
             }
         });
-                    //cargar los uscriptores Suscriptores.json
-           ///  ArrayList lista = new ArrayList<Suscriptor>(suscriptorDao.cargarLista());
-          
-   //   JsonArray gsonArr = parser.parse(Suscriptores.json).getAsJsonArray();
-//   JsonParser parser = new JsonParser();
-//   Object obj = parser.parse(new FileReader("C:\\Users\\hp\\Documents\\UTN\\TP-final-DIED\\Suscriptores.json"));
-//
-//			JsonObject jsonObject = (JsonObject) obj;
-//
-//			String nombre = (String)jsonObject.get("Nombre");
-//			System.out.println(nombre);
-//
-//			String temas = (String) JsonObject.get("Temas");
-//			System.out.println(temas);
-//			
-//			long inicio = (Long) JsonObject.get("Inicio");
-//		 	System.out.println(inicio);
-//
-//			JSONObject innerObject = (JSONObject) jsonObject.get("Posts");
-//			System.out.println(innerObject.toJSONString());
-//			
-//			// loop array
-//			JSONArray tags = (JSONArray) jsonObject.get("Tags");
-//			Iterator<String> iterator = tags.iterator();
-//			while (iterator.hasNext()) {
-//				System.out.println(iterator.next());
-
-
-           
-                   
-        //me lleva agregar un material de capacitacion*/
-      
-        this.add(asignarRelaciones);
-        this.add(botonAgregar);
-        this.add(botonActualizar);
-        this.add(botonBorrar);
-        this.add(botonSalir);
-        
         //Sale de todo
         this.botonSalir.addActionListener(new ActionListener(){
                @Override
