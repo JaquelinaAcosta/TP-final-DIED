@@ -5,20 +5,13 @@
  */
 package tpfinal.tp.ventanas;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,47 +19,50 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
+import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
+import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Suscriptor;
 import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
-import tpfinal.tp.vista.PrincipalGrafo;
 
 
 public class PanelBuscarLibro extends JPanel{
     
     private JComboBox comboxSuscriptor;
     private JLabel libro;
+  private JLabel estoSeleccione;
     private JLabel suscriptor;
     private JList listLibros;
-       private JList listSuscriptores;
     private JButton botonAgregar,botonActualizar,botonBorrar,botonSalir;
     private JButton asignarRelaciones;
     private JPanel nuevoLibro;
-    private SuscriptoresDao suscriptorDao= new SuscriptoresDao();//aca voy a leer todos los 
+    private SuscriptoresDao suscriptorDao= new SuscriptoresDao();//aca voy a leer todos los suscrip
+    private LibrosDao libroDao= new LibrosDao();
     private Principal principal;
     private List<? extends MaterialCapacitacion> listaMateriales;
+    private JComboBox comboxLibro;
     
-    public PanelBuscarLibro() throws Exception{
+    public PanelBuscarLibro(){
         this.armarPanel();
     }
     
-    public PanelBuscarLibro(Principal principal) throws Exception{
+    public PanelBuscarLibro(Principal principal){
         this.principal= principal;
         this.armarPanel();
     }
     
-    public PanelBuscarLibro(Principal principal, List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
+    public PanelBuscarLibro(Principal principal, List<? extends MaterialCapacitacion> listaMateriales){
         this.principal = principal;
         this.listaMateriales = listaMateriales;
         this.armarPanel();
     }
 
    
-    private void armarPanel() throws Exception{
+    private void armarPanel(){
         
-
+        this.estoSeleccione= new JLabel();
         this.libro= new JLabel("Libro");
         this.suscriptor=new JLabel("Suscriptor");
         this.botonActualizar= new JButton("Actualizar");
@@ -74,15 +70,27 @@ public class PanelBuscarLibro extends JPanel{
         this.botonAgregar= new JButton("Agregar");
         this.botonBorrar= new JButton("Borrar");
         this.comboxSuscriptor= new JComboBox<String>();//aca muestra el suscriptor
+        this.comboxLibro= new JComboBox<String>();
         this.asignarRelaciones= new JButton("Asigar Relaciones");
-        this.setLayout(new GridLayout(3,3, 10, 10));
-        this.add(libro);
-        this.add(suscriptor);
-        this.listSuscriptores=  new JList();
-              
-
+//        this.listLibros=new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
+        this.setLayout(new GridLayout(2,2, 5, 2));
+       
+    //    this.add(listLibros);
       
-  
+    //Cargo la lista de libros resultado de la busqueda
+    
+        List<Libro> listaLibro= libroDao.cargarLista();
+        for(Libro lib: listaLibro)
+        {
+            String nombres = null;
+            Libro book=lib;
+            for(int i=0;i<listaLibro.size()-1;i++)
+            {
+                comboxLibro.addItem(book.getTitulo());
+            } 
+        }     
+
+//Cargo la lista de Suscriptores
         List<Suscriptor> listaSuscriptor= suscriptorDao.cargarLista();
         for(Suscriptor elem: listaSuscriptor)
         {
@@ -91,29 +99,43 @@ public class PanelBuscarLibro extends JPanel{
             for(int i=0;i<listaSuscriptor.size()-1;i++)
             {
                 comboxSuscriptor.addItem(elem.getNombre());
-        
-            }
-          
+            } 
         }     
-  
-  
-                   
-        //me lleva agregar un material de capacitacion*/
+
+      
+        this.add(libro);
+        this.add(comboxLibro);
+        this.add(suscriptor);
         this.add(comboxSuscriptor);
-        this.add(listSuscriptores);
-        this.add(asignarRelaciones);
         this.add(botonAgregar);
+        this.add(asignarRelaciones);
         this.add(botonActualizar);
         this.add(botonBorrar);
         this.add(botonSalir);
         
+ 
+
+        //toma el Suscriptor que seleccione,lo muestro en un JLabel
+        comboxSuscriptor.addActionListener((ActionEvent e) -> {
+            //JLabel estoSeleccione= new JLabel(comboxSuscriptor.getSelectedItem().toString());
+            String suscriptorSeleccionado=comboxSuscriptor.getSelectedItem().toString();
+              for(Suscriptor elem: listaSuscriptor)
+        {
+          String sus=elem.getNombre();
+          if(suscriptorSeleccionado.equals(sus))
+              System.out.println("este suscriptor soy"+sus+"mi saldo es"+elem.getCredito());
+        }
+            System.out.println("Esto seleccione"+comboxSuscriptor.getSelectedItem().toString());
+        });
+       
           //agrega un material a la lista del suscriptor si tiene credito
         botonAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
                 try{
-                            }catch(Exception ex){
+                           
+                }catch(Exception ex){
                     System.out.println("Error");
                 }
             }
@@ -151,18 +173,23 @@ public class PanelBuscarLibro extends JPanel{
         });
 
     }
+       public void buscarSuscriptor(String nombreSuscrip,Suscriptor sus)
+    {
+        if(sus.getNombre().toString().equals(nombreSuscrip))
+            System.out.println("Estee doyy");
+    }
       
 
-private static void crearBuscarShowGUI() throws Exception{
+ 
+    
+private static void crearBuscarShowGUI(){
         JFrame ventana = new JFrame("Biblioteca");
-        ventana.setSize(300, 200);
+        ventana.setSize(500, 300);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         PanelBuscarLibro blPanel = new PanelBuscarLibro();
-        blPanel.setSize(300, 200);
+        blPanel.setSize(500, 300);
         ventana.add(blPanel);
-      
         ventana.add(blPanel, BorderLayout.PAGE_START);
-        
         ventana.pack();
         ventana.setVisible(true);
 }
@@ -170,17 +197,9 @@ private static void crearBuscarShowGUI() throws Exception{
 public static void main(String[] args) {
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
         public void run() {
-          PanelBuscarLibro pBuscarLibro = null;
-            try {
-                pBuscarLibro = new PanelBuscarLibro();
-            } catch (Exception ex) {
-                Logger.getLogger(PanelBuscarLibro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
+          PanelBuscarLibro pBuscarLibro = new PanelBuscarLibro();
                 pBuscarLibro.crearBuscarShowGUI();
-            } catch (Exception ex) {
-                Logger.getLogger(PanelBuscarLibro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           
         }
     });
 }

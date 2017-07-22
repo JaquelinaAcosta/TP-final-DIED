@@ -78,9 +78,7 @@ private static void crearBuscarShowGUI(){
         PanelBuscarVideoPublicacion bvpPanel = new PanelBuscarVideoPublicacion();
         bvpPanel.setSize(300, 200);
         ventana.add(bvpPanel);
-    
         ventana.add(bvpPanel, BorderLayout.PAGE_START);
-        
         ventana.pack();
         ventana.setVisible(true);
 }
