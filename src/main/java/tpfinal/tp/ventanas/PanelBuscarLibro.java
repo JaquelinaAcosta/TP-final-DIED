@@ -66,9 +66,6 @@ public class PanelBuscarLibro extends JPanel{
    
     private void armarPanel() throws Exception{
         
-        
-       
-       String[] mensaje=this.leerFichero("C:\\Suscriptor.txt");
 
         this.libro= new JLabel("Libro");
         this.suscriptor=new JLabel("Suscriptor");
@@ -156,41 +153,6 @@ public class PanelBuscarLibro extends JPanel{
     }
       
 
-    /*
-    Funcion para leer los suscriptores desde el txt
-    directorio es el lugar donde esta el txt
-    */
-     public String[] leerFichero(String directorio) throws Exception {
-
-         FileReader fr = null;
-          ArrayList<String> txt= new ArrayList<String>();
-        String linea;
-        try {
-            File fichero = new File(directorio);
-            fr = new FileReader(fichero);
-            BufferedReader br = new BufferedReader(fr);
-        linea = br.readLine();
-        while (linea != null) {
-            System.out.println(linea);
-            linea = br.readLine();
-            txt.add(linea);
-        }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (fr != null) {
-                    fr.close();
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-         String[] array = new String[txt.size()];
-         array = txt.toArray(array);
-        return array;
-    }
-   
 private static void crearBuscarShowGUI() throws Exception{
         JFrame ventana = new JFrame("Biblioteca");
         ventana.setSize(300, 200);
