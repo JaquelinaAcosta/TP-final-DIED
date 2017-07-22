@@ -115,7 +115,8 @@ public class Principal {
         //si estamos con video o publicacion va a la ventana de buscar Video o publicacion.
         //donde pasamos la lista de materiales filtrada (esta lista fue filtrada en PanelBuscarOrdenar, metodo filtrar())
         if(crearBuscarDesde.equals("Video")){
-            //Para pasar la lista filtrada a la ventana siguiente(PanelBuscarVideoPublicacion), desde la ventana (PanelBuscarOrdenar)
+            //Para pasar la lista filtrada a la ventana siguiente(PanelBuscarVideoPublicacion), 
+            //desde la ventana (PanelBuscarOrdenar)
             panelCtrl= new PanelBuscarVideoPublicacion(this, listaMateriales);
         }
         if(crearBuscarDesde.equals("Publicación")){

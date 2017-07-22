@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
 import tpfinal.tp.integrador.MaterialCapacitacion;
+import tpfinal.tp.integrador.Suscriptor;
 import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
 import tpfinal.tp.vista.PrincipalGrafo;
@@ -78,7 +79,10 @@ public class PanelBuscarLibro extends JPanel{
         this.add(suscriptor);
 
         this.add(comboxSuscriptor);//agrego la lista
-        
+    //     this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
+      //  ObjectMapper mapper = new ObjectMapper();
+
+
        
         comboxSuscriptor.addActionListener(new ActionListener(){
              public void actionPerformed(ActionEvent e) {

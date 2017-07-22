@@ -1,16 +1,19 @@
 [
   {
-    "nombre" : "Juan",
-    "apellido" : "Perez",
-    "nroDocumento" : 11111111,
-    "credito" : 600.0,
-    "suscriptores" : {}
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "nroDocumento": 11111111,
+    "credito": 600.0,
   },
   {
-    "nombre" : "José",
-    "apellido" : "Goméz",
-    "nroDocumento" : 22222222,
-    "credito": 1000.0,
-    "suscriptores": {}
+    "nombre": "José",
+    "apellido": "Goméz",
+    "nroDocumento": 22222222,
+    "credito": 1000.0,  },
+  {
+    "nombre": "tito",
+    "apellido": "bambino",
+    "nroDocumento": 125366,
+    "credito": 3000.0,
   }
 ]
