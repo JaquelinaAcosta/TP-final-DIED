@@ -32,6 +32,16 @@ public class SuscriptoresDao {
     */
     }
     
-  
+    public void editar(Suscriptor viejo,Suscriptor editar){
+        db.editar(new com.google.gson.reflect.TypeToken<List<Suscriptor>>(){}.getType(), viejo, editar);
+    }
+    
+    public void agregar(Suscriptor video){
+        db.agregar(new com.google.gson.reflect.TypeToken<List<Suscriptor>>(){}.getType(), video);
+    }
+    
+    public void borrar(Suscriptor borrar){
+        db.borrar(new com.google.gson.reflect.TypeToken<List<Suscriptor>>(){}.getType(), borrar);
+    }
     
 }

@@ -5,6 +5,7 @@
  */
 package tpfinal.tp.guardarADisco;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import tpfinal.tp.integrador.Video;
 import tpfinal.tp.persistencia.GenericDaoJSON;
@@ -24,12 +25,24 @@ public class VideosDao {
     public void guardarLista(List<Video> videos){
         db.guardar(videos);
     }
-
+    
     public List<Video> cargarLista(){
         return db.cargar(new com.google.gson.reflect.TypeToken<List<Video>>(){}.getType());
     
         /* cuando se cargan los datos desde el disco se debe pasar como parámetro
     al método, con el nombre de lo que estamos guardando (por ejemplo Libro o Empleado) 
     */
+    }
+    
+    public void editar(Video viejo, Video editar){
+        db.editar(new com.google.gson.reflect.TypeToken<List<Video>>(){}.getType(), viejo, editar);
+    }
+    
+    public void agregar(Video video){
+        db.agregar(new com.google.gson.reflect.TypeToken<List<Video>>(){}.getType(), video);
+    }
+    
+    public void borrar(Video borrar){
+        db.borrar(new com.google.gson.reflect.TypeToken<List<Video>>(){}.getType(), borrar);
     }
 }

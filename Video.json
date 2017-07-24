@@ -1,34 +1,11 @@
 [
   {
-    "duracionEnSegundos": 300,
-    "tema": "ENTRETENIMIENTO",
-    "titulo": "video1",
-    "calificacion": 10,
-    "costo": 32.0,
-    "suscriptores": []
-  },
-  {
-    "duracionEnSegundos": 400,
-    "tema": "MATEMATICA",
-    "titulo": "video2",
-    "calificacion": 9,
-    "costo": 320.0,
-    "suscriptores": []
-  },
-  {
-    "duracionEnSegundos": 350,
-    "tema": "MATEMATICA",
-    "titulo": "video3",
-    "calificacion": 6,
-    "costo": 50.0,
-    "suscriptores": []
-  },
-  {
     "duracionEnSegundos": 600,
     "tema": "PROGRAMACION",
     "titulo": "video4",
     "calificacion": 8,
     "costo": 55.0,
+    "fechaPublicacion": "21/07/2017",
     "suscriptores": []
   },
   {
@@ -37,6 +14,7 @@
     "titulo": "video5",
     "calificacion": 10,
     "costo": 88.0,
+    "fechaPublicacion": "21/07/2017",
     "suscriptores": []
   },
   {
@@ -45,6 +23,25 @@
     "titulo": "video6",
     "calificacion": 9,
     "costo": 88.0,
+    "fechaPublicacion": "21/07/2017",
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 400,
+    "tema": "MATEMATICA",
+    "titulo": "video2",
+    "calificacion": 9,
+    "costo": 400.0,
+    "fechaPublicacion": "21/07/2017",
+    "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 300,
+    "tema": "ENTRETENIMIENTO",
+    "titulo": "video1",
+    "calificacion": 10,
+    "costo": 600.0,
+    "fechaPublicacion": "24/07/2017",
     "suscriptores": []
   }
 ]

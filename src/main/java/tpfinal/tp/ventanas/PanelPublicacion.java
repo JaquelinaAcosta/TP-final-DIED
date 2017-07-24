@@ -39,6 +39,7 @@ public class PanelPublicacion extends JPanel{
     private JComboBox comboTema;
     private PublicacionesDao publicacionesDao = new PublicacionesDao();
     private Principal principal;
+    private Publicacion publicacion;
     
     public PanelPublicacion(){
         this.armarPanel();
@@ -46,6 +47,13 @@ public class PanelPublicacion extends JPanel{
     
     public PanelPublicacion(Principal principal){
         this.principal = principal;
+        this.armarPanel();
+    }
+    
+    //se usa cuando vamos a actualizar una publicacion de la lista de materiales, pasando la publicacion que vamos a modificar
+    public PanelPublicacion(Principal principal, Publicacion publicacion){
+        this.principal = principal;
+        this.publicacion=publicacion;
         this.armarPanel();
     }
    
@@ -75,6 +83,17 @@ public class PanelPublicacion extends JPanel{
         this.txtTitulo=new JTextField(20);
         
         
+        //para que se visualicen los datos en la pantalla a la hora de actualizar un material de tipo publicacion
+        if(publicacion != null){
+            txtTitulo.setText(publicacion.getTitulo());
+            txtCalificacion.setText(publicacion.getCalificacion().toString());
+            txtPrecio.setText(publicacion.getCosto().toString());
+            comboTema.getModel().setSelectedItem(publicacion.getTema());  
+            txtDia.setText(String.valueOf(publicacion.getFechaPublicacion().getDate()));
+            txtMes.setText(String.valueOf(publicacion.getFechaPublicacion().getMonth()+1));
+            txtAño.setText(String.valueOf(publicacion.getFechaPublicacion().getYear()+1900));
+        }
+        
         
         this.setLayout(new GridLayout(10,1,10,10));
         this.add(new JLabel("PUBLICACION"));
@@ -91,15 +110,20 @@ public class PanelPublicacion extends JPanel{
         this.add(txtPrecio);
         this.add(botonAceptar);
         this.add(botonCancelar);
-        
+               
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                //hay que passar la fecha
-                Publicacion publicacion = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
-                ArrayList lista = new ArrayList<>(publicacionesDao.cargarLista());
-                lista.add(publicacion);
-                publicacionesDao.guardarLista(lista);
+                //si es para actualizar, va a entrar al if
+                if(publicacion != null){
+                Publicacion publicacion1 = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                publicacionesDao.editar(publicacion, publicacion1);
+                }
+                //si es para crear va a entrar al else
+                else{
+                    Publicacion publicacion1 = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                    publicacionesDao.agregar(publicacion);
+                }
             }
         });
     }

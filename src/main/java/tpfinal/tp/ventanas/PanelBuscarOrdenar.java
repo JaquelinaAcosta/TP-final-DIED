@@ -18,8 +18,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import tpfinal.tp.excepcion.MaterialNoEncontradoException;
 import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
@@ -51,7 +53,7 @@ public class PanelBuscarOrdenar extends JPanel{
     private JComboBox comboTema;
     private JComboBox comboCalificacion;
     private JTextField txtTitulo;
-    
+        
     private Portal portal;
     
     private MaterialCapacitacion material;
@@ -130,9 +132,11 @@ public class PanelBuscarOrdenar extends JPanel{
                        filtrar();
                        principal.cambiarBuscarLibroVideoPublicacion(listaMateriales);
                         //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
+                   } catch (MaterialNoEncontradoException ex) {
+                       JOptionPane.showMessageDialog(null, ex.getMessage());
                    } catch (Exception ex) {
                        Logger.getLogger(PanelBuscarOrdenar.class.getName()).log(Level.SEVERE, null, ex);
-                   }
+                   } 
                }
         });
        
@@ -148,8 +152,7 @@ public class PanelBuscarOrdenar extends JPanel{
     }
     
     //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
-   private void filtrar(){
-       
+   private void filtrar() throws MaterialNoEncontradoException{
         if(boxTitulo.isSelected()){
             //Uso Lambda, en presentacion complementaria de swing está
             //[Lista de Argumentos (seria lista de materiales) ][tokenflecha (->)][cuerpo de la expresión (lo que quiero hacer, buscar los material que por ejemplo el titulo que pasas este en la lista de materiales, para hacer una lista solo con esa caracteriatica)]
@@ -180,6 +183,9 @@ public class PanelBuscarOrdenar extends JPanel{
         }
         if(boxPrecioOrden.isSelected()){
             listaMateriales = portal.ordenadaPorPrecio();
+        }
+        if(listaMateriales.isEmpty()){
+            throw new MaterialNoEncontradoException();
         }
         
         //IMPORTANE!

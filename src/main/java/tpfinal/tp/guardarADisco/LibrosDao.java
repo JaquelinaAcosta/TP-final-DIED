@@ -32,4 +32,16 @@ public class LibrosDao {
     */
     }
     
+     public void editar(Libro viejo,Libro editar){
+        db.editar(new com.google.gson.reflect.TypeToken<List<Libro>>(){}.getType(), viejo, editar);
+    }
+    
+    public void agregar(Libro video){
+        db.agregar(new com.google.gson.reflect.TypeToken<List<Libro>>(){}.getType(), video);
+    }
+    
+    public void borrar(Libro borrar){
+        db.borrar(new com.google.gson.reflect.TypeToken<List<Libro>>(){}.getType(), borrar);
+    }
+    
 }

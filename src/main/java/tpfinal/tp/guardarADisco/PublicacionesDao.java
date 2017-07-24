@@ -32,4 +32,16 @@ public class PublicacionesDao {
     */
     }
     
+    public void editar(Publicacion viejo,Publicacion editar){
+        db.editar(new com.google.gson.reflect.TypeToken<List<Publicacion>>(){}.getType(), viejo, editar);
+    }
+    
+    public void agregar(Publicacion video){
+        db.agregar(new com.google.gson.reflect.TypeToken<List<Publicacion>>(){}.getType(), video);
+    }
+    
+    public void borrar(Publicacion borrar){
+        db.borrar(new com.google.gson.reflect.TypeToken<List<Publicacion>>(){}.getType(), borrar);
+    }
+    
 }

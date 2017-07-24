@@ -65,7 +65,7 @@ public class GenericDaoJSON<T> {
             e.printStackTrace();
         }
     }
-
+    
     public List<T> cargar(Type typeArgs) {
         Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
         List<T> models = null;
@@ -82,6 +82,24 @@ public class GenericDaoJSON<T> {
         return models;
     }
     
-
+    
+    public void agregar(Type typeArgs, T nuevo){
+        List<T> lista =cargar(typeArgs);
+        lista.add(nuevo);
+        guardar(lista);
+    }
+    
+    public void borrar(Type typeArgs, T objeto){
+        List<T> lista =cargar(typeArgs);
+        lista.remove(objeto);
+        guardar(lista);
+    }
+    
+    public void editar(Type typeArgs, T viejo, T editar ){
+        List<T> lista =cargar(typeArgs);
+        lista.remove(viejo);
+        lista.add(editar);
+        guardar(lista);        
+    }
 
 }

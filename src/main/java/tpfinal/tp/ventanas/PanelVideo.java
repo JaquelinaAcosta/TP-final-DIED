@@ -32,6 +32,7 @@ public class PanelVideo extends JPanel{
     private JComboBox comboTema;
     private Principal principal;
     private VideosDao videosDao = new VideosDao();
+    private Video video;
 
     public PanelVideo(){
         this.armarPanel();
@@ -39,6 +40,13 @@ public class PanelVideo extends JPanel{
    
     public PanelVideo(Principal principal){
         this.principal = principal;
+        this.armarPanel();
+    }
+    
+    //se usa cuando vamos a actualizar un video de la lista de materiales, pasando el video que vamos a modificar
+    public PanelVideo(Principal principal, Video video){
+        this.principal = principal;
+        this.video=video;
         this.armarPanel();
     }
     
@@ -52,6 +60,14 @@ public class PanelVideo extends JPanel{
         this.comboTema= new JComboBox<>(listaTemas);
         this.txtTitulo=new JTextField(20);
 
+        //para que se visualicen os datos en la pantalla a la hora de actualizar un material de tipo video
+        if(video != null){
+            txtTitulo.setText(video.getTitulo());
+            txtCalificacion.setText(video.getCalificacion().toString());
+            txtDuracion.setText(video.getDuracionEnSegundos().toString());
+            txtPrecio.setText(video.getCosto().toString());
+            comboTema.getModel().setSelectedItem(video.getTema());            
+        }
 
 
         this.setLayout(new GridLayout(10,1,10,10));
@@ -70,13 +86,20 @@ public class PanelVideo extends JPanel{
         this.add(botonAceptar);
         this.add(botonCancelar);
     
+        
     this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                Video video = new Video(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
-                ArrayList lista = new ArrayList<Video>(videosDao.cargarLista());
-                lista.add(video);
-                videosDao.guardarLista(lista);
+                //si es para actualizar, va a entrar al if
+                if(video!= null){
+                    Video video1 = new Video(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                    videosDao.editar(video, video1);
+                }
+                //si es para crear va a entrar al else
+                else{
+                    Video video1 = new Video(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                    videosDao.agregar(video1);
+                }
             }
         });
     }

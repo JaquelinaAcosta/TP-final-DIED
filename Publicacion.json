@@ -1,18 +1,22 @@
 [
   {
+    "factorImpacto": 0.0,
+    "valorSuscripcionAnual": 0.0,
     "tema": "ENTRETENIMIENTO",
     "titulo": "Publicación 1",
     "calificacion": 10,
-    "costo": 300.0,
+    "costo": 400.0,
     "fechaPublicacion": "18/07/2017",
     "suscriptores": []
   },
   {
-    "tema": "MATEMATICA",
-    "titulo": "Publicacion",
-    "calificacion": 8,
-    "costo": 120.0,
-    "fechaPublicacion": "10/01/2017",
+    "factorImpacto": 0.0,
+    "valorSuscripcionAnual": 0.0,
+    "tema": "ENTRETENIMIENTO",
+    "titulo": "Publicación 1",
+    "calificacion": 10,
+    "costo": 300.0,
+    "fechaPublicacion": "18/06/2017",
     "suscriptores": []
   }
 ]

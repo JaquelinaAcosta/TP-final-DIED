@@ -13,6 +13,8 @@ import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
 import tpfinal.tp.integrador.MaterialCapacitacion;
+import tpfinal.tp.integrador.Publicacion;
+import tpfinal.tp.integrador.Video;
 
 
 public class Principal {
@@ -125,5 +127,38 @@ public class Principal {
     }
     
     
+    //ignorar es para borrar, no lo termine de trabajar
+    public void cambiarAPanelBorrar(MaterialCapacitacion material){
+        this.ventana.remove(this.panelCtrl);
+        
+        if(crearBuscarDesde.equals("Libro")){
+            panelCtrl= new PanelBorrar(this, material);
+        }
+        if(crearBuscarDesde.equals("Video")){
+            panelCtrl= new PanelBorrar(this, material);
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+            panelCtrl= new PanelBorrar(this, material);
+        }
+        inicializarPanelCtrl();
+    }
+    
+    
+    //va al panel de crear (Libro, Video, Publicacion), para actualizar los datos
+    public void actualizarDatos(MaterialCapacitacion material){
+        this.ventana.remove(this.panelCtrl);
+        
+//        if(crearBuscarDesde.equals("Libro")){
+//            panelCtrl= new PanelLibro(this, listaMateriales);
+//        }
+        if(crearBuscarDesde.equals("Video")){
+            panelCtrl= new PanelVideo(this, (Video) material);
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+            panelCtrl= new PanelPublicacion(this, (Publicacion) material);
+        }
+        inicializarPanelCtrl();
+    
+}
     
 }

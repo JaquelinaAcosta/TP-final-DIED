@@ -58,6 +58,21 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.add(botonActualizar);
         this.add(botonBorrar);
         this.add(botonSalir);
+        
+      //  Para borrar un material de la lista..
+        this.botonBorrar.addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed (ActionEvent e){
+                   principal.cambiarAPanelBorrar((MaterialCapacitacion) lista.getSelectedValue());
+               }
+        });
+        
+        this.botonActualizar.addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed (ActionEvent e){
+                   principal.actualizarDatos((MaterialCapacitacion) lista.getSelectedValue());
+               }
+        });
            
         //Sale de todo
         this.botonSalir.addActionListener(new ActionListener(){
