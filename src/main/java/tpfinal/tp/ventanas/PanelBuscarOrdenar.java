@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,18 +27,12 @@ import tpfinal.tp.guardarADisco.VideosDao;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Portal;
-import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
-import tpfinal.tp.integrador.Video;
 
 
-/**
- *
- * @author jaque
- */
+
 public class PanelBuscarOrdenar extends JPanel{
     
-//    private GrafoController controller;
     private JButton botonBuscar;
     private JButton botonSalir;
     private JCheckBox boxTitulo;
@@ -155,7 +148,9 @@ public class PanelBuscarOrdenar extends JPanel{
    private void filtrar() throws MaterialNoEncontradoException{
         if(boxTitulo.isSelected()){
             //Uso Lambda, en presentacion complementaria de swing está
-            //[Lista de Argumentos (seria lista de materiales) ][tokenflecha (->)][cuerpo de la expresión (lo que quiero hacer, buscar los material que por ejemplo el titulo que pasas este en la lista de materiales, para hacer una lista solo con esa caracteriatica)]
+            //[Lista de Argumentos (seria lista de materiales) ][tokenflecha (->)][cuerpo de la expresión
+            //(lo que quiero hacer, buscar los material que por ejemplo el titulo que pasas este en la lista de materiales,
+            //para hacer una lista solo con esa caracteriatica)]
             //esa muy bueno para lo que es lista, para las buquedas porque en una linea haces todo
             //te dejo un link que tenes ejemplos de todo
             //https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
