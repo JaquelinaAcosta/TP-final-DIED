@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import tpfinal.tp.excepcion.CalificacionIncorrectaExcepcion;
 import tpfinal.tp.excepcion.CreditoInsuficienteException;
 
 
@@ -79,15 +78,6 @@ public final class Suscriptor {
         }
     }
 
-    public void calificar(MaterialCapacitacion m,Integer calificacion) throws CalificacionIncorrectaExcepcion{
-     
-        if((calificacion>0)&&(calificacion<=10)){ 
-            suscriptores.put(m, calificacion);
-        }
-        else{
-        throw new CalificacionIncorrectaExcepcion(calificacion);
-         }  
-    }
     
     public Integer calificacion(MaterialCapacitacion m){
         return this.suscriptores.get(m);

@@ -8,7 +8,6 @@ package tpfinal.tp.util;
 import java.util.Comparator;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-
 public class ComparadorTitulo implements Comparator<MaterialCapacitacion>{
         public int compare(MaterialCapacitacion o1, MaterialCapacitacion o2) {
             return o1.getTitulo().compareTo(o2.getTitulo());
@@ -24,4 +23,3 @@ public class ComparadorTitulo implements Comparator<MaterialCapacitacion>{
             return _instancia;
         }
 }
-

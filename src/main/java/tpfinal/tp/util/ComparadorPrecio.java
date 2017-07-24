@@ -8,7 +8,6 @@ package tpfinal.tp.util;
 import java.util.Comparator;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-
 public class ComparadorPrecio implements Comparator<MaterialCapacitacion>{
         @Override
         public int compare(MaterialCapacitacion o1, MaterialCapacitacion o2) {

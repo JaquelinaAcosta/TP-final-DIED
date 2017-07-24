@@ -8,17 +8,16 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashSet;
 import java.util.Objects;
-import tpfinal.tp.ordenamiento.Ordenable;
 
 
 
-public abstract class MaterialCapacitacion implements Ordenable, Comparable<MaterialCapacitacion>{
+
+public abstract class MaterialCapacitacion implements Comparable<MaterialCapacitacion>{
     
 
     
     protected TemasMateriales tema;
     protected Integer id;
-    protected EstadoPromocion estado;
     protected String titulo;
     private Integer suscripciones;
     
@@ -170,7 +169,6 @@ public abstract class MaterialCapacitacion implements Ordenable, Comparable<Mate
     public abstract Double precio();
 
      //Agregamos del taller 1 parte 2, ORDENAMIENTO 
-    @Override
     public Long valorOrdenamiento() {
         return Long.valueOf(numerarString(this.titulo) + "" + formatoPrecio(this.precio()));
     }
@@ -209,10 +207,6 @@ public abstract class MaterialCapacitacion implements Ordenable, Comparable<Mate
     }
     
     
-    public void publicar(){
-        this.estado = EstadoPromocion.LANZAMIENTO;
-        this.fechaPublicacion = new Date();    
-    }
         
     public void publicar(String f){
      try{

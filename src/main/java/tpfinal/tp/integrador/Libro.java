@@ -10,14 +10,7 @@ public class Libro extends MaterialCapacitacion{
     private String isbn;
     private Integer paginas;
  
-    public Libro(String titulo,Double costo,String isbn,Integer pagina) {
-        super.titulo=titulo;
-        this.precioCompra=costo;
-//        este era el precioCmpra? porque estaba como this.costo=costo
-        this.isbn= isbn;
-        this.paginas=pagina;
-        this.estado=EstadoPromocion.ACCESO_TEMPRANO;
-    } 
+ 
     public Libro(String titulo,Double costo,String isbn,Integer pagina, TemasMateriales tema, Integer calificacion){
         super.titulo=titulo;
         this.precioCompra=costo;
