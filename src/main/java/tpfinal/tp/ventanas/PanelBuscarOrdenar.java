@@ -121,6 +121,8 @@ public class PanelBuscarOrdenar extends JPanel{
         this.add(botonAsignarRelaciones);
         this.add(botonSalir);
 
+        String temaSeleccionado= (String) comboTema.getSelectedItem();
+        
        this.botonBuscar.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
@@ -139,7 +141,15 @@ public class PanelBuscarOrdenar extends JPanel{
         this.botonAsignarRelaciones.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
-                   System.exit(0);
+                   try {
+                       filtrarTema();
+                       principal.cambiarDibujarNodo(temaSeleccionado,listaMateriales);
+                       } catch (MaterialNoEncontradoException ex) {
+                       JOptionPane.showMessageDialog(null, ex.getMessage());
+                         } catch (Exception ex) {
+                       Logger.getLogger(PanelBuscarOrdenar.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+                
                }
         });
        //Cierra la ventana
@@ -152,6 +162,19 @@ public class PanelBuscarOrdenar extends JPanel{
 
         
     }
+    
+   private void filtrarTema() throws MaterialNoEncontradoException{
+
+        if(boxTema.isSelected()){
+
+            listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
+        }
+
+        if(listaMateriales.isEmpty()){
+            throw new MaterialNoEncontradoException();
+        }
+        
+   }
     
     //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
    private void filtrar() throws MaterialNoEncontradoException{
@@ -195,7 +218,11 @@ public class PanelBuscarOrdenar extends JPanel{
         //IMPORTANE!
         //SI CORRES VIDEO SELECCIONANDO EL CHECK DE TEMA, SELECCIONAS "MATEMATICA"
         //Y SELECCIONAS EL CHECK QUE TE LO ORDENE POR PRECIO SE VE QUE DA EL RESULTADO DE LA LISTA ORDENADA
-    }
+        
+   }
+
+        
+
      
 private static void crearBuscarShowGUI(){
         JFrame ventana = new JFrame("Biblioteca");

@@ -127,6 +127,26 @@ public class Principal {
         inicializarPanelCtrl();        
     }
     
+    //esta funcion va a dibujar los nodos segun el tema que se filtro
+      public void cambiarDibujarNodo(String tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
+              this.ventana.remove(this.panelCtrl);
+       /**
+        *si filtro desde la pantalla de busqueda de libro segun un TEMA
+        * debo filtrar los otros materiales segun el mismo tema
+        */
+          if(crearBuscarDesde.equals("Libro")){
+          VideosDao videoDao= new VideosDao();
+          List<? extends MaterialCapacitacion> listaVideo= videoDao.cargarLista();
+         
+          PublicacionesDao publicacionesDao= new PublicacionesDao();
+          List<? extends MaterialCapacitacion> listaPublicaciones= publicacionesDao.cargarLista();
+         
+            }
+         LibrosDao librosDao= new LibrosDao();
+         List<? extends MaterialCapacitacion> listaLibro= librosDao.cargarLista();
+         
+        }
+      
     
     //ignorar es para borrar, no lo termine de trabajar
     public void cambiarAPanelBorrar(MaterialCapacitacion material){
