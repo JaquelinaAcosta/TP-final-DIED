@@ -121,7 +121,7 @@ public class PanelBuscarOrdenar extends JPanel{
         this.add(botonAsignarRelaciones);
         this.add(botonSalir);
 
-        String temaSeleccionado= (String) comboTema.getSelectedItem();
+      Enum temaSeleccionado= (Enum) comboTema.getSelectedItem();
         
        this.botonBuscar.addActionListener(new ActionListener(){
                @Override

@@ -7,6 +7,7 @@ package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import tpfinal.tp.guardarADisco.LibrosDao;
@@ -14,6 +15,7 @@ import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
+import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
 
 
@@ -128,16 +130,20 @@ public class Principal {
     }
     
     //esta funcion va a dibujar los nodos segun el tema que se filtro
-      public void cambiarDibujarNodo(String tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
+      public void cambiarDibujarNodo(Enum tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
               this.ventana.remove(this.panelCtrl);
        /**
         *si filtro desde la pantalla de busqueda de libro segun un TEMA
         * debo filtrar los otros materiales segun el mismo tema
         */
           if(crearBuscarDesde.equals("Libro")){
+              Video video= new Video();
           VideosDao videoDao= new VideosDao();
+            List<? extends MaterialCapacitacion> listaRtdoVideo;
           List<? extends MaterialCapacitacion> listaVideo= videoDao.cargarLista();
-         
+         listaVideo.removeIf(x-> x.getTema().equals((TemasMateriales)tema));
+     
+     // listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));             
           PublicacionesDao publicacionesDao= new PublicacionesDao();
           List<? extends MaterialCapacitacion> listaPublicaciones= publicacionesDao.cargarLista();
          
