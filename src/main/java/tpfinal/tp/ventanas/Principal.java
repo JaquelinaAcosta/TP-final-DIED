@@ -130,30 +130,30 @@ public class Principal {
         inicializarPanelCtrl();        
     }
     
-    //esta funcion va a dibujar los nodos segun el tema que se filtro
-      public void cambiarDibujarNodo(TemasMateriales tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
-              this.ventana.remove(this.panelCtrl);
-       /**
-        *si filtro desde la pantalla de busqueda de libro segun un TEMA
-        * debo filtrar los otros materiales segun el mismo tema
-        */
-       System.out.println(listaMateriales);
-          if(crearBuscarDesde.equals("Libro")){
-              Video video= new Video();
-          VideosDao videoDao= new VideosDao();
-            List<? extends MaterialCapacitacion> listaRtdoVideo;
-          List<? extends MaterialCapacitacion> listaVideo= videoDao.cargarLista();
-         listaVideo.removeIf(x-> x.getTema().equals((TemasMateriales)tema));
-     System.out.println(listaVideo);
-     // listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));             
-//          PublicacionesDao publicacionesDao= new PublicacionesDao();
-//          List<? extends MaterialCapacitacion> listaPublicaciones= publicacionesDao.cargarLista();
-         
-            }
-//         LibrosDao librosDao= new LibrosDao();
-//         List<? extends MaterialCapacitacion> listaLibro= librosDao.cargarLista();
+//    //esta funcion va a dibujar los nodos segun el tema que se filtro
+//      public void cambiarDibujarNodo(TemasMateriales tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
+//              this.ventana.remove(this.panelCtrl);
+//       /**
+//        *si filtro desde la pantalla de busqueda de libro segun un TEMA
+//        * debo filtrar los otros materiales segun el mismo tema
+//        */
+//       System.out.println(listaMateriales);
+//          if(crearBuscarDesde.equals("Libro")){
+//              Video video= new Video();
+//          VideosDao videoDao= new VideosDao();
+//            List<? extends MaterialCapacitacion> listaRtdoVideo;
+//          List<? extends MaterialCapacitacion> listaVideo= videoDao.cargarLista();
+//         listaVideo.removeIf(x-> x.getTema().equals((TemasMateriales)tema));
+//     System.out.println(listaVideo);
+//     // listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));             
+////          PublicacionesDao publicacionesDao= new PublicacionesDao();
+////          List<? extends MaterialCapacitacion> listaPublicaciones= publicacionesDao.cargarLista();
 //         
-        }
+//            }
+////         LibrosDao librosDao= new LibrosDao();
+////         List<? extends MaterialCapacitacion> listaLibro= librosDao.cargarLista();
+////         
+//        }
       
     
     //ignorar es para borrar, no lo termine de trabajar

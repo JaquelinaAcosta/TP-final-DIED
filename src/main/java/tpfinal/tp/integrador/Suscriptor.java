@@ -14,7 +14,7 @@ public final class Suscriptor {
     private String apellido; 
     private Integer nroDocumento; 
     private Double credito;
-    private List<MaterialCapacitacion> material;
+    private List<Libro> material;
     
   private Map<MaterialCapacitacion, Integer> suscriptores;
 //    
@@ -123,7 +123,7 @@ public final class Suscriptor {
         // si hay presupuesto disponible
         if(this.credito> d.precio())
         {
-            material.add(d);
+            material.add((Libro) d);
             this.credito-= d.precio();
         }
         else{

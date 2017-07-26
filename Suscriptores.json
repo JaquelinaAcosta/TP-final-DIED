@@ -35,7 +35,7 @@
     "nombre": "suscriptor",
     "apellido": "uno",
     "nroDocumento": 12345,
-    "credito": 361.5,
+    "credito": 281.4,
     "material": [
       {
         "precioCompra": 250.0,
@@ -44,6 +44,17 @@
         "tema": "PROGRAMACION",
         "titulo": "Libro5",
         "calificacion": 10,
+        "costo": 0.0,
+        "fechaPublicacion": "25/07/2017",
+        "suscriptores": []
+      },
+      {
+        "precioCompra": 89.0,
+        "isbn": "12343",
+        "paginas": 120,
+        "tema": "PROGRAMACION",
+        "titulo": "Libro4",
+        "calificacion": 5,
         "costo": 0.0,
         "fechaPublicacion": "25/07/2017",
         "suscriptores": []
