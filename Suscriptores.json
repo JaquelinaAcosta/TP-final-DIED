@@ -1,20 +1,54 @@
 [
   {
-    "nombre": "Juan",
-    "apellido": "Perez",
-    "nroDocumento": 11111111,
-    "credito": 600.0
+    "nombre": "suscriptor",
+    "apellido": "dos",
+    "nroDocumento": 12341,
+    "credito": 1000.0,
+    "material": [],
+    "suscriptores": {}
   },
   {
-    "nombre": "José",
-    "apellido": "Goméz",
-    "nroDocumento": 22222222,
-    "credito": 1000.0
- },
+    "nombre": "suscriptor",
+    "apellido": "tres",
+    "nroDocumento": 12342,
+    "credito": 3000.0,
+    "material": [],
+    "suscriptores": {}
+  },
   {
-    "nombre": "tito",
-    "apellido": "bambino",
-    "nroDocumento": 125366,
-    "credito": 3000.0
+    "nombre": "suscriptor",
+    "apellido": "cuatro",
+    "nroDocumento": 12343,
+    "credito": 400.0,
+    "material": [],
+    "suscriptores": {}
+  },
+  {
+    "nombre": "suscriptor",
+    "apellido": "cinco",
+    "nroDocumento": 12346,
+    "credito": 50.0,
+    "material": [],
+    "suscriptores": {}
+  },
+  {
+    "nombre": "suscriptor",
+    "apellido": "uno",
+    "nroDocumento": 12345,
+    "credito": 361.5,
+    "material": [
+      {
+        "precioCompra": 250.0,
+        "isbn": "12344",
+        "paginas": 300,
+        "tema": "PROGRAMACION",
+        "titulo": "Libro5",
+        "calificacion": 10,
+        "costo": 0.0,
+        "fechaPublicacion": "25/07/2017",
+        "suscriptores": []
+      }
+    ],
+    "suscriptores": {}
   }
 ]

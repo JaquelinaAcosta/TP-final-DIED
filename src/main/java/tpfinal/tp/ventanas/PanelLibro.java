@@ -35,6 +35,7 @@ public class PanelLibro extends JPanel{
     private JComboBox comboTema;
     private Principal principal;
     private LibrosDao librosDao = new LibrosDao();
+    private Libro libro;
 
     public PanelLibro(){
         this.armarPanel();
@@ -42,6 +43,13 @@ public class PanelLibro extends JPanel{
     
     public PanelLibro(Principal principal){
         this.principal = principal;
+        this.armarPanel();
+    }
+    
+    //se usa cuando vamos a actualizar un libro de la lista de materiales, pasando el libro que vamos a modificar
+    public PanelLibro(Principal principal, Libro libro){
+        this.principal = principal;
+        this.libro=libro;
         this.armarPanel();
     }
    
@@ -57,6 +65,16 @@ public class PanelLibro extends JPanel{
         this.comboTema= new JComboBox<>(listaTemas);
         this.txtTitulo=new JTextField(20);
         
+        
+        //para que se visualicen los datos en la pantalla a la hora de actualizar un material de tipo video
+        if(libro != null){
+            txtTitulo.setText(libro.getTitulo());
+            txtCalificacion.setText(libro.getCalificacion().toString());
+            txtIsbn.setText(libro.getIsbn());
+            txtPrecio.setText(libro.getCosto().toString());
+            comboTema.getModel().setSelectedItem(libro.getTema()); 
+            txtPaginas.setText(libro.getPaginas().toString());
+        }
         
         
         this.setLayout(new GridLayout(10,1,10,10));
@@ -82,19 +100,16 @@ public class PanelLibro extends JPanel{
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                //creamos un libro, poniendo en orden los campos de texto segun como lo tenemos en el constructor de la clase Libro que esta en el paquete Integrador
-                // con ctrl y seleccionando libro te lleva al consructor que también lo comenté
-                Libro libro = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
-                //creo un array porque guarda todos los datos en un array
-                //ArrayList<Libro>(librosDao.cargarLista()) eso si lo hago ArrayList<Libro>() sin la parte de adentro,o sea sin (librosDao.cargarLista(), me los guarda pero me va a ir borrando lo que tenia anteriormente,
-                //por eso llamo a cargarLista y al array que devuelve le agrego el nuevo (osea el array que estoy cargando actualmente)
-                ArrayList lista = new ArrayList<Libro>(librosDao.cargarLista());
-                lista.add(libro);
-                //En guardar lista guardaaas los anteriores y el nuevo
-                //cargarLista y guardarLista son de la clase LibrosDao del paquete guardarADisco, la cual es la encargada de exporta los datos al archivo Libros.json automaticacmente
-                librosDao.guardarLista(lista);
-                //despues todo lo que es exportar y como lo hace es problema de la clase LibrosDao que llama y maneja todo con la clase GenericDaoJSON
-                //Lo unico que hace esto es ir guardando datos en una lista, usando la clase LibrosDao, despues lo que es la exportacion es tema de LibrosDao y GenericDao y eso no lo tocas 
+                //si es para actualizar, entra en el if
+                if(libro!=null){
+                    Libro libro1 = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
+                    librosDao.editar(libro, libro1);
+                }
+                else{
+                    Libro libro1 = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
+                    librosDao.agregar(libro1);
+                }
+            
             }
         });
 

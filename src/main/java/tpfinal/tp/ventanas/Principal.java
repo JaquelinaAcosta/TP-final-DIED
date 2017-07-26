@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
+import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
@@ -175,9 +176,9 @@ public class Principal {
     public void actualizarDatos(MaterialCapacitacion material){
         this.ventana.remove(this.panelCtrl);
         
-//        if(crearBuscarDesde.equals("Libro")){
-//            panelCtrl= new PanelLibro(this, listaMateriales);
-//        }
+        if(crearBuscarDesde.equals("Libro")){
+            panelCtrl= new PanelLibro(this, (Libro) material);
+        }
         if(crearBuscarDesde.equals("Video")){
             panelCtrl= new PanelVideo(this, (Video) material);
         }

@@ -49,7 +49,6 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.botonBorrar= new JButton("Borrar");
         //Para pasar la lista (listaMateriales) resultado de filtrar busqueda de panel BuscarOdenar, 
         // y que salga en el JList (lista),
-        //lo mismo deberias hacer en PanleBuscarLibro, va a ser lo unico que te va a faltar para mostrar la lista.
         this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
         
         this.setLayout(new GridLayout(2,3, 10, 10));

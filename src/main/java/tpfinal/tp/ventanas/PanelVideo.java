@@ -60,7 +60,7 @@ public class PanelVideo extends JPanel{
         this.comboTema= new JComboBox<>(listaTemas);
         this.txtTitulo=new JTextField(20);
 
-        //para que se visualicen os datos en la pantalla a la hora de actualizar un material de tipo video
+        //para que se visualicen los datos en la pantalla a la hora de actualizar un material de tipo video
         if(video != null){
             txtTitulo.setText(video.getTitulo());
             txtCalificacion.setText(video.getCalificacion().toString());
@@ -90,7 +90,7 @@ public class PanelVideo extends JPanel{
     this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                //si es para actualizar, va a entrar al if
+                //si es para actualizar, entrar en el if
                 if(video!= null){
                     Video video1 = new Video(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
                     videosDao.editar(video, video1);

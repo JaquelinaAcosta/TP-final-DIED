@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import tpfinal.tp.excepcion.CreditoInsuficienteException;
 
 
@@ -13,7 +14,7 @@ public final class Suscriptor {
     private String apellido; 
     private Integer nroDocumento; 
     private Double credito;
-    private MaterialCapacitacion[] material; 
+    private List<MaterialCapacitacion> material;
     
   private Map<MaterialCapacitacion, Integer> suscriptores;
 //    
@@ -68,6 +69,11 @@ public final class Suscriptor {
         this.nroDocumento = nroDocumento;
     }
 
+    public Suscriptor(){
+        credito=0.0;
+        this.suscriptores= new LinkedHashMap();
+        this.material= new ArrayList<>();
+    }
     public void suscribir(MaterialCapacitacion m) throws CreditoInsuficienteException{
         if(this.credito-m.precio()>0){
             this.credito-=m.precio();
@@ -112,19 +118,35 @@ public final class Suscriptor {
         return "Suscriptor{" + "nombre " + nombre + ", " + "apellido " + apellido + "," + "dni " + nroDocumento + ",credito " + credito + '}';
     }
 
-    public void agregar(MaterialCapacitacion d){
+    public void agregar(MaterialCapacitacion d)throws CreditoInsuficienteException{
         // implementar el mÃ©todo agregar documentos que agrega un documento a la biblioteca solamente
         // si hay presupuesto disponible
-        if(this.disponible()> d.precio())
+        if(this.credito> d.precio())
         {
-            d.suscribir();
-            this.credito=disponible()-d.precio();
+            material.add(d);
+            this.credito-= d.precio();
         }
-        else
-            System.out.println("Ud. no posee credito");
-            
+        else{
+            throw new CreditoInsuficienteException(d.precio(), this.credito);
+        }
+    }   
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Suscriptor other = (Suscriptor) obj;
+        if (!Objects.equals(this.nroDocumento, other.nroDocumento)) {
+            return false;
+        }
+        return true;
     }
-
+            
     public void quitar(MaterialCapacitacion d){
       // implementar el metodo
       d.cancelarSuscripcion();

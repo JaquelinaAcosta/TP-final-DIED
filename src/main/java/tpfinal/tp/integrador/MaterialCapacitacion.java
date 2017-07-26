@@ -44,6 +44,7 @@ public abstract class MaterialCapacitacion implements Comparable<MaterialCapacit
     
     public MaterialCapacitacion() {
         this.fechaPublicacion = new Date();
+         this.costo = 0.00;
         suscriptores = new LinkedHashSet<>();
     }       
     public MaterialCapacitacion(String titulo) {

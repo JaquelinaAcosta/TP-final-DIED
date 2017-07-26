@@ -164,7 +164,7 @@ public class PanelBuscarOrdenar extends JPanel{
     }
     
    private void filtrarTema() throws MaterialNoEncontradoException{
-
+       
         if(boxTema.isSelected()){
 
             listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
