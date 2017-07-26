@@ -8,7 +8,6 @@ package tpfinal.tp.ventanas;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import tpfinal.tp.guardarADisco.LibrosDao;
@@ -19,7 +18,6 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
-import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
 
 
@@ -47,7 +45,7 @@ public class Principal {
     
     private void createAndShowGUI() {
         ventana = new JFrame("Biblioteca");
-        ventana.setSize(600, 200);
+        ventana.setSize(600, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panelCtrl = new PanelMaterialCapacitacion(this);    
         inicializarPanelCtrl();
@@ -55,7 +53,7 @@ public class Principal {
     }    
     
     private void inicializarPanelCtrl(){
-        panelCtrl.setSize(300, 200);
+        panelCtrl.setSize(500, 500);
         ventana.add(panelCtrl);
 
         ventana.add(panelCtrl, BorderLayout.PAGE_START);
@@ -140,7 +138,7 @@ public class Principal {
     }
     
     //esta funcion va a dibujar los nodos segun el tema que se filtro
-      public void cambiarDibujarNodo(TemasMateriales tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
+  public void cambiarDibujarNodo(TemasMateriales tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
               this.ventana.remove(this.panelCtrl);
               this.temaSeleccionado=tema;
        /**
@@ -161,7 +159,7 @@ public class Principal {
        listaPublicaciones=publicacionesDao.cargarLista();
        listaPublicaciones.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
        System.out.println(listaPublicaciones);
-       panelCtrl= new GrafoPanel();
+       panelCtrl= new PanelGrafo(this,listaVideo,listaPublicaciones);
             }
             if(crearBuscarDesde.equals("Video")){
        PublicacionesDao publicacionesDao= new PublicacionesDao();
