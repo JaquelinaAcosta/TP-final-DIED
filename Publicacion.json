@@ -18,5 +18,16 @@
     "costo": 300.0,
     "fechaPublicacion": "18/06/2017",
     "suscriptores": []
+  },
+  {
+    "factorImpacto": 0.0,
+    "valorSuscripcionAnual": 0.0,
+    "tema": "PROGRAMACION",
+    "titulo": "Publicación 1",
+    "calificacion": 10,
+    "costo": 300.0,
+    "fechaPublicacion": "18/06/2017",
+    "suscriptores": []
   }
+
 ]

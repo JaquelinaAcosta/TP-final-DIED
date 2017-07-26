@@ -6,6 +6,7 @@
 package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JFrame;
@@ -18,6 +19,8 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
+import tpfinal.tp.vista.ControlPanel;
+import tpfinal.tp.vista.GrafoPanel;
 
 
 public class Principal {
@@ -25,7 +28,12 @@ public class Principal {
     private JPanel panelCtrl;
     private String crearBuscarDesde;
     private PanelBuscarOrdenar panelBuscarOrdenar;
-    private List<? extends Video> x;
+    private List<Video> listaVideo;
+   // private List<? extends MaterialCapacitacion> listaVideo;
+    private List<? extends MaterialCapacitacion> listaPublicacion;
+    private TemasMateriales temaSeleccionado;
+      
+ private ArrayList resultado;
     
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -134,26 +142,52 @@ public class Principal {
     //esta funcion va a dibujar los nodos segun el tema que se filtro
       public void cambiarDibujarNodo(TemasMateriales tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
               this.ventana.remove(this.panelCtrl);
+              this.temaSeleccionado=tema;
        /**
         *si filtro desde la pantalla de busqueda de libro segun un TEMA
         * debo filtrar los otros materiales segun el mismo tema
         */
-       System.out.println(listaMateriales);
+  
+       
           if(crearBuscarDesde.equals("Libro")){
-              Video video= new Video();
-          VideosDao videoDao= new VideosDao();
-            List<? extends MaterialCapacitacion> listaRtdoVideo;
-          List<? extends MaterialCapacitacion> listaVideo= videoDao.cargarLista();
-         listaVideo.removeIf(x-> !x.getTema().equals((TemasMateriales)tema));
-     System.out.println(listaVideo);
-     // listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));             
-//          PublicacionesDao publicacionesDao= new PublicacionesDao();
-//          List<? extends MaterialCapacitacion> listaPublicaciones= publicacionesDao.cargarLista();
-         
+
+       VideosDao videoDao= new VideosDao();
+       List<Video> listaVideo= new ArrayList<Video>();
+       listaVideo=videoDao.cargarLista();
+       listaVideo.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
+       System.out.println(listaVideo);
+        PublicacionesDao publicacionesDao= new PublicacionesDao();
+       List<Publicacion> listaPublicaciones= new ArrayList<Publicacion>();
+       listaPublicaciones=publicacionesDao.cargarLista();
+       listaPublicaciones.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
+       System.out.println(listaPublicaciones);
+       panelCtrl= new GrafoPanel();
             }
-//         LibrosDao librosDao= new LibrosDao();
-//         List<? extends MaterialCapacitacion> listaLibro= librosDao.cargarLista();
-//         
+            if(crearBuscarDesde.equals("Video")){
+       PublicacionesDao publicacionesDao= new PublicacionesDao();
+       List<Publicacion> listaPublicaciones= new ArrayList<Publicacion>();
+       listaPublicaciones=publicacionesDao.cargarLista();
+       listaPublicaciones.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
+       System.out.println(listaPublicaciones);
+      LibrosDao libroDao= new LibrosDao();
+       List<Libro> listaLibro= new ArrayList<Libro>();
+       listaLibro=libroDao.cargarLista();
+       listaLibro.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
+       System.out.println(listaLibro);
+            }
+              if(crearBuscarDesde.equals("Publicacion")){
+       VideosDao videoDao= new VideosDao();
+       List<Video> listaVideo= new ArrayList<Video>();
+       listaVideo=videoDao.cargarLista();
+       listaVideo.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
+       System.out.println(listaVideo);
+        LibrosDao libroDao= new LibrosDao();
+       List<Libro> listaLibro= new ArrayList<Libro>();
+       listaLibro=libroDao.cargarLista();
+       listaLibro.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
+       System.out.println(listaLibro);
+            }
+        
         }
       
     
@@ -192,3 +226,8 @@ public class Principal {
 }
     
 }
+//         LibrosDao librosDao= new LibrosDao();
+//         List<? extends MaterialCapacitacion> listaLibro= librosDao.cargarLista();
+// //        PublicacionesDao publicacionesDao= new PublicacionesDao();
+//        List<? extends MaterialCapacitacion> listaPublicaciones= publicacionesDao.cargarLista();
+//                 listaVideo.removeIf(x-> !x.getTema().equals((TemasMateriales)tema));

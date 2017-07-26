@@ -156,7 +156,7 @@ temaSeleccionado=this.temaSeleccionado();
                @Override
                public void actionPerformed (ActionEvent e){
                    try {
-                    //   filtrarTema();
+                      filtrarTema();
                        principal.cambiarDibujarNodo(temaSeleccionado(),listaMateriales);
                        } catch (MaterialNoEncontradoException ex) {
                        JOptionPane.showMessageDialog(null, ex.getMessage());

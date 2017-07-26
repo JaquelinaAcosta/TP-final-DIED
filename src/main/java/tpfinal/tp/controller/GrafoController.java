@@ -60,7 +60,7 @@ public class GrafoController {
     public void buscarCamino(String nodo1,String nodo2,Integer saltos){
         Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
-        List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino);      
+      //  List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino, saltos);      
         //COMPLETAR
         //COMPLETAR
         //COMPLETAR DE MODO TAL QUE CUANDO TENGA EL CAMINO RESULTADO se muestre el camino (aristas y vertice en rojo)
@@ -77,4 +77,3 @@ public class GrafoController {
         return null;
     }
 }
-
