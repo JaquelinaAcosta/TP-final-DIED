@@ -152,20 +152,20 @@ temaSeleccionado=this.temaSeleccionado();
                }
         });
        
-//        this.botonAsignarRelaciones.addActionListener(new ActionListener(){
-//               @Override
-//               public void actionPerformed (ActionEvent e){
-//                   try {
-//                    //   filtrarTema();
-//                       principal.cambiarDibujarNodo(tema,listaMateriales);
-//                       } catch (MaterialNoEncontradoException ex) {
-//                       JOptionPane.showMessageDialog(null, ex.getMessage());
-//                         } catch (Exception ex) {
-//                       Logger.getLogger(PanelBuscarOrdenar.class.getName()).log(Level.SEVERE, null, ex);
-//                   }
-//                
-//               }
-//        });
+        this.botonAsignarRelaciones.addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed (ActionEvent e){
+                   try {
+                    //   filtrarTema();
+                       principal.cambiarDibujarNodo(temaSeleccionado(),listaMateriales);
+                       } catch (MaterialNoEncontradoException ex) {
+                       JOptionPane.showMessageDialog(null, ex.getMessage());
+                         } catch (Exception ex) {
+                       Logger.getLogger(PanelBuscarOrdenar.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+                
+               }
+        });
        //Cierra la ventana
        this.botonSalir.addActionListener(new ActionListener(){
                @Override
@@ -185,18 +185,18 @@ temaSeleccionado=this.temaSeleccionado();
 });
         return tema;
     }
-//   private void filtrarTema() throws MaterialNoEncontradoException{
-//       
-//        if(boxTema.isSelected()){
-//
-//            listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
-//        }
-//
-//        if(listaMateriales.isEmpty()){
-//            throw new MaterialNoEncontradoException();
-//        }
-//        
-//   }
+   private void filtrarTema() throws MaterialNoEncontradoException{
+       
+        if(boxTema.isSelected()){
+
+            listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
+        }
+
+        if(listaMateriales.isEmpty()){
+            throw new MaterialNoEncontradoException();
+        }
+        
+   }
     
     //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
    private void filtrar() throws MaterialNoEncontradoException{
