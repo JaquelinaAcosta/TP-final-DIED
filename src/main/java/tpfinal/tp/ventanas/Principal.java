@@ -144,7 +144,7 @@ public class Principal {
           VideosDao videoDao= new VideosDao();
             List<? extends MaterialCapacitacion> listaRtdoVideo;
           List<? extends MaterialCapacitacion> listaVideo= videoDao.cargarLista();
-         listaVideo.removeIf(x-> x.getTema().equals((TemasMateriales)tema));
+         listaVideo.removeIf(x-> !x.getTema().equals((TemasMateriales)tema));
      System.out.println(listaVideo);
      // listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));             
 //          PublicacionesDao publicacionesDao= new PublicacionesDao();
