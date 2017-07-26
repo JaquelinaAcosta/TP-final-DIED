@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.excepcion.MaterialNoEncontradoException;
-import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
 import tpfinal.tp.integrador.Libro;
@@ -47,7 +46,8 @@ public class PanelBuscarOrdenar extends JPanel{
     private JComboBox comboTema;
     private JComboBox comboCalificacion;
     private JTextField txtTitulo;
-        
+   private TemasMateriales tema;  
+    private TemasMateriales temaSeleccionado;  
     private Portal portal;
     
     private MaterialCapacitacion material;
@@ -120,9 +120,23 @@ public class PanelBuscarOrdenar extends JPanel{
         this.add(botonBuscar);
         this.add(botonAsignarRelaciones);
         this.add(botonSalir);
+/**
+ *    comboxSuscriptor.addActionListener((ActionEvent e) -> {
+            //JLabel estoSeleccione= new JLabel(comboxSuscriptor.getSelectedItem().toString());
+            String suscriptorSeleccionado=comboxSuscriptor.getSelectedItem().toString();
+              for(Suscriptor elem: listaSuscriptor)
+        {
+          String sus=elem.getNombre();
+          if(suscriptorSeleccionado.equals(sus))
+              System.out.println("este suscriptor soy"+sus+"mi saldo es"+elem.getCredito());
+        }
+            System.out.println("Esto seleccione"+comboxSuscriptor.getSelectedItem().toString());
+        });
+       
+ */
+temaSeleccionado=this.temaSeleccionado();
 
-      Enum temaSeleccionado= (Enum) comboTema.getSelectedItem();
-        
+      System.out.println(temaSeleccionado);
        this.botonBuscar.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
@@ -138,20 +152,20 @@ public class PanelBuscarOrdenar extends JPanel{
                }
         });
        
-        this.botonAsignarRelaciones.addActionListener(new ActionListener(){
-               @Override
-               public void actionPerformed (ActionEvent e){
-                   try {
-                       filtrarTema();
-                       principal.cambiarDibujarNodo(temaSeleccionado,listaMateriales);
-                       } catch (MaterialNoEncontradoException ex) {
-                       JOptionPane.showMessageDialog(null, ex.getMessage());
-                         } catch (Exception ex) {
-                       Logger.getLogger(PanelBuscarOrdenar.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-                
-               }
-        });
+//        this.botonAsignarRelaciones.addActionListener(new ActionListener(){
+//               @Override
+//               public void actionPerformed (ActionEvent e){
+//                   try {
+//                    //   filtrarTema();
+//                       principal.cambiarDibujarNodo(tema,listaMateriales);
+//                       } catch (MaterialNoEncontradoException ex) {
+//                       JOptionPane.showMessageDialog(null, ex.getMessage());
+//                         } catch (Exception ex) {
+//                       Logger.getLogger(PanelBuscarOrdenar.class.getName()).log(Level.SEVERE, null, ex);
+//                   }
+//                
+//               }
+//        });
        //Cierra la ventana
        this.botonSalir.addActionListener(new ActionListener(){
                @Override
@@ -163,6 +177,14 @@ public class PanelBuscarOrdenar extends JPanel{
         
     }
     
+    private TemasMateriales temaSeleccionado()
+    {
+     comboTema.addActionListener((ActionEvent e) -> {
+      tema= (TemasMateriales) comboTema.getSelectedItem();
+      System.out.println(tema);
+});
+        return tema;
+    }
    private void filtrarTema() throws MaterialNoEncontradoException{
 
         if(boxTema.isSelected()){
