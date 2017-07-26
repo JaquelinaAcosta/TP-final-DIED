@@ -134,9 +134,9 @@ public class PanelBuscarOrdenar extends JPanel{
         });
        
  */
-//temaSeleccionado=this.temaSeleccionado();
-//
-//      System.out.println(temaSeleccionado);
+temaSeleccionado=this.temaSeleccionado();
+
+      System.out.println(temaSeleccionado);
        this.botonBuscar.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
@@ -177,14 +177,14 @@ public class PanelBuscarOrdenar extends JPanel{
         
     }
     
-//    private TemasMateriales temaSeleccionado()
-//    {
-//     comboTema.addActionListener((ActionEvent e) -> {
-//      tema= (TemasMateriales) comboTema.getSelectedItem();
-//      System.out.println(tema);
-//});
-//        return tema;
-//    }
+    private TemasMateriales temaSeleccionado()
+    {
+     comboTema.addActionListener((ActionEvent e) -> {
+      tema= (TemasMateriales) comboTema.getSelectedItem();
+      System.out.println(tema);
+});
+        return tema;
+    }
 //   private void filtrarTema() throws MaterialNoEncontradoException{
 //       
 //        if(boxTema.isSelected()){

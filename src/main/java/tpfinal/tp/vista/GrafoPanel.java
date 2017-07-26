@@ -52,6 +52,7 @@ public class GrafoPanel extends JPanel {
                 if (event.getClickCount() == 2 && !event.isConsumed()) {
                     event.consume();
                     String titulo = JOptionPane.showInputDialog(framePadre, "Nombre del nodo");
+                    System.out.println(titulo);
                     if (titulo != null) {
                         // quito un color de la cola
                         Color aux = colaColores.remove();
