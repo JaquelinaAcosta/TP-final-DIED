@@ -221,7 +221,6 @@ private JScrollPane scrollLista;
         ventana.add(panel);
     
         ventana.add(panel, BorderLayout.PAGE_START);
-        
         ventana.pack();
         ventana.setVisible(true);
 }
