@@ -14,6 +14,7 @@ import tpfinal.tp.estructuras.grafo.Grafo;
 import tpfinal.tp.estructuras.grafo.Vertice;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
+import tpfinal.tp.ventanas.PanelGrafo;
 import tpfinal.tp.vista.AristaView;
 import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
@@ -24,12 +25,12 @@ public class GrafoController {
     
     private static Integer _GENERADOR_ID=1;
     private Grafo<MaterialCapacitacion> grafo;
-    private GrafoPanel vistaGrafo;
+    private PanelGrafo vistaGrafo;
     private ControlPanel vistaControl;
     private Map<Vertice<MaterialCapacitacion>,VerticeView> vertices;
     private Map<Arista<MaterialCapacitacion>,AristaView> aristas;
 
-    public GrafoController(GrafoPanel panelGrf,ControlPanel panelCtrl) {
+    public GrafoController(PanelGrafo panelGrf,ControlPanel panelCtrl) {
         this.vistaGrafo = panelGrf;
         this.vistaControl = panelCtrl;
         this.grafo = new Grafo<MaterialCapacitacion>();
@@ -38,6 +39,16 @@ public class GrafoController {
      }
     
     
+    public void crearVerticeLista(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
+      //  MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
+        Vertice v1 = new Vertice(titulo);//creo el vertice con el nombre
+        grafo.addNodo(v1);  //lo agrego al grafo      
+        VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);//creo el dibujo
+        v.setVertice(v1);
+        this.vistaGrafo.agregar(v);
+        this.vertices.put(v1, v);
+        this.vistaGrafo.repaint();
+    }
     
     public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
         MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);

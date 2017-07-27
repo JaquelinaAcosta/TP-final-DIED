@@ -10,20 +10,25 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.Video;
@@ -47,6 +52,13 @@ public class PanelGrafo extends JPanel {
     private List<Video> listaVideo;
     private List<Publicacion> listaPublicacion;
     private JList resultado;
+    private JButton dibujarNodos;
+private JList listaNombres;//declaramos La Lista
+private DefaultListModel modelo;//declaramos el Modelo
+private JScrollPane scrollLista;
+    private JFrame framePadre;
+
+        
  //constructor
     public PanelGrafo() {
         this.armarPanel();
@@ -56,17 +68,19 @@ public class PanelGrafo extends JPanel {
         this.armarPanel();
     }
      
-      public PanelGrafo(Principal principal,ArrayList<Video> video,ArrayList<Publicacion> publicacion) {
-         this.principal=principal;
-         this.listaPublicacion=publicacion;
-         this.listaVideo=video;
-        this.armarPanel();
-    }
+//      public PanelGrafo(Principal principal,ArrayList<Video> video,ArrayList<Publicacion> publicacion) {
+//         this.principal=principal;
+//         this.listaPublicacion=publicacion;
+//         this.listaVideo=video;
+//        this.armarPanel();
+//    }
 
     PanelGrafo(Principal principal, List<Video> listaVideo, List<Publicacion> listaPublicaciones) {
       this.principal=principal;
          this.listaPublicacion=listaPublicaciones;
          this.listaVideo=listaVideo;
+         System.out.println("Estoy en panel"+listaVideo);
+          System.out.println(listaPublicacion);
         this.armarPanel();  
     }
      
@@ -74,12 +88,24 @@ public class PanelGrafo extends JPanel {
      
    public void armarPanel()
    {
-       this.resultado= new JList((ListModel) listaVideo);
+       String nodos[]= {"nodo1","nodos2","nodo3","nodo4","nodo5","nodo6","nodo7","nodo8","nodo9","nodo10"};
+        this.framePadre = (JFrame) this.getParent();
+       this.resultado= new JList(nodos);
+       this.resultado.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+       
+       modelo= new DefaultListModel();
+       scrollLista= new JScrollPane();
+       scrollLista.setBounds(20, 120, 220, 80);
+       scrollLista.setViewportView(resultado);//aca le pone el scroll
+       
+       this.dibujarNodos= new JButton("Dibujar Nodos");
        this.txtNombreVertice1 =new JTextField(20);
         this.txtNombreVertice2 =new JTextField(20);
         this.cantSalto =new JTextField(5); 
         this.boton= new JButton();
         this.add(resultado);
+        this.add(scrollLista);
+        this.add(dibujarNodos);
         this.add(new JLabel("Vertice Origen"));
         this.add(txtNombreVertice1);
         this.add(new JLabel("Vertice Destino"));
@@ -97,7 +123,95 @@ public class PanelGrafo extends JPanel {
         this.colaColores.add(Color.BLUE);
         this.colaColores.add(Color.ORANGE);
         this.colaColores.add(Color.CYAN);
+      
+        dibujarNodos.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) { 
+            String data = "";
+            if (resultado.getSelectedIndex() != -1) {                     
+               data = "Selected: " + resultado.getSelectedValue(); 
+              System.out.println(data);
+            }
+            
+         }
+   });
+        
+        
+        
+        
+        
+        
+        
+        
+                }
+   
+   
+   public void agregar(AristaView arista){
+        this.aristas.add(arista);
+    }    
+    
+    public void agregar(VerticeView vert){
+        this.vertices.add(vert);
+    }
+    /**
+     *
+     * @param vert
+     */
+
+    private void dibujarVertices(Graphics2D g2d) {
+        for (VerticeView v : this.vertices) {
+            g2d.setPaint(Color.BLUE);
+            g2d.drawString(v.getVertice().getValor().getTitulo(),v.getCoordenadaX()-5,v.getCoordenadaY()-5);
+            g2d.setPaint(v.getColor());
+            g2d.fill(v.getNodo());
         }
+    }
+
+    private void dibujarAristas(Graphics2D g2d) {
+        for (AristaView a : this.aristas) {
+            g2d.setPaint(a.getColor());
+            g2d.setStroke ( a.getFormatoLinea());
+            g2d.draw(a.getLinea());
+            //dibujo una flecha al final
+            // con el color del origen para que se note
+            g2d.setPaint(Color.BLACK);
+            Polygon flecha = new Polygon();  
+            flecha.addPoint(a.getDestino().getCoordenadaX(), a.getDestino().getCoordenadaY()+7);
+            flecha.addPoint(a.getDestino().getCoordenadaX()+20, a.getDestino().getCoordenadaY()+10);
+            flecha.addPoint(a.getDestino().getCoordenadaX(), a.getDestino().getCoordenadaY()+18);
+            g2d.fillPolygon(flecha);
+        }
+    }
+
+    private VerticeView clicEnUnNodo(Point p) {
+        for (VerticeView v : this.vertices) {
+            if (v.getNodo().contains(p)) {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        dibujarVertices(g2d);
+        dibujarAristas(g2d);
+    }
+
+    public Dimension getPreferredSize() {
+        return new Dimension(450, 400);
+    }
+
+    public GrafoController getController() {
+        return controller;
+    }
+
+    public void setController(GrafoController controller) {
+        this.controller = controller;
+    }
+    
+       
+   
    private static void crearPanelShowGUI(){
         JFrame ventana = new JFrame("Biblioteca");
         ventana.setSize(500, 500);
@@ -111,6 +225,7 @@ public class PanelGrafo extends JPanel {
         ventana.pack();
         ventana.setVisible(true);
 }
+
    public static void main(String[] args) {
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
         public void run() {
@@ -122,105 +237,4 @@ public class PanelGrafo extends JPanel {
    
 }
 
-      //  addMouseListener(new MouseAdapter() {
-//            public void mouseClicked(MouseEvent event) {
-//                if (event.getClickCount() == 2 && !event.isConsumed()) {
-//                    event.consume();
-//                   // String titulo = JOptionPane.showInputDialog(framePadre, "Nombre del nodo");
-//                    System.out.println(titulo);
-//                    if (titulo != null) {
-//                        // quito un color de la cola
-//                        Color aux = colaColores.remove();
-//
-//                        // COMPLETAR --> invocar al controlador y crear el vertice.
-//                        controller.crearVertice(event.getX(), event.getY(), aux, titulo);               
-//                        colaColores.add(aux);
-//                    }
- //               }
-//            
-//
-//            public void mouseReleased(MouseEvent event) {
-//                VerticeView vDestino = clicEnUnNodo(event.getPoint());
-//                if (auxiliar!=null && vDestino != null) {
-//                    auxiliar.setDestino(vDestino);
-//                    controller.crearArista(auxiliar);
-//                    auxiliar = null;
-//                }
-//            }
-//
-//        });
-//
-//        addMouseMotionListener(new MouseAdapter() {
-//            public void mouseDragged(MouseEvent event) {
-//                VerticeView vOrigen = clicEnUnNodo(event.getPoint());
-//                if (auxiliar==null && vOrigen != null) {
-//                    auxiliar = new AristaView();                    
-//                    auxiliar.setOrigen(vOrigen);
-//                }
-//            }
-//        });
-//    }
-//
-//    public void agregar(AristaView arista){
-//        this.aristas.add(arista);
-//    }    
-//    
-//    public void agregar(VerticeView vert){
-//        this.vertices.add(vert);
-//    }
-//    
-//    private void dibujarVertices(Graphics2D g2d) {
-//        for (VerticeView v : this.vertices) {
-//            g2d.setPaint(Color.BLUE);
-//            g2d.drawString(v.getVertice().getValor().getTitulo(),v.getCoordenadaX()-5,v.getCoordenadaY()-5);
-//            g2d.setPaint(v.getColor());
-//            g2d.fill(v.getNodo());
-//        }
-//    }
-//
-//    private void dibujarAristas(Graphics2D g2d) {
-//        for (AristaView a : this.aristas) {
-//            g2d.setPaint(a.getColor());
-//            g2d.setStroke ( a.getFormatoLinea());
-//            g2d.draw(a.getLinea());
-//            //dibujo una flecha al final
-//            // con el color del origen para que se note
-//            g2d.setPaint(Color.BLACK);
-//            Polygon flecha = new Polygon();  
-//            flecha.addPoint(a.getDestino().getCoordenadaX(), a.getDestino().getCoordenadaY()+7);
-//            flecha.addPoint(a.getDestino().getCoordenadaX()+20, a.getDestino().getCoordenadaY()+10);
-//            flecha.addPoint(a.getDestino().getCoordenadaX(), a.getDestino().getCoordenadaY()+18);
-//            g2d.fillPolygon(flecha);
-//        }
-//    }
-
-//    private VerticeView clicEnUnNodo(Point p) {
-//        for (VerticeView v : this.vertices) {
-//            if (v.getNodo().contains(p)) {
-//                return v;
-//            }
-//        }
-//        return null;
-//    }
-
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        Graphics2D g2d = (Graphics2D) g.create();
-//        dibujarVertices(g2d);
-//        dibujarAristas(g2d);
-//    }
-//
-//    public Dimension getPreferredSize() {
-//        return new Dimension(450, 400);
-//    }
-//
-//    public GrafoController getController() {
-//        return controller;
-//    }
-//
-//    public void setController(GrafoController controller) {
-//        this.controller = controller;
-//    }
-//    
-     
 

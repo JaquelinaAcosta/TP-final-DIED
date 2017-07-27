@@ -187,15 +187,8 @@ temaSeleccionado=this.temaSeleccionado();
     }
    private void filtrarTema() throws MaterialNoEncontradoException{
        
-        if(boxTema.isSelected()){
-
-            listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
-        }
-
-        if(listaMateriales.isEmpty()){
-            throw new MaterialNoEncontradoException();
-        }
-        
+     listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
+      
    }
     
     //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
