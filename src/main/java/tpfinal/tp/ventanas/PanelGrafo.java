@@ -12,24 +12,24 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import tpfinal.tp.controller.GrafoController;
+import tpfinal.tp.integrador.Libro;
+import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.Video;
 import tpfinal.tp.vista.AristaView;
@@ -53,12 +53,14 @@ public final class PanelGrafo extends JPanel {
     private List<Publicacion> listaPublicacion;
     private JList resultado;
     private JButton dibujarNodos;
-private JList listaNombres;//declaramos La Lista
-private DefaultListModel modelo;//declaramos el Modelo
-private JScrollPane scrollLista;
+    private JList listaNombres;//declaramos La Lista
+    private DefaultListModel modelo;//declaramos el Modelo
+    private JScrollPane scrollLista;
     private JFrame framePadre;
-
-        
+    private List<Libro> listaLibro;
+    private List<MaterialCapacitacion> materiales;
+    private List<MaterialCapacitacion> listaRtdo;
+    private JComboBox<String> comboMaterial;
  //constructor
     public PanelGrafo() {
         this.armarPanel();
@@ -68,32 +70,33 @@ private JScrollPane scrollLista;
         this.armarPanel();
     }
      
-//      public PanelGrafo(Principal principal,ArrayList<Video> video,ArrayList<Publicacion> publicacion) {
-//         this.principal=principal;
-//         this.listaPublicacion=publicacion;
-//         this.listaVideo=video;
-//        this.armarPanel();
-//    }
 
-    PanelGrafo(Principal principal, List<Video> listaVideo, List<Publicacion> listaPublicaciones) {
+
+    PanelGrafo(Principal principal, List<MaterialCapacitacion> listaMateriales) {
          this.principal=principal;
-         this.listaPublicacion=listaPublicaciones;
-         this.listaVideo=listaVideo;
-         System.out.println("Estoy en panel"+listaVideo);
-          System.out.println(listaPublicacion);
+         this.listaRtdo=listaMateriales;
+        System.out.println("esta es la lista Rtdo"+listaRtdo);
+       
         this.armarPanel();  
         System.out.println("estoy en panel");
     }
-     
+      
      
      
    public void armarPanel()
    {
+  
+      
+       
+        
+        
        System.out.println("entre armarPanel");
        String nodos[]= {"nodo1","nodos2","nodo3","nodo4","nodo5","nodo6","nodo7","nodo8","nodo9","nodo10"};
 //       this.framePadre = (JFrame) this.getParent();
-       this.resultado= new JList(nodos);
-       this.resultado.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+//         this.listaLibro.get(0).getTitulo();
+//       this.resultado= new JList((ListModel) listaVideo);
+//       this.resultado.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+       this.comboMaterial= new JComboBox<String>();
        
        this.modelo= new DefaultListModel();
        this.scrollLista= new JScrollPane();
@@ -105,8 +108,10 @@ private JScrollPane scrollLista;
         this.txtNombreVertice2 =new JTextField(20);
         this.cantSalto =new JTextField(5); 
         this.boton= new JButton();
-        this.add(resultado);
-        this.add(scrollLista);
+        this.add(comboMaterial);
+       
+//        this.add(resultado);
+     //   this.add(scrollLista);
         this.add(dibujarNodos);
         this.add(new JLabel("Vertice Origen"));
         this.add(txtNombreVertice1);
@@ -125,12 +130,19 @@ private JScrollPane scrollLista;
         this.colaColores.add(Color.BLUE);
         this.colaColores.add(Color.ORANGE);
         this.colaColores.add(Color.CYAN);
-      
+        
+       
+        listaRtdo.forEach((m) -> {
+            comboMaterial.addItem(m.getTitulo());
+       });
+           
+       
         dibujarNodos.addActionListener(new ActionListener() {
                public void actionPerformed(ActionEvent e) { 
-            String data = "";
-            if (resultado.getSelectedIndex() != -1) {                     
-               data = "Selected: " + resultado.getSelectedValue(); 
+            String data = comboMaterial.getSelectedItem().toString();
+            if (comboMaterial.getSelectedIndex() != -1) {     
+//llamar a crear vertice                
+              
               System.out.println(data);
             }
             
