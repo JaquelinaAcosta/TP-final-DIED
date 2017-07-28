@@ -36,7 +36,7 @@ import tpfinal.tp.vista.AristaView;
 import tpfinal.tp.vista.VerticeView;
 
 
-public class PanelGrafo extends JPanel {
+public final class PanelGrafo extends JPanel {
    private Queue<Color> colaColores;
     private GrafoController controller;
 
@@ -76,27 +76,29 @@ private JScrollPane scrollLista;
 //    }
 
     PanelGrafo(Principal principal, List<Video> listaVideo, List<Publicacion> listaPublicaciones) {
-      this.principal=principal;
+         this.principal=principal;
          this.listaPublicacion=listaPublicaciones;
          this.listaVideo=listaVideo;
          System.out.println("Estoy en panel"+listaVideo);
           System.out.println(listaPublicacion);
         this.armarPanel();  
+        System.out.println("estoy en panel");
     }
      
      
      
    public void armarPanel()
    {
+       System.out.println("entre armarPanel");
        String nodos[]= {"nodo1","nodos2","nodo3","nodo4","nodo5","nodo6","nodo7","nodo8","nodo9","nodo10"};
-        this.framePadre = (JFrame) this.getParent();
+//       this.framePadre = (JFrame) this.getParent();
        this.resultado= new JList(nodos);
        this.resultado.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
        
-       modelo= new DefaultListModel();
-       scrollLista= new JScrollPane();
-       scrollLista.setBounds(20, 120, 220, 80);
-       scrollLista.setViewportView(resultado);//aca le pone el scroll
+       this.modelo= new DefaultListModel();
+       this.scrollLista= new JScrollPane();
+       this.scrollLista.setBounds(20, 120, 220, 80);
+       this.scrollLista.setViewportView(resultado);//aca le pone el scroll
        
        this.dibujarNodos= new JButton("Dibujar Nodos");
        this.txtNombreVertice1 =new JTextField(20);
@@ -134,13 +136,7 @@ private JScrollPane scrollLista;
             
          }
    });
-        
-        
-        
-        
-        
-        
-        
+        System.out.println("fin armarPanel");
         
                 }
    
@@ -219,7 +215,6 @@ private JScrollPane scrollLista;
         PanelGrafo panel = new PanelGrafo();
         panel.setSize(500, 500);
         ventana.add(panel);
-    
         ventana.add(panel, BorderLayout.PAGE_START);
         ventana.pack();
         ventana.setVisible(true);

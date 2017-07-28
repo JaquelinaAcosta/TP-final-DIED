@@ -7,6 +7,7 @@ package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -159,7 +160,10 @@ public class Principal {
        listaPublicaciones=publicacionesDao.cargarLista();
        listaPublicaciones.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
        System.out.println(listaPublicaciones);
+//       listaVideo.addAll(listaPublicaciones);
+//               Collections.
        panelCtrl= new PanelGrafo(this,listaVideo,listaPublicaciones);
+      
             }
             if(crearBuscarDesde.equals("Video")){
        PublicacionesDao publicacionesDao= new PublicacionesDao();
@@ -184,8 +188,10 @@ public class Principal {
        listaLibro=libroDao.cargarLista();
        listaLibro.removeIf(elem-> !elem.getTema().equals((TemasMateriales)tema));
        System.out.println(listaLibro);
+   //    this.ventana.pack();
+   
             }
-        
+        inicializarPanelCtrl();
         }
       
     
