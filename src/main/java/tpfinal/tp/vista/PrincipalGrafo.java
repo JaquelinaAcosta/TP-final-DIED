@@ -6,24 +6,42 @@
 package tpfinal.tp.vista;
 
 import java.awt.BorderLayout;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
+import tpfinal.tp.integrador.MaterialCapacitacion;
+import tpfinal.tp.ventanas.Principal;
 
 
-public class PrincipalGrafo {
-public static void main(String[] args) {
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-          createAndShowGUI();
-        }
-    });
-}
+public class PrincipalGrafo extends JPanel {
+    
+    private Principal principal;
+    private List<MaterialCapacitacion> listaRtdo;
+    public PrincipalGrafo()
+    {
+        this.createAndShowGUI();
+    }
+    
+    public PrincipalGrafo(Principal principal,List<MaterialCapacitacion> lista)
+    {
+        this.principal=principal;
+        this.listaRtdo=lista;
+        this.createAndShowGUI();
+    }
+//public static void main(String[] args) {
+//    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//        public void run() {
+//          this.createAndShowGUI();
+//        }
+//    });
+//}
 
- private static void createAndShowGUI() {
+ private  void createAndShowGUI() {
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ControlPanel panelCtrl = new ControlPanel();
-        GrafoPanel panelGrf = new GrafoPanel();
+        GrafoPanel panelGrf = new GrafoPanel(listaRtdo);
         GrafoController gf = new GrafoController(panelGrf, panelCtrl);
         panelGrf.setController(gf);
         panelCtrl.setController(gf);

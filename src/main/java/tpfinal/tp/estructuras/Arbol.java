@@ -9,10 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-/**
- *
- * @author jaque
- */
+
 public abstract class Arbol {
 
 	public abstract boolean esVacio();

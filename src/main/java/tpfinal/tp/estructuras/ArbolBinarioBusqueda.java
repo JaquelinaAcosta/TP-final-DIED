@@ -11,10 +11,7 @@ import java.util.List;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.util.ComparadorTitulo;
 
-/**
- *
- * @author jaque
- */
+
 public class ArbolBinarioBusqueda extends Arbol {
 
     private MaterialCapacitacion valor;

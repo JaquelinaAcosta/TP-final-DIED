@@ -24,6 +24,7 @@ public class VerticeView {
     private final Integer RADIO = 20;
     private Shape nodo;
     private Vertice<MaterialCapacitacion> vertice;
+    private String titulo;
 
     public VerticeView() {
     }
@@ -33,6 +34,13 @@ public class VerticeView {
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
         this.nodo= new Ellipse2D.Double(coordenadaX,coordenadaY,RADIO,RADIO);
+    }
+     public VerticeView(Integer coordenadaX, Integer coordenadaY,Color color,String titulo) {
+        this.colorBase = color;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
+        this.nodo= new Ellipse2D.Double(coordenadaX,coordenadaY,RADIO,RADIO);
+        this.titulo=titulo;
     }
 
     public boolean pertenece(Point2D p){

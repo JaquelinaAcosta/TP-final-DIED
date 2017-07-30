@@ -11,6 +11,9 @@ public class Vertice<T> {
 	public Vertice(T v){
 		this.valor = v;
 	}
+        public Vertice(String v){
+		this.valor = (T) v;
+	}
 	
 	public void setValor(T v){
 		this.valor = v;

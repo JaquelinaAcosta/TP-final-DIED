@@ -5,49 +5,89 @@
  */
 package tpfinal.tp.vista;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
+import tpfinal.tp.integrador.MaterialCapacitacion;
 
 
 public class GrafoPanel extends JPanel {
 
-    private JFrame framePadre;
+     private JFrame framePadre;
     private Queue<Color> colaColores;
     private GrafoController controller;
-
+private List<MaterialCapacitacion> listaRtdo;
     private List<VerticeView> vertices;
     private List<AristaView> aristas;
 
     private AristaView auxiliar;
+    private JComboBox<String> comboMaterial;
 
-    public GrafoPanel() {
+    public GrafoPanel(List<MaterialCapacitacion> lista)
+    {
+     this.listaRtdo=lista;
+     this.armarPanel();
+    }
+            
+            
+            
+    
+    
+    public void armarPanel() {
         this.framePadre = (JFrame) this.getParent();
         
         this.vertices = new ArrayList<>();
         this.aristas = new ArrayList<>();
-
+  this.comboMaterial= new JComboBox<String>();
         
         this.colaColores = new LinkedList<Color>();
         this.colaColores.add(Color.RED);
         this.colaColores.add(Color.BLUE);
         this.colaColores.add(Color.ORANGE);
         this.colaColores.add(Color.CYAN);
-
-        addMouseListener(new MouseAdapter() {
+        this.add(comboMaterial,BorderLayout.EAST);
+       if(!listaRtdo.isEmpty())
+       {
+        listaRtdo.forEach((m) -> {
+            comboMaterial.addItem(m.getTitulo());
+       });
+       
+       }
+       
+       comboMaterial.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+            try{
+              
+             //   MaterialCapacitacion m=(MaterialCapacitacion) comboMaterial.getSelectedItem();
+//       System.out.println(m.getTitulo());
+//       System.out.println(m.getClass());
+             Color aux = colaColores.remove();
+            controller.crearVertice(10, 10, aux); 
+             colaColores.add(aux);
+            }catch(Exception ex){
+            System.out.println("Error");
+            }
+        }
+    });
+            
+               addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent event) {
                 if (event.getClickCount() == 2 && !event.isConsumed()) {
                     event.consume();
@@ -56,14 +96,13 @@ public class GrafoPanel extends JPanel {
                     if (titulo != null) {
                         // quito un color de la cola
                         Color aux = colaColores.remove();
-
                         // COMPLETAR --> invocar al controlador y crear el vertice.
-                        controller.crearVertice(event.getX(), event.getY(), aux, titulo);               
+                      //  controller.crearVertice(event.getX(), event.getY(), aux, titulo);               
                         colaColores.add(aux);
                     }
                 }
             }
-
+//para el movimiento
             public void mouseReleased(MouseEvent event) {
                 VerticeView vDestino = clicEnUnNodo(event.getPoint());
                 if (auxiliar!=null && vDestino != null) {

@@ -6,6 +6,7 @@
 package tpfinal.tp.controller;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,45 +22,48 @@ import tpfinal.tp.vista.GrafoPanel;
 import tpfinal.tp.vista.VerticeView;
 
 
-public class GrafoController {
+    
+ public class GrafoController {
     
     private static Integer _GENERADOR_ID=1;
     private Grafo<MaterialCapacitacion> grafo;
-    private PanelGrafo vistaGrafo;
+    private GrafoPanel vistaGrafo;
     private ControlPanel vistaControl;
     private Map<Vertice<MaterialCapacitacion>,VerticeView> vertices;
     private Map<Arista<MaterialCapacitacion>,AristaView> aristas;
 
-    public GrafoController(PanelGrafo panelGrf,ControlPanel panelCtrl) {
+    public GrafoController(GrafoPanel panelGrf,ControlPanel panelCtrl) {
         this.vistaGrafo = panelGrf;
         this.vistaControl = panelCtrl;
-        this.grafo = new Grafo<MaterialCapacitacion>();
-        this.vertices = new LinkedHashMap<Vertice<MaterialCapacitacion>,VerticeView>();
-        this.aristas = new LinkedHashMap<Arista<MaterialCapacitacion>,AristaView>();
+        this.grafo = new Grafo<>();
+        this.vertices = new LinkedHashMap<>();
+        this.aristas = new LinkedHashMap<>();
      }
     
-    
-    public void crearVerticeLista(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
-      //  MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
-        Vertice v1 = new Vertice(titulo);//creo el vertice con el nombre
-        grafo.addNodo(v1);  //lo agrego al grafo      
-        VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);//creo el dibujo
-        v.setVertice(v1);
-        this.vistaGrafo.agregar(v);
-        this.vertices.put(v1, v);
-        this.vistaGrafo.repaint();
-    }
-    
-    public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
-        MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
-        Vertice v1 = new Vertice(m);
-        grafo.addNodo(v1);        
+       public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color){
+        
+           
+            //   MaterialCapacitacion m = new MaterialCapacitacion();
+//        Vertice v1 = new Vertice(m);
+//        grafo.addNodo(v1);        
         VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);
-        v.setVertice(v1);
-        this.vistaGrafo.agregar(v);
-        this.vertices.put(v1, v);
-        this.vistaGrafo.repaint();
+//        v.setVertice(v1);
+   this.vistaGrafo.agregar(v);
+//        this.vertices.put(v1, v);
+     this.vistaGrafo.repaint();
     }
+
+    
+//    public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
+//        MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
+//        Vertice v1 = new Vertice(m);
+//        grafo.addNodo(v1);        
+//        VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);
+//        v.setVertice(v1);
+//        this.vistaGrafo.agregar(v);
+//        this.vertices.put(v1, v);
+//        this.vistaGrafo.repaint();
+//    }
 
     public void crearArista(AristaView arista){
         Arista a1 = this.grafo.conectar(arista.getOrigen().getVertice(), arista.getDestino().getVertice());
@@ -71,7 +75,7 @@ public class GrafoController {
     public void buscarCamino(String nodo1,String nodo2,Integer saltos){
         Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
-      //  List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino, saltos);      
+        List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino);      
         //COMPLETAR
         //COMPLETAR
         //COMPLETAR DE MODO TAL QUE CUANDO TENGA EL CAMINO RESULTADO se muestre el camino (aristas y vertice en rojo)

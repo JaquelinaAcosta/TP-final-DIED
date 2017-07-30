@@ -20,6 +20,7 @@ import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
 import tpfinal.tp.vista.GrafoPanel;
+import tpfinal.tp.vista.PrincipalGrafo;
 
 
 public class Principal {
@@ -169,7 +170,7 @@ public class Principal {
        listaResultado.addAll(listaVideo);
        listaResultado.addAll(listaPublicaciones);
        System.out.println(listaResultado);
-       panelCtrl= new PanelGrafo(this,listaResultado);
+       panelCtrl= new PrincipalGrafo(this,listaResultado);
       
           }
 //            if(crearBuscarDesde.equals("Video")){

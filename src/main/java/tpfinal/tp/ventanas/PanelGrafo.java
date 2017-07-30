@@ -5,6 +5,7 @@ package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -25,9 +26,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
-import tpfinal.tp.controller.GrafoController;
+import tpfinal.tp.estructuras.grafo.Grafo;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
@@ -38,14 +37,14 @@ import tpfinal.tp.vista.VerticeView;
 
 public final class PanelGrafo extends JPanel {
    private Queue<Color> colaColores;
-    private GrafoController controller;
-
+    
+   private PanelControlGrafo controller;
+  private Grafo<MaterialCapacitacion> grafo;
     private List<VerticeView> vertices;
     private List<AristaView> aristas;
+   //   private Map<Vertice<MaterialCapacitacion>,VerticeView> Mapvertices;
     //private GrafoController controller;
-    private JTextField txtNombreVertice1; 
-    private JTextField txtNombreVertice2; 
-    private JTextField cantSalto; 
+   
     private JButton boton;
     private Principal principal;
     private AristaView auxiliar;
@@ -70,11 +69,23 @@ public final class PanelGrafo extends JPanel {
         this.armarPanel();
     }
      
-
+ public PanelGrafo(PanelControlGrafo panelControl) {
+         this.controller=panelControl;
+        this.armarPanel();
+    }
 
     PanelGrafo(Principal principal, List<MaterialCapacitacion> listaMateriales) {
          this.principal=principal;
          this.listaRtdo=listaMateriales;
+        System.out.println("esta es la lista Rtdo"+listaRtdo);
+       
+        this.armarPanel();  
+        System.out.println("estoy en panel");
+    }
+    PanelGrafo(Principal principal, List<MaterialCapacitacion> listaMateriales,PanelControlGrafo control) {
+         this.principal=principal;
+         this.listaRtdo=listaMateriales;
+         this.controller=control;
         System.out.println("esta es la lista Rtdo"+listaRtdo);
        
         this.armarPanel();  
@@ -85,73 +96,71 @@ public final class PanelGrafo extends JPanel {
      
    public void armarPanel()
    {
-  
-      
-       
-        
-        
-       System.out.println("entre armarPanel");
-       String nodos[]= {"nodo1","nodos2","nodo3","nodo4","nodo5","nodo6","nodo7","nodo8","nodo9","nodo10"};
-//       this.framePadre = (JFrame) this.getParent();
-//         this.listaLibro.get(0).getTitulo();
-//       this.resultado= new JList((ListModel) listaVideo);
-//       this.resultado.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    //   controller= new PanelControlGrafo();
        this.comboMaterial= new JComboBox<String>();
-       
-       this.modelo= new DefaultListModel();
-       this.scrollLista= new JScrollPane();
-       this.scrollLista.setBounds(20, 120, 220, 80);
-       this.scrollLista.setViewportView(resultado);//aca le pone el scroll
-       
        this.dibujarNodos= new JButton("Dibujar Nodos");
-       this.txtNombreVertice1 =new JTextField(20);
-        this.txtNombreVertice2 =new JTextField(20);
-        this.cantSalto =new JTextField(5); 
+//       this.txtNombreVertice1 =new JTextField(20);
+//        this.txtNombreVertice2 =new JTextField(20);
+//        this.cantSalto =new JTextField(5); 
         this.boton= new JButton();
         this.add(comboMaterial);
-       
-//        this.add(resultado);
-     //   this.add(scrollLista);
         this.add(dibujarNodos);
-        this.add(new JLabel("Vertice Origen"));
-        this.add(txtNombreVertice1);
-        this.add(new JLabel("Vertice Destino"));
-        this.add(txtNombreVertice2);  
-        this.add(new JLabel("Cantidad de saltos"));   
-        this.add(cantSalto);
-        this.add(new JButton("Buscar Camino"));
-        this.add(boton);
+//        this.add(new JLabel("Vertice Origen"));
+//        this.add(txtNombreVertice1);
+//        this.add(new JLabel("Vertice Destino"));
+//        this.add(txtNombreVertice2);  
+//        this.add(new JLabel("Cantidad de saltos"));   
+//        this.add(cantSalto);
+//        this.add(new JButton("Buscar Camino"));
+//        this.add(boton);
         this.vertices = new ArrayList<>();
         this.aristas = new ArrayList<>();
 
-        
+        //this.add(controller,BorderLayout.PAGE_END);
         this.colaColores = new LinkedList<Color>();
         this.colaColores.add(Color.RED);
         this.colaColores.add(Color.BLUE);
         this.colaColores.add(Color.ORANGE);
         this.colaColores.add(Color.CYAN);
         
-       
-        listaRtdo.forEach((m) -> {
-            comboMaterial.addItem(m.getTitulo());
-       });
-           
-       
-        dibujarNodos.addActionListener(new ActionListener() {
-               public void actionPerformed(ActionEvent e) { 
+//       if(!listaRtdo.isEmpty())
+//       {
+//        listaRtdo.forEach((m) -> {
+//            comboMaterial.addItem(m.getTitulo());
+//       });
+//       
+//       }
+      
+        dibujarNodos.addActionListener((ActionEvent e) -> { 
             String data = comboMaterial.getSelectedItem().toString();
-            if (comboMaterial.getSelectedIndex() != -1) {     
-//llamar a crear vertice                
-              
-              System.out.println(data);
-            }
             
-         }
-   });
+            if (comboMaterial.getSelectedIndex() != -1) {
+                   System.out.println("tengo que dibujar este nodo"+comboMaterial.getSelectedItem());          
+            }
+       });
+      
         System.out.println("fin armarPanel");
         
                 }
-   
+                
+//   protected void paintComponent(Graphics g) {
+//super.paintComponent(g);
+//Graphics2D g2d = (Graphics2D) g.create();
+//dibujarCuadrado(g2d);
+//}
+//   private void dibujarCuadrado(Graphics2D g2d){
+//int squareX= 50;
+//int squareY= 50;
+//int squareW= 20;
+//int squareH= 20;
+//g2d.drawString("Panel Personalizado!",10,20);
+//g2d.setColor(Color.BLUE);
+//g2d.fillRect(squareX,squareY,squareW,squareH);
+//
+//g2d.drawRect(squareX,squareY,squareW,squareH);
+//}
+//   
+
    
    public void agregar(AristaView arista){
         this.aristas.add(arista);
@@ -160,6 +169,7 @@ public final class PanelGrafo extends JPanel {
     public void agregar(VerticeView vert){
         this.vertices.add(vert);
     }
+
     /**
      *
      * @param vert
@@ -199,35 +209,34 @@ public final class PanelGrafo extends JPanel {
         return null;
     }
 
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create();
-        dibujarVertices(g2d);
-        dibujarAristas(g2d);
-    }
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        Graphics2D g2d = (Graphics2D) g.create();
+//        dibujarVertices(g2d);
+//        dibujarAristas(g2d);
+//    }
 
     public Dimension getPreferredSize() {
         return new Dimension(450, 400);
     }
 
-    public GrafoController getController() {
-        return controller;
-    }
 
-    public void setController(GrafoController controller) {
-        this.controller = controller;
-    }
-    
-       
    
    private static void crearPanelShowGUI(){
         JFrame ventana = new JFrame("Biblioteca");
         ventana.setSize(500, 500);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+       // PanelControlGrafo panelControl= new PanelControlGrafo();
         PanelGrafo panel = new PanelGrafo();
+       // PanelControlGrafo panelControl= new PanelControlGrafo();
         panel.setSize(500, 500);
-        ventana.add(panel);
-        ventana.add(panel, BorderLayout.PAGE_START);
+       //  panel.add(panelControl);
+      ventana.add(panel,BorderLayout.PAGE_START);
+      //ventana.add(panelControl);
+     // panelControl.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+      //  this.vistaPrincipal.getContentPane().add(panel);
+       // ventana.add(panelControl, BorderLayout.PAGE_END);
         ventana.pack();
         ventana.setVisible(true);
 }
@@ -235,8 +244,8 @@ public final class PanelGrafo extends JPanel {
    public static void main(String[] args) {
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
         public void run() {
-           PanelGrafo panel=new PanelGrafo();
-         panel.crearPanelShowGUI();
+          // PanelGrafo panel=new PanelGrafo();
+        crearPanelShowGUI();
         }
     });
 }

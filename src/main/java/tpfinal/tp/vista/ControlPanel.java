@@ -16,7 +16,7 @@ import tpfinal.tp.controller.GrafoController;
 
 public class ControlPanel extends JPanel {
     
-    private GrafoController controller;
+  private GrafoController controller;
     private JTextField txtNombreVertice1; 
      private JTextField txtNombreVertice2; 
      private JTextField cantSalto; 
@@ -71,4 +71,3 @@ buscarCamino(String nodo1,String nodo2,Integer saltos)”, para que se realice u
     
     
 }
-
