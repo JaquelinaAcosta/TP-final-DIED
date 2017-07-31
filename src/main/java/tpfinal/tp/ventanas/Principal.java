@@ -176,7 +176,7 @@ public class Principal {
        listaResultado.addAll(listaVideo);
        listaResultado.addAll(listaPublicaciones);
        System.out.println(listaResultado);
-       panelCtrl= new PrincipalGrafo(this,listaResultado);
+//       panelCtrl= new PrincipalGrafo(this,listaResultado);
       
           }
 //            if(crearBuscarDesde.equals("Video")){

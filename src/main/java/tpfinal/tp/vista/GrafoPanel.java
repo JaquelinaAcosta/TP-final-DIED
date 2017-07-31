@@ -30,64 +30,30 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 
 public class GrafoPanel extends JPanel {
 
-     private JFrame framePadre;
+    private JFrame framePadre;
     private Queue<Color> colaColores;
     private GrafoController controller;
-private List<MaterialCapacitacion> listaRtdo;
+
     private List<VerticeView> vertices;
     private List<AristaView> aristas;
 
     private AristaView auxiliar;
-    private JComboBox<String> comboMaterial;
 
-    public GrafoPanel(List<MaterialCapacitacion> lista)
-    {
-     this.listaRtdo=lista;
-     this.armarPanel();
-    }
-            
-            
-            
-    
-    
-    public void armarPanel() {
+    public GrafoPanel() {
         this.framePadre = (JFrame) this.getParent();
         
         this.vertices = new ArrayList<>();
         this.aristas = new ArrayList<>();
-  this.comboMaterial= new JComboBox<String>();
+
         
         this.colaColores = new LinkedList<Color>();
         this.colaColores.add(Color.RED);
         this.colaColores.add(Color.BLUE);
         this.colaColores.add(Color.ORANGE);
         this.colaColores.add(Color.CYAN);
-        this.add(comboMaterial,BorderLayout.EAST);
-       if(!listaRtdo.isEmpty())
-       {
-        listaRtdo.forEach((m) -> {
-            comboMaterial.addItem(m.getTitulo());
-       });
-       
-       }
-       
-       comboMaterial.addActionListener(new ActionListener(){
-         public void actionPerformed(ActionEvent e){
-            try{
-              
-             //   MaterialCapacitacion m=(MaterialCapacitacion) comboMaterial.getSelectedItem();
-//       System.out.println(m.getTitulo());
-//       System.out.println(m.getClass());
-             Color aux = colaColores.remove();
-            controller.crearVertice(10, 10, aux); 
-             colaColores.add(aux);
-            }catch(Exception ex){
-            System.out.println("Error");
-            }
-        }
-    });
-            
-               addMouseListener(new MouseAdapter() {
+
+        addMouseListener(new MouseAdapter() {
+            //Se llama cuando se oprime y se suelta un botón en el mouse.
             public void mouseClicked(MouseEvent event) {
                 if (event.getClickCount() == 2 && !event.isConsumed()) {
                     event.consume();
@@ -97,12 +63,12 @@ private List<MaterialCapacitacion> listaRtdo;
                         // quito un color de la cola
                         Color aux = colaColores.remove();
                         // COMPLETAR --> invocar al controlador y crear el vertice.
-                      //  controller.crearVertice(event.getX(), event.getY(), aux, titulo);               
+                        controller.crearVertice(event.getX(), event.getY(), aux, titulo);               
                         colaColores.add(aux);
                     }
                 }
             }
-//para el movimiento
+ //Ocurre cuando se suelta un botón en el Mouse
             public void mouseReleased(MouseEvent event) {
                 VerticeView vDestino = clicEnUnNodo(event.getPoint());
                 if (auxiliar!=null && vDestino != null) {
@@ -113,7 +79,8 @@ private List<MaterialCapacitacion> listaRtdo;
             }
 
         });
-
+//ocurre cuando el boton del raton se oprime mientras el cursor esta sobre un componente 
+//y se mueve mientras se mantiene presionado.
         addMouseMotionListener(new MouseAdapter() {
             public void mouseDragged(MouseEvent event) {
                 VerticeView vOrigen = clicEnUnNodo(event.getPoint());
@@ -188,3 +155,4 @@ private List<MaterialCapacitacion> listaRtdo;
     
     
 }
+
