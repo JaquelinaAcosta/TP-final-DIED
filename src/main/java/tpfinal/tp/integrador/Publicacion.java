@@ -6,7 +6,7 @@ import java.util.Objects;
 
 
 public class Publicacion extends MaterialCapacitacion{
-    private String doi;
+//    private String doi;
     private Double factorImpacto= 0.0;
     private Double valorSuscripcionAnual=0.0;
 
@@ -16,7 +16,7 @@ public class Publicacion extends MaterialCapacitacion{
     
     public Publicacion(String titulo,Integer calificacion,Double costo,Date fecha,String doi,Double valorSuscripcionAnual,Double factorImpacto) {
         super( titulo,calificacion,costo,fecha);        
-        this.doi = doi;
+//        this.doi = doi;
     }   
     
     public Publicacion(String titulo, TemasMateriales tema,Date fecha, Integer calificacion,Double costo) {
@@ -27,13 +27,13 @@ public class Publicacion extends MaterialCapacitacion{
         super.costo=costo;
     }  
 
-    public String getDoi() {
-        return doi;
-    }
-
-    public void setDoi(String doi) {
-        this.doi = doi;
-    }
+//    public String getDoi() {
+//        return doi;
+//    }
+//
+//    public void setDoi(String doi) {
+//        this.doi = doi;
+//    }
 
     public Double getFactorImpacto() {
         return factorImpacto;
@@ -55,7 +55,7 @@ public class Publicacion extends MaterialCapacitacion{
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + super.hashCode();
-        hash = 97 * hash + Objects.hashCode(this.doi);
+//        hash = 97 * hash + Objects.hashCode(this.doi);
         return hash;
     }
 
@@ -70,10 +70,10 @@ public class Publicacion extends MaterialCapacitacion{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Publicacion other = (Publicacion) obj;
-        if (!Objects.equals(this.doi, other.doi)) {
-            return false;
-        }
+//        final Publicacion other = (Publicacion) obj;
+//          if (!Objects.equals(this.doi, other.doi)) {
+//            return false;
+//        }
         return true;
     }
    

@@ -24,6 +24,7 @@ public class PanelBuscarVideoPublicacion extends JPanel{
     private JButton botonActualizar;
     private JButton botonBorrar;
     private JButton botonSalir;
+    private JButton botonVolver;
     private JList lista;
     private Principal principal;
     private List<? extends MaterialCapacitacion> listaMateriales;
@@ -47,6 +48,7 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.botonActualizar= new JButton("Actualizar");
         this.botonSalir= new JButton("Salir");
         this.botonBorrar= new JButton("Borrar");
+        this.botonVolver= new JButton("Volver a Principal");
         //Para pasar la lista (listaMateriales) resultado de filtrar busqueda de panel BuscarOdenar, 
         // y que salga en el JList (lista),
         this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
@@ -55,8 +57,10 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.add(new JLabel("LISTA"));
         this.add(lista);
         this.add(new JLabel(" "));
+        this.add(new JLabel(" "));
         this.add(botonActualizar);
         this.add(botonBorrar);
+        this.add(botonVolver);
         this.add(botonSalir);
         
       //  Para borrar un material de la lista..
@@ -81,6 +85,12 @@ public class PanelBuscarVideoPublicacion extends JPanel{
                    System.exit(0);
                }
         });
+        this.botonVolver.addActionListener(new ActionListener(){
+              @Override
+                 public void actionPerformed (ActionEvent e){
+                         principal.principal();
+            }
+    });
 
     }
     

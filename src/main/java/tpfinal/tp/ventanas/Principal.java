@@ -44,7 +44,7 @@ public class Principal {
             }
         });
     }
-    
+       
     private void createAndShowGUI() {
         ventana = new JFrame("Biblioteca");
         ventana.setSize(600, 600);
@@ -52,7 +52,13 @@ public class Principal {
         panelCtrl = new PanelMaterialCapacitacion(this);    
         inicializarPanelCtrl();
         ventana.setVisible(true);    
-    }    
+    }  
+    
+    public void principal(){
+        this.ventana.remove(this.panelCtrl); 
+        panelCtrl = new PanelMaterialCapacitacion(this);    
+        inicializarPanelCtrl();
+    }
     
     private void inicializarPanelCtrl(){
         panelCtrl.setSize(500, 500);

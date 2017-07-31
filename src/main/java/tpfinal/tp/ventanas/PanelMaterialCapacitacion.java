@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,12 +17,10 @@ import javax.swing.JTextField;
 
 public class PanelMaterialCapacitacion extends JPanel {
     
-    private JButton botonLibro;
-    private JButton botonVideo;
-    private JButton botonPublicacion;
-    private JButton botonBuscarSuscrip;
+    private JButton botonAceptar;
     private Principal principal;
     private JTextField suscritores;
+    private JComboBox comboMaterial;
 
     public PanelMaterialCapacitacion(){
         this.armarPanelMaterial();
@@ -34,34 +33,28 @@ public class PanelMaterialCapacitacion extends JPanel {
     
     private void armarPanelMaterial(){
         this.suscritores= new JTextField(10);
-        this.botonLibro= new JButton("Libro");
-        this.botonVideo= new JButton("Video");
-        this.botonPublicacion= new JButton("Publicación");
+        String[] listaMaterial = {"Libro", "Video", "Publicación"};
+        this.comboMaterial= new JComboBox<>(listaMaterial);
+        this.botonAceptar= new JButton("Aceptar");
         
-        this.setLayout(new GridLayout(6,0));
-        this.add(new JLabel("MATERIAL DE CAPACITACION"));
+        this.setLayout(new GridLayout(6,0, 10, 10));
+        this.add(new JLabel("MATERIAL DE CAPACITACIÓN"));
         this.add(new JLabel("Elegir un material"));
-        this.add(botonLibro);
-        this.add(botonVideo);
-        this.add(botonPublicacion);
+        this.add(comboMaterial);
+        this.add(botonAceptar);
         
-        
-        this.botonLibro.addActionListener(new ActionListener() {
+        this.botonAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                principal.cambiarAPanelCrearBuscar("Libro");
-            }
-        });
-        this.botonVideo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                principal.cambiarAPanelCrearBuscar("Video");
-            }
-        });
-        this.botonPublicacion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                principal.cambiarAPanelCrearBuscar("Publicación");
+                if (comboMaterial.getSelectedItem().equals("Libro")){
+                    principal.cambiarAPanelCrearBuscar("Libro");
+                }
+                if (comboMaterial.getSelectedItem().equals("Video")){
+                    principal.cambiarAPanelCrearBuscar("Video");
+                }
+                if (comboMaterial.getSelectedItem().equals("Publicación")){
+                    principal.cambiarAPanelCrearBuscar("Publicación");
+                }
             }
         });
     }

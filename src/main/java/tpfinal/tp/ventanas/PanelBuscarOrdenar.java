@@ -34,6 +34,7 @@ public class PanelBuscarOrdenar extends JPanel{
     
     private JButton botonBuscar;
     private JButton botonSalir;
+    private JButton botonVolver;
      private JButton botonAsignarRelaciones;
     private JCheckBox boxTitulo;
     private JCheckBox boxTituloAlfabetico;
@@ -75,6 +76,7 @@ public class PanelBuscarOrdenar extends JPanel{
     
     private void armarPanel(){
         this.botonBuscar= new JButton("Buscar");
+         this.botonVolver= new JButton("Volver a Principal");
         this.botonAsignarRelaciones= new JButton("Asignar Relaciones");
         this.botonSalir= new JButton("Salir");
         this.boxCalificacion= new JCheckBox();
@@ -116,9 +118,9 @@ public class PanelBuscarOrdenar extends JPanel{
         this.add(new JLabel("Precio"));
         this.add(boxPrecioOrden);
         this.add(new JLabel(" "));
-        this.add(new JLabel(" "));
         this.add(botonBuscar);
         this.add(botonAsignarRelaciones);
+        this.add(botonVolver);
         this.add(botonSalir);
 /**
  *    comboxSuscriptor.addActionListener((ActionEvent e) -> {
@@ -173,6 +175,12 @@ temaSeleccionado=this.temaSeleccionado();
                    System.exit(0);
                }
         });
+     this.botonVolver.addActionListener(new ActionListener(){
+              @Override
+                 public void actionPerformed (ActionEvent e){
+                         principal.principal();
+            }
+    });
 
         
     }

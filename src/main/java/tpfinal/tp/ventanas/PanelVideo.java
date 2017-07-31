@@ -52,7 +52,7 @@ public class PanelVideo extends JPanel{
     
     private void armarPanel(){
         this.botonAceptar= new JButton("Aceptar");
-        this.botonCancelar= new JButton("Cancelar");
+        this.botonCancelar= new JButton("Volver a Principal");
         this.txtCalificacion= new JTextField(20);
         this.txtDuracion=new JTextField(20);
         this.txtPrecio=new JTextField(20);
@@ -102,6 +102,13 @@ public class PanelVideo extends JPanel{
                 }
             }
         });
+    
+    this.botonCancelar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed (ActionEvent e){
+                principal.principal();
+            }
+    });
     }
        
 private static void crearVideoShowGUI(){

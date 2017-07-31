@@ -21,6 +21,7 @@ public class CrearBuscarPanel extends JPanel{
     private JPanel cbPanel;
     private Principal principal;
     private CrearBuscarPanel buscarCrear;
+    private JButton botonVolver;
 
     private JButton botonCrear;
     private JButton botonBuscar;
@@ -43,11 +44,13 @@ public class CrearBuscarPanel extends JPanel{
     private void armarPanel(){
         this.botonCrear= new JButton("Crear");
         this.botonBuscar= new JButton("Buscar");
+        this.botonVolver= new JButton("Volver a Principal");
         
-        this.setLayout(new GridLayout(6,0));
+        this.setLayout(new GridLayout(6,0, 10, 10));
         this.add(new JLabel("Elegir opción"));
         this.add(botonCrear);
         this.add(botonBuscar);
+        this.add(botonVolver);
 
         this.botonCrear.addActionListener(new ActionListener(){
                @Override
@@ -62,6 +65,12 @@ public class CrearBuscarPanel extends JPanel{
                    principal.cambiarAPanelBuscar();
                }
         });
+        this.botonVolver.addActionListener(new ActionListener(){
+              @Override
+                 public void actionPerformed (ActionEvent e){
+                         principal.principal();
+            }
+    });
         
         
     }

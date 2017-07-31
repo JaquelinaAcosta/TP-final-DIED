@@ -76,12 +76,12 @@ public class PanelBorrar extends JPanel{
                    }
                }
         });
-//        this.botonNo.addActionListener(new ActionListener(){
-//            @Override
-//               public void actionPerformed (ActionEvent e){
-//                   ;
-//               }
-//        });
+        this.botonNo.addActionListener(new ActionListener(){
+              @Override
+                 public void actionPerformed (ActionEvent e){
+                         principal.principal();
+            }
+    });
     }
     
     private static void crearBorrarShowGUI(){

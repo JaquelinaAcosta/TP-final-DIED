@@ -72,7 +72,7 @@ public class PanelPublicacion extends JPanel{
         panelFecha.add(txtAño);        
         
         this.botonAceptar= new JButton("Aceptar");
-        this.botonCancelar= new JButton("Cancelar");
+        this.botonCancelar= new JButton("Volver a Principal");
         this.txtCalificacion= new JTextField(20);
 //        this.txtFecha=new JTextField(20);
         this.txtPrecio=new JTextField(20);
@@ -126,6 +126,13 @@ public class PanelPublicacion extends JPanel{
                 }
             }
         });
+        
+        this.botonCancelar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed (ActionEvent e){
+                principal.principal();
+            }
+    });
     }
     
      

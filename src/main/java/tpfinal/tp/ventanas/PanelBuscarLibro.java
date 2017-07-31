@@ -36,6 +36,7 @@ public class PanelBuscarLibro extends JPanel{
    private JButton botonActualizar;
     private JButton botonBorrar;
     private JButton botonAgregar;
+    private JButton botonVolver;
     private JButton botonSalir;
     private JList listaLibros;
     private JList listSuscriptores;
@@ -67,24 +68,28 @@ public class PanelBuscarLibro extends JPanel{
         this.botonActualizar= new JButton("Actualizar");
         this.botonSalir= new JButton("Salir");
         this.botonAgregar= new JButton("Agregar");
+        this.botonVolver= new JButton("Volver a Principal");
         this.botonBorrar= new JButton("Borrar");
         this.listaLibros= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
         this.listSuscriptores= new JList(listaSuscriptores.toArray(new Suscriptor[listaSuscriptores.size()]));
         
         
         
-        this.setLayout(new GridLayout(3,3, 10, 10));
+        this.setLayout(new GridLayout(3,6, 10, 10));
         this.add(new JLabel("LIBROS"));
         this.add(new JLabel(" "));
         this.add(new JLabel("SUSCRIPTORES"));
+        this.add(new JLabel(" "));
         this.add(new JLabel(" "));
         this.add(listaLibros);
         this.add(new JLabel(" "));
         this.add(listSuscriptores);
         this.add(new JLabel(" "));
+        this.add(new JLabel(" "));
         this.add(botonAgregar);
         this.add(botonActualizar);
         this.add(botonBorrar);
+        this.add(botonVolver);
         this.add(botonSalir);
         
         

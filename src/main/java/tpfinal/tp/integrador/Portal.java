@@ -14,7 +14,7 @@ import tpfinal.tp.util.ComparadorTitulo;
 public class Portal{
     private ArbolBinarioBusqueda bibliotecaOrdenada;
     protected Collection<MaterialCapacitacion> biblioteca;
-    private Collection<Suscriptor> suscriptores;
+//    private Collection<Suscriptor> suscriptores;
 //    protected ArregloDied biblioteca1;
     
     public Portal(){
