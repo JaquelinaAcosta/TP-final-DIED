@@ -99,7 +99,7 @@ public class PanelAgregarAArbol extends JPanel{
         this.add(panelCapitulos);
         this.add(panelTexto);
         
-        
+        //falta completar
  
      }
     

@@ -53,6 +53,8 @@ public class PanelBusquedaArbol extends JPanel{
         this.add(new JLabel("Seleccionar"));
         this.add(comboTipo);
         this.add(botonBuscar);
+        
+        //falta completar
      }
     
 
