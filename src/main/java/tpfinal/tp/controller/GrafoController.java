@@ -23,7 +23,8 @@ import tpfinal.tp.vista.VerticeView;
 
 
     
- public class GrafoController {
+
+public class GrafoController {
     
     private static Integer _GENERADOR_ID=1;
     private Grafo<MaterialCapacitacion> grafo;
@@ -40,30 +41,18 @@ import tpfinal.tp.vista.VerticeView;
         this.aristas = new LinkedHashMap<>();
      }
     
-       public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color){
-        
-           
-            //   MaterialCapacitacion m = new MaterialCapacitacion();
-//        Vertice v1 = new Vertice(m);
-//        grafo.addNodo(v1);        
-        VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);
-//        v.setVertice(v1);
-   this.vistaGrafo.agregar(v);
-//        this.vertices.put(v1, v);
-     this.vistaGrafo.repaint();
-    }
-
     
-//    public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
-//        MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
-//        Vertice v1 = new Vertice(m);
-//        grafo.addNodo(v1);        
-//        VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);
-//        v.setVertice(v1);
-//        this.vistaGrafo.agregar(v);
-//        this.vertices.put(v1, v);
-//        this.vistaGrafo.repaint();
-//    }
+    
+    public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
+        MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
+        Vertice v1 = new Vertice(m);
+        grafo.addNodo(v1);        
+        VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);
+        v.setVertice(v1);
+        this.vistaGrafo.agregar(v);
+        this.vertices.put(v1, v);
+        this.vistaGrafo.repaint();
+    }
 
     public void crearArista(AristaView arista){
         Arista a1 = this.grafo.conectar(arista.getOrigen().getVertice(), arista.getDestino().getVertice());

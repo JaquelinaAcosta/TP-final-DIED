@@ -14,34 +14,22 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.ventanas.Principal;
 
 
-public class PrincipalGrafo extends JPanel {
+public class PrincipalGrafo {
     
-    private Principal principal;
-    private List<MaterialCapacitacion> listaRtdo;
-    public PrincipalGrafo()
-    {
-        this.createAndShowGUI();
-    }
-    
-    public PrincipalGrafo(Principal principal,List<MaterialCapacitacion> lista)
-    {
-        this.principal=principal;
-        this.listaRtdo=lista;
-        this.createAndShowGUI();
-    }
-//public static void main(String[] args) {
-//    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//        public void run() {
-//          this.createAndShowGUI();
-//        }
-//    });
-//}
+public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+          createAndShowGUI();
+        }
+    });
+}
 
- private  void createAndShowGUI() {
+ private static void createAndShowGUI() {
+     
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ControlPanel panelCtrl = new ControlPanel();
-        GrafoPanel panelGrf = new GrafoPanel(listaRtdo);
+        GrafoPanel panelGrf = new GrafoPanel();
         GrafoController gf = new GrafoController(panelGrf, panelCtrl);
         panelGrf.setController(gf);
         panelCtrl.setController(gf);
@@ -53,3 +41,4 @@ public class PrincipalGrafo extends JPanel {
         f.setVisible(true);
     }
 }
+
