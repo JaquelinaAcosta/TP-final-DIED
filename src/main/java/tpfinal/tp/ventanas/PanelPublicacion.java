@@ -23,7 +23,10 @@ import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 
-
+/**
+ * Clase que maneja la creacion y modificacion de una Publicacion
+ *
+ */
 public class PanelPublicacion extends JPanel{
     
     private JButton botonAceptar;

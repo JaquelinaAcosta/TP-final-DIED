@@ -17,10 +17,12 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-
+/**
+ * Clase que controla la busqueda de un Video y de una Publicacion
+ * 
+ */
 public class PanelBuscarVideoPublicacion extends JPanel{
-    
-//    private GrafoController controller;
+
     private JButton botonActualizar;
     private JButton botonBorrar;
     private JButton botonSalir;

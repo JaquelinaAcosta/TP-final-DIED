@@ -14,6 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Clase que maneja la seleccion que realiza el usuario desde
+ * la pantalla de inicio
+ * 
+ */
 
 public class PanelMaterialCapacitacion extends JPanel {
     

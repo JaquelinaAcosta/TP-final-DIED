@@ -121,20 +121,7 @@ public class PanelBuscarOrdenar extends JPanel{
         this.add(botonAsignarRelaciones);
         this.add(botonVolver);
         this.add(botonSalir);
-/**
- *    comboxSuscriptor.addActionListener((ActionEvent e) -> {
-            //JLabel estoSeleccione= new JLabel(comboxSuscriptor.getSelectedItem().toString());
-            String suscriptorSeleccionado=comboxSuscriptor.getSelectedItem().toString();
-              for(Suscriptor elem: listaSuscriptor)
-        {
-          String sus=elem.getNombre();
-          if(suscriptorSeleccionado.equals(sus))
-              System.out.println("este suscriptor soy"+sus+"mi saldo es"+elem.getCredito());
-        }
-            System.out.println("Esto seleccione"+comboxSuscriptor.getSelectedItem().toString());
-        });
-       
- */
+
 temaSeleccionado=this.temaSeleccionado();
 
       System.out.println(temaSeleccionado);
@@ -200,13 +187,7 @@ temaSeleccionado=this.temaSeleccionado();
     //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
    private void filtrar() throws MaterialNoEncontradoException{
         if(boxTitulo.isSelected()){
-            //Uso Lambda, en presentacion complementaria de swing está
-            //[Lista de Argumentos (seria lista de materiales) ][tokenflecha (->)][cuerpo de la expresión
-            //(lo que quiero hacer, buscar los material que por ejemplo el titulo que pasas este en la lista de materiales,
-            //para hacer una lista solo con esa caracteriatica)]
-            //esa muy bueno para lo que es lista, para las buquedas porque en una linea haces todo
-            //te dejo un link que tenes ejemplos de todo
-            //https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+      
             listaMateriales.removeIf(material -> ! material.getTitulo().equals(txtTitulo.getText()));
         }
         if(boxCalificacion.isSelected()){
@@ -236,10 +217,7 @@ temaSeleccionado=this.temaSeleccionado();
             throw new MaterialNoEncontradoException();
         }
         
-        //IMPORTANE!
-        //SI CORRES VIDEO SELECCIONANDO EL CHECK DE TEMA, SELECCIONAS "MATEMATICA"
-        //Y SELECCIONAS EL CHECK QUE TE LO ORDENE POR PRECIO SE VE QUE DA EL RESULTADO DE LA LISTA ORDENADA
-        
+       
    }
 
         

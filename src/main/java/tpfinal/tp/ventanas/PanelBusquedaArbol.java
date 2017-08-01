@@ -17,8 +17,8 @@ import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
 /**
- *
- * @author jaque
+ *Clase que se utiliza para el ingresar el contenido del material de capacitacion 
+ * NO SE LLEGO A IMPLEMENTAR
  */
 public class PanelBusquedaArbol extends JPanel{
     private JTextField txtDato;

@@ -1,10 +1,8 @@
 package tpfinal.tp.estructuras.grafo;
 
-/*aca estoy*/
+
 import java.util.ArrayList;
 import java.util.List;
-import tpfinal.tp.estructuras.grafo.Arista;
-import tpfinal.tp.estructuras.grafo.Vertice;
 
 
 
@@ -156,15 +154,13 @@ public class Grafo<T> {
     }
 
  
-        public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2,Integer saltos){        
+   public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2,Integer saltos){        
         return this.buscarCaminoAux(n1, n2, saltos, new ArrayList<Arista<T>>());
          
     }
     
     public List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,Integer saltos,ArrayList<Arista<T>> resultado){
         ArrayList<Vertice<T>> listaVertice= new ArrayList<>();
-        
-       
         if(saltos==0)
             return new ArrayList<>(); //retorno vacio
         if(esAdyacente(n1, n2)&& saltos ==1) {
@@ -184,145 +180,4 @@ public class Grafo<T> {
         return resultado;
     }
     
-    /*
-       public List<Arista<T>> mostrarCamino(Vertice<T> n1,Vertice<T> n2){        
-        return this.buscarCaminoAux(n1, n2,new ArrayList<Arista<T>>());
-         
-    }
-    
-    public List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,ArrayList<Vertice<T>> marcados){
-        ArrayList<Vertice<T>> listaVertice= new ArrayList<>();
-        ArrayList<Arista<T>> resultado= new ArrayList<>();
-    
-        if(saltos==0)
-            return new ArrayList<>(); //retorno vacio
-        if(esAdyacente(n1, n2) {
-            marcados.add(n1);
-            resultado.add(new Arista(n1,n2));
-            return resultado;
-        }else{
-            marcados.add(n1);
-            listaVertice=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);  
-        System.out.println("esta es la lista de vertices ady"+listaVertice);
-            for(int i=0;i<listaVertice.size();i++)//empezamos a recorrer la lista de adyacentes de n1
-            {
-                resultado.add(new Arista(n1,listaVertice.get(i)));
-                this.buscarCaminoAux(listaVertice.get(i),n2,saltos-1,marcados);                    
-                }        
-            }
-                
-        return resultado;
-    }
-    */
-    
-//    
-//  public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2)
-//  {
-//      ArrayList listaRtdo=new ArrayList<>();
-//       buscarCaminoAux(n1,n2,listaRtdo);
-//            return listaRtdo;   
-//  }
-//    
-//  private List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,List<Arista<T>> listaArista){
-//    ArrayList<Vertice<T>> adyacente= new ArrayList<>();
-//    ArrayList<Vertice<T>> copiaMarcados = new ArrayList<>();
-//      
-//    adyacente=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
-//   
-//          if(esAdyacente(n1,n2)) //creo la arista
-//            {
-//           listaArista.add(new Arista(n1,n2));
-//         //  this.buscarCaminoAux(n1, adyacente.get(0), listaArista);
-//             }
-//      else
-//        {
-//      for(int i=0; i<= adyacente.size()-1;i++)
-//        {
-//            listaArista.add(new Arista(n1,adyacente.get(i)));
-//            this.buscarCaminoAux(adyacente.get(i), n2,listaArista);  
-//        }
-//       
-//        }
-//         
-//           return listaArista;
-//  }
-
 }
-  
-    //  ArrayList listaRtdo=new ArrayList<>();
-//       buscarCaminoAux(n1,n2,new ArrayList<>(),listaRtdo,0);
-//            return listaRtdo;   
-//              public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2)
-//    public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2)
-//      {
-//      ArrayList listaRtdo=new ArrayList<>();
-//      ArrayList<Vertice<T>> ady=new ArrayList<>();
-//      ady=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
-//       buscarCaminoAux(n1,n2,ady,listaRtdo);
-//            return listaRtdo;   
-//  }
-//    
-//  private List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,ArrayList<Vertice<T>> ady,List<Arista<T>> listaArista){
-//    ArrayList<Vertice<T>> adyacente= new ArrayList<>();
-//    adyacente=(ArrayList<Vertice<T>>) ady.clone();
-//    ArrayList<Vertice<T>> copiaMarcados = new ArrayList<>();
-//      
-//   // adyacente=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
-//     // System.out.println("adyacente:"+adyacente);
-//   for(int i=0; i<= adyacente.size()-1;i++)//recorro los ady
-//        {
-//   
-//       if(n2.equals(adyacente.get(i)))//si es igual q el fin
-//       {
-//       listaArista.add(new Arista(n1,n2));
-//       adyacente.remove(i);
-//       copiaMarcados=(ArrayList<Vertice<T>>) adyacente.clone();
-//       this.buscarCaminoAux(n1, n2, copiaMarcados, listaArista);
-//        }//fin del for
-//       else
-//       {
-//       listaArista.add(new Arista(n1,adyacente.get(i)));  
-//       this.buscarCaminoAux(adyacente.get(i), n2,adyacente, listaArista);
-//       
-//       }
-//   }
-//           return listaArista;
-//  }
-
-  
-
-//    
-//  private List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,ArrayList<Vertice<T>> marcado,List<Arista<T>> listaArista,Integer Iteracion){
-//    ArrayList<Vertice<T>> adyacente= new ArrayList<>();
-//    ArrayList<Vertice<T>> copiaMarcados = new ArrayList<>();
-//    adyacente=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
-//    System.out.println("adyacente:"+adyacente);
-//    for(int i=0; i<= adyacente.size()-1;i++)
-//        {
-//            Vertice<T> aux=adyacente.get(i);
-//            System.out.println("este vertice soy"+aux);
-//            System.out.println("Iteracion i="+i);
-//            System.out.println("marcado:"+marcado);
-//            if(!marcado.contains(aux))//si no contiene el nodo l
-//            {
-//               marcado.add(aux);
-//               System.out.println("marcado despues del add:"+marcado);
-//               if(n2!=aux)
-//               {
-//                  listaArista.add(new Arista(n1,aux));
-//                  System.out.println("listaarista:"+listaArista);
-//                  this.buscarCaminoAux(aux, n2,marcado,listaArista,0);   
-//                    }
-//               else
-//               {
-//                 listaArista.add(new Arista(n1,n2));
-//                 System.out.println("listaArista"+listaArista);
-//               }
-//           //    System.out.println( "esto remuevo"+marcado.remove(0));
-//        marcado.remove(marcado.size()-1);
-//        System.out.println( "esto remuevo"+marcado);
-//        }
-//       
-//        }//del for
-//         
-//           return listaArista;

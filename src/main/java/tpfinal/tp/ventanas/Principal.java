@@ -20,8 +20,12 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
-import tpfinal.tp.vista.GrafoPanel;
-import tpfinal.tp.vista.PrincipalGrafo;
+
+/*****************************************************
+ ******ESTA CLASE ES LA PRINCIPAL DEL SISTEMA*********
+ * se utiliza como controlador de todas las ventanas 
+ * que se van ejecutando
+******************************************************/
 
 
 public class Principal {
@@ -261,10 +265,5 @@ public class Principal {
             panelCtrl= new PanelBusquedaArbol(this, (Publicacion) material);
         }
         inicializarPanelCtrl();  
+    }
 }
-}
-//         LibrosDao librosDao= new LibrosDao();
-//         List<? extends MaterialCapacitacion> listaLibro= librosDao.cargarLista();
-// //        PublicacionesDao publicacionesDao= new PublicacionesDao();
-//        List<? extends MaterialCapacitacion> listaPublicaciones= publicacionesDao.cargarLista();
-//                 listaVideo.removeIf(x-> !x.getTema().equals((TemasMateriales)tema));

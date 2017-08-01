@@ -20,11 +20,12 @@ import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.TemasMateriales;
 
-
+/*
+*clase que maneja la creacion y modificacion de un Video
+*/
 
 public class PanelLibro extends JPanel{
     
-//    private GrafoController controller;
     private JButton botonAceptar;
     private JButton botonCancelar;
     private JTextField txtTitulo;

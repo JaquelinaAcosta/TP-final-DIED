@@ -18,8 +18,8 @@ import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
 
 /**
- *
- * @author jaque
+ *Clase que maneja la creacion y modificacion de un Video
+ * 
  */
 public class PanelVideo extends JPanel{
     

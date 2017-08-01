@@ -127,7 +127,7 @@ public class GrafoController {
         return null;
     }
     
-    public void calcularPageRank()
+    public void calcularPageRank()//no se termino de implementar
     {
      // NÃºmero de enlaces salientes para cada nodo
    HashMap<Vertice<MaterialCapacitacion>, Integer> enlacesSalientes= new HashMap<>(); 
@@ -141,24 +141,5 @@ public class GrafoController {
     // Tabla temporal para el calculo interativo de Pageranks
    HashMap<Vertice<MaterialCapacitacion>, Double> tempPageRank= new HashMap<>();
     }
-   /*
-       /**
-     * Calcula enlaces entrantes (inlink) a partir de los salientes
-     */
-//    private void calculateInlinkList() {
-//        // Para cada doc coger sus enlances salientes
-//            for (String docId : outlinkList.keySet()) {
-//                
-//                // Para cada documento destino agregar enlace entrante 
-//                for (String outlink : outlinkList.get(docId)) {
-//                    ArrayList<String> links = inlinkList.get(outlink);
-//                    if (links == null) {
-//                        links = new ArrayList<>();
-//                    }
-//                    links.add(docId);
-//                    inlinkList.put(outlink, links);
-//                }
-//            }
-//    }
-//    */
+
 }

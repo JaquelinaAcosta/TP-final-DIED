@@ -14,6 +14,9 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
 
+/*Clase que se utiliza como la union del paquete de grafo con
+*el panel principal
+*/
 
     
 public class PanelContenedor extends JPanel {
