@@ -3,7 +3,7 @@
     "factorImpacto": 0.0,
     "valorSuscripcionAnual": 0.0,
     "tema": "ENTRETENIMIENTO",
-    "titulo": "Publicación 1",
+    "titulo": "Publicacion1",
     "calificacion": 10,
     "costo": 400.0,
     "fechaPublicacion": "18/07/2017",
@@ -13,7 +13,7 @@
     "factorImpacto": 0.0,
     "valorSuscripcionAnual": 0.0,
     "tema": "ENTRETENIMIENTO",
-    "titulo": "Publicación 1",
+    "titulo": "Publicacion2",
     "calificacion": 10,
     "costo": 300.0,
     "fechaPublicacion": "18/06/2017",
@@ -23,11 +23,20 @@
     "factorImpacto": 0.0,
     "valorSuscripcionAnual": 0.0,
     "tema": "PROGRAMACION",
-    "titulo": "Publicación 1",
+    "titulo": "Publicacion3",
+    "calificacion": 10,
+    "costo": 400.0,
+    "fechaPublicacion": "18/07/2017",
+    "suscriptores": []
+  },
+  {
+    "factorImpacto": 0.0,
+    "valorSuscripcionAnual": 0.0,
+    "tema": "PROGRAMACION",
+    "titulo": "Publicacion4",
     "calificacion": 10,
     "costo": 300.0,
     "fechaPublicacion": "18/06/2017",
     "suscriptores": []
   }
-
 ]

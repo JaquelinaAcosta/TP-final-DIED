@@ -30,16 +30,6 @@ public class ArbolNario {
     public void setRaiz(Nodo root) {
         this.raiz = root;
     }
-
-    public List<Nodo> toList() {
-        List<Nodo> list = new ArrayList<Nodo>();
-        walk(raiz, list);//(para iterar en los contenidos de los directorios)
-        return list;
-    }
-    
-    public String toString() {
-        return toList().toString();
-    }
      
     private void walk(Nodo element, List<Nodo> list) {
         list.add(element);

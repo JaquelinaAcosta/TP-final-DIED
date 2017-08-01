@@ -10,10 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-/**
- *
- * @author jaque
- */
+
 public class ArbolVacio extends Arbol {
 
     public ArbolVacio() {    }

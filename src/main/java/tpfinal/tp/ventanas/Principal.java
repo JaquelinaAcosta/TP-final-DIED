@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
@@ -29,12 +30,13 @@ public class Principal {
     private String crearBuscarDesde;
     private PanelBuscarOrdenar panelBuscarOrdenar;
     private List<Video> listaVideo;
-   // private List<? extends MaterialCapacitacion> listaVideo;
     private List<Publicacion> listaPublicacion;
     private TemasMateriales temaSeleccionado;
-      
- private List<MaterialCapacitacion> listaResultado;
+    private ArrayList<MaterialCapacitacion> listaResultado;
+    private GrafoController controller;
+
     
+      
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -146,6 +148,8 @@ public class Principal {
     }
     
     //esta funcion va a dibujar los nodos segun el tema que se filtro
+ 
+
   public void cambiarDibujarNodo(TemasMateriales tema,List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
               this.ventana.remove(this.panelCtrl);
               this.temaSeleccionado=tema;
@@ -176,18 +180,24 @@ public class Principal {
        listaResultado.addAll(listaVideo);
        listaResultado.addAll(listaPublicaciones);
        System.out.println(listaResultado);
-//       panelCtrl= new PrincipalGrafo(this,listaResultado);
-      
+      panelCtrl= new PanelContenedor(this,listaResultado);
+     
           }
-//            if(crearBuscarDesde.equals("Video")){
-//        panelCtrl= new PanelGrafo(this,null,listaPublicaciones,listaLibro);
-//            }
-//              if(crearBuscarDesde.equals("Publicacion")){
-//     panelCtrl= new PanelGrafo(this,listaVideo,null,listaLibro);
-//            }
-        inicializarPanelCtrl();
+           if(crearBuscarDesde.equals("Video")){
+       listaResultado.addAll(listaLibro);
+       listaResultado.addAll(listaPublicaciones);
+       System.out.println(listaResultado);
+       panelCtrl= new PanelContenedor(this,listaResultado);
+     
+           }
+        if(crearBuscarDesde.equals("Publicacion")){
+       listaResultado.addAll(listaLibro);
+       listaResultado.addAll(listaVideo);
+       System.out.println(listaResultado);
+      panelCtrl= new PanelContenedor(this,listaResultado);
         }
-      
+ inicializarPanelCtrl();
+        }
     
     //ignorar es para borrar, no lo termine de trabajar
     public void cambiarAPanelBorrar(MaterialCapacitacion material){

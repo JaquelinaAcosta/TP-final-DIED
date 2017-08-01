@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
@@ -17,10 +13,10 @@ import javax.swing.JTextField;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-/**
- *
- * @author jaque
- */
+/*En esta clase se van a ingresar los datos en el arbol Nario
+para la Busqueda de texto
+*/
+
 public class PanelAgregarAArbol extends JPanel{
     private JTextField txtDato;
     private JComboBox comboHRaiz;

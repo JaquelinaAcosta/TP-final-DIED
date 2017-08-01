@@ -7,15 +7,15 @@ package tpfinal.tp.controller;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import tpfinal.tp.estructuras.grafo.Arista;
 import tpfinal.tp.estructuras.grafo.Grafo;
 import tpfinal.tp.estructuras.grafo.Vertice;
-import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
-import tpfinal.tp.ventanas.PanelGrafo;
+
 import tpfinal.tp.vista.AristaView;
 import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
@@ -25,13 +25,17 @@ import tpfinal.tp.vista.VerticeView;
     
 
 public class GrafoController {
-    
+    private final Double factorAmort=0.5;
     private static Integer _GENERADOR_ID=1;
     private Grafo<MaterialCapacitacion> grafo;
     private GrafoPanel vistaGrafo;
     private ControlPanel vistaControl;
     private Map<Vertice<MaterialCapacitacion>,VerticeView> vertices;
     private Map<Arista<MaterialCapacitacion>,AristaView> aristas;
+    private Integer coordenadaX;
+    private Integer coordenadaY;
+    private String t;
+    private MaterialCapacitacion material;
 
     public GrafoController(GrafoPanel panelGrf,ControlPanel panelCtrl) {
         this.vistaGrafo = panelGrf;
@@ -41,17 +45,47 @@ public class GrafoController {
         this.aristas = new LinkedHashMap<>();
      }
     
+    public Integer encontrarPosicionX(Integer x)
+    {
+        this.coordenadaX=x;
+        return coordenadaX; 
+    }
+      public Integer encontrarPosicionY(Integer y)
+    {
+        this.coordenadaY=y;
+        return coordenadaY; 
+    }
     
-    
-    public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color,String titulo){
-        MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
-        Vertice v1 = new Vertice(m);
+      public void dibujarEn(Integer x,Integer y,Color color)
+      {
+         String vieneTitulo=this.titulo(t);
+         MaterialCapacitacion m=this.getMaterial(material);
+         this.crearVertice(x, y, color, vieneTitulo,m);
+      } 
+      
+      public MaterialCapacitacion getMaterial(MaterialCapacitacion material)
+      {
+        this.material=material;
+            return material;    
+      }
+      
+      public String titulo(String titulo)
+      {
+          this.t=titulo;
+          return t;
+      }
+      
+    public void crearVertice(Integer coordenadaX, Integer coordenadaY,Color color,String titulo,MaterialCapacitacion m){
+       this.material=m;
+        Vertice v1 = new Vertice(material);
         grafo.addNodo(v1);        
         VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);
         v.setVertice(v1);
         this.vistaGrafo.agregar(v);
         this.vertices.put(v1, v);
         this.vistaGrafo.repaint();
+        
+        
     }
 
     public void crearArista(AristaView arista){
@@ -61,15 +95,27 @@ public class GrafoController {
         this.vistaGrafo.repaint();
     }
 
+    public void mostrarAristas()
+    {
+        this.grafo.imprimirAristas();
+    }
+    
     public void buscarCamino(String nodo1,String nodo2,Integer saltos){
         Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
-        List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino);      
-        //COMPLETAR
-        //COMPLETAR
-        //COMPLETAR DE MODO TAL QUE CUANDO TENGA EL CAMINO RESULTADO se muestre el camino (aristas y vertice en rojo)
-        //COMPLETAR
-        //COMPLETAR
+        List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino,saltos);   
+     
+//    for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
+//    {
+//        aristas.values().forEach((a) -> {
+//            a.setColor(Color.RED);
+//            this.vistaGrafo.agregar(a);
+//            });
+//        vertices.values().forEach((vert) -> {
+//            vert.setColor(Color.RED);
+//            });
+//    }
+       
         this.vistaGrafo.repaint();
         
     }
@@ -80,4 +126,39 @@ public class GrafoController {
         }
         return null;
     }
+    
+    public void calcularPageRank()
+    {
+     // NÃºmero de enlaces salientes para cada nodo
+   HashMap<Vertice<MaterialCapacitacion>, Integer> enlacesSalientes= new HashMap<>(); 
+     // Lista de enlaces salientes
+   HashMap<Vertice<MaterialCapacitacion>, ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesSalientes= new HashMap<>(); 
+    // Lista de enlaces entrantes en la colecciÃ³n para cada identificador
+    HashMap<Vertice<MaterialCapacitacion>,ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesEntrantes= new HashMap<>();    
+    // Valor de PageRank calculado para cada identificador de documento
+   HashMap<Vertice<MaterialCapacitacion>, Double> pageRank=new HashMap<>();
+    
+    // Tabla temporal para el calculo interativo de Pageranks
+   HashMap<Vertice<MaterialCapacitacion>, Double> tempPageRank= new HashMap<>();
+    }
+   /*
+       /**
+     * Calcula enlaces entrantes (inlink) a partir de los salientes
+     */
+//    private void calculateInlinkList() {
+//        // Para cada doc coger sus enlances salientes
+//            for (String docId : outlinkList.keySet()) {
+//                
+//                // Para cada documento destino agregar enlace entrante 
+//                for (String outlink : outlinkList.get(docId)) {
+//                    ArrayList<String> links = inlinkList.get(outlink);
+//                    if (links == null) {
+//                        links = new ArrayList<>();
+//                    }
+//                    links.add(docId);
+//                    inlinkList.put(outlink, links);
+//                }
+//            }
+//    }
+//    */
 }

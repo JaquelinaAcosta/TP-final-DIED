@@ -5,27 +5,21 @@
  */
 package tpfinal.tp.vista;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
-import tpfinal.tp.integrador.MaterialCapacitacion;
 
 
 public class GrafoPanel extends JPanel {
@@ -53,22 +47,20 @@ public class GrafoPanel extends JPanel {
         this.colaColores.add(Color.CYAN);
 
         addMouseListener(new MouseAdapter() {
-            //Se llama cuando se oprime y se suelta un botón en el mouse.
+            //Se llama cuando se oprime y se suelta un botÃ³n en el mouse.
             public void mouseClicked(MouseEvent event) {
                 if (event.getClickCount() == 2 && !event.isConsumed()) {
                     event.consume();
-                    String titulo = JOptionPane.showInputDialog(framePadre, "Nombre del nodo");
-                    System.out.println(titulo);
-                    if (titulo != null) {
-                        // quito un color de la cola
                         Color aux = colaColores.remove();
-                        // COMPLETAR --> invocar al controlador y crear el vertice.
-                        controller.crearVertice(event.getX(), event.getY(), aux, titulo);               
+                        Integer x=controller.encontrarPosicionX(event.getX());
+                        Integer y=controller.encontrarPosicionY(event.getY());
+                        controller.dibujarEn(x,y,aux);
+           
                         colaColores.add(aux);
                     }
                 }
-            }
- //Ocurre cuando se suelta un botón en el Mouse
+           // }
+ //Ocurre cuando se suelta un botÃ³n en el Mouse
             public void mouseReleased(MouseEvent event) {
                 VerticeView vDestino = clicEnUnNodo(event.getPoint());
                 if (auxiliar!=null && vDestino != null) {
@@ -90,6 +82,7 @@ public class GrafoPanel extends JPanel {
                 }
             }
         });
+       
     }
 
     public void agregar(AristaView arista){

@@ -8,7 +8,6 @@ import tpfinal.tp.estructuras.grafo.Vertice;
 
 
 
-
 public class Grafo<T> {
 
 	protected List<Arista<T>> aristas;
@@ -51,6 +50,7 @@ public class Grafo<T> {
 	 */
 	public Arista<T> conectar(Vertice<T> nodo1,Vertice<T> nodo2){
             Arista<T> arista = new Arista<T>(nodo1,nodo2,0.0);
+            System.out.println(aristas);
             this.aristas.add(arista);
             return arista;
 	}
@@ -156,36 +156,96 @@ public class Grafo<T> {
     }
 
  
-  public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2)
-  {
-      ArrayList listaRtdo=new ArrayList<>();
-       buscarCaminoAux(n1,n2,listaRtdo);
-            return listaRtdo;   
-  }
-    
-  private List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,List<Arista<T>> listaArista){
-    ArrayList<Vertice<T>> adyacente= new ArrayList<>();
-    ArrayList<Vertice<T>> copiaMarcados = new ArrayList<>();
-      
-    adyacente=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
-   
-          if(esAdyacente(n1,n2)) //creo la arista
-            {
-           listaArista.add(new Arista(n1,n2));
-         //  this.buscarCaminoAux(n1, adyacente.get(0), listaArista);
-             }
-      else
-        {
-      for(int i=0; i<= adyacente.size()-1;i++)
-        {
-            listaArista.add(new Arista(n1,adyacente.get(i)));
-            this.buscarCaminoAux(adyacente.get(i), n2,listaArista);  
-        }
-       
-        }
+        public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2,Integer saltos){        
+        return this.buscarCaminoAux(n1, n2, saltos, new ArrayList<Arista<T>>());
          
-           return listaArista;
-  }
+    }
+    
+    public List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,Integer saltos,ArrayList<Arista<T>> resultado){
+        ArrayList<Vertice<T>> listaVertice= new ArrayList<>();
+        
+       
+        if(saltos==0)
+            return new ArrayList<>(); //retorno vacio
+        if(esAdyacente(n1, n2)&& saltos ==1) {
+            resultado.add(new Arista(n1,n2));
+            return resultado;
+        }else{
+            listaVertice=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
+             
+        System.out.println("esta es la lista de vertices ady"+listaVertice);
+            for(int i=0;i<listaVertice.size();i++)//empezamos a recorrer la lista de adyacentes de n1
+            {
+                resultado.add(new Arista(n1,listaVertice.get(i)));
+                this.buscarCaminoAux(listaVertice.get(i),n2,saltos-1,resultado);                    
+                }        
+            }
+                
+        return resultado;
+    }
+    
+    /*
+       public List<Arista<T>> mostrarCamino(Vertice<T> n1,Vertice<T> n2){        
+        return this.buscarCaminoAux(n1, n2,new ArrayList<Arista<T>>());
+         
+    }
+    
+    public List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,ArrayList<Vertice<T>> marcados){
+        ArrayList<Vertice<T>> listaVertice= new ArrayList<>();
+        ArrayList<Arista<T>> resultado= new ArrayList<>();
+    
+        if(saltos==0)
+            return new ArrayList<>(); //retorno vacio
+        if(esAdyacente(n1, n2) {
+            marcados.add(n1);
+            resultado.add(new Arista(n1,n2));
+            return resultado;
+        }else{
+            marcados.add(n1);
+            listaVertice=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);  
+        System.out.println("esta es la lista de vertices ady"+listaVertice);
+            for(int i=0;i<listaVertice.size();i++)//empezamos a recorrer la lista de adyacentes de n1
+            {
+                resultado.add(new Arista(n1,listaVertice.get(i)));
+                this.buscarCaminoAux(listaVertice.get(i),n2,saltos-1,marcados);                    
+                }        
+            }
+                
+        return resultado;
+    }
+    */
+    
+//    
+//  public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2)
+//  {
+//      ArrayList listaRtdo=new ArrayList<>();
+//       buscarCaminoAux(n1,n2,listaRtdo);
+//            return listaRtdo;   
+//  }
+//    
+//  private List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,List<Arista<T>> listaArista){
+//    ArrayList<Vertice<T>> adyacente= new ArrayList<>();
+//    ArrayList<Vertice<T>> copiaMarcados = new ArrayList<>();
+//      
+//    adyacente=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
+//   
+//          if(esAdyacente(n1,n2)) //creo la arista
+//            {
+//           listaArista.add(new Arista(n1,n2));
+//         //  this.buscarCaminoAux(n1, adyacente.get(0), listaArista);
+//             }
+//      else
+//        {
+//      for(int i=0; i<= adyacente.size()-1;i++)
+//        {
+//            listaArista.add(new Arista(n1,adyacente.get(i)));
+//            this.buscarCaminoAux(adyacente.get(i), n2,listaArista);  
+//        }
+//       
+//        }
+//         
+//           return listaArista;
+//  }
 
 }
   
@@ -266,10 +326,3 @@ public class Grafo<T> {
 //        }//del for
 //         
 //           return listaArista;
-  
-
-
-
-
-
-
