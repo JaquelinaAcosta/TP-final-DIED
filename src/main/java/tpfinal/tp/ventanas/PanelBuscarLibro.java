@@ -42,6 +42,8 @@ public class PanelBuscarLibro extends JPanel{
     private JList listSuscriptores;
     private List<? extends MaterialCapacitacion> listaMateriales;
     private Principal principal;
+        private JButton botonBuscarArbol;
+    private JButton botonCargarArbol;
     private SuscriptoresDao suscriptoresDao;
 
     public PanelBuscarLibro(){
@@ -64,7 +66,8 @@ public class PanelBuscarLibro extends JPanel{
         List<Suscriptor> listaSuscriptores = new ArrayList<Suscriptor>();
         listaSuscriptores= suscriptoresDao.cargarLista();
                    
-        
+        this.botonBuscarArbol= new JButton("Buscar detalles de Material");
+        this.botonCargarArbol= new JButton("Cargar datos en Material");
         this.botonActualizar= new JButton("Actualizar");
         this.botonSalir= new JButton("Salir");
         this.botonAgregar= new JButton("Agregar");
@@ -89,6 +92,8 @@ public class PanelBuscarLibro extends JPanel{
         this.add(botonAgregar);
         this.add(botonActualizar);
         this.add(botonBorrar);
+        this.add(botonBuscarArbol);
+        this.add(botonCargarArbol);
         this.add(botonVolver);
         this.add(botonSalir);
         
@@ -125,6 +130,20 @@ public class PanelBuscarLibro extends JPanel{
                    } catch(CreditoInsuficienteException ex){
                        JOptionPane.showMessageDialog( null, ex.getMessage());
                    } 
+               }
+        });
+             this.botonCargarArbol.addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed (ActionEvent e){
+                       principal.cambiarAPanelAgregarAArbol((MaterialCapacitacion) listaLibros.getSelectedValue());
+                        //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
+               }
+        });
+              this.botonBuscarArbol.addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed (ActionEvent e){
+                       principal.cambiarPanelBusquedaArbol((MaterialCapacitacion) listaLibros.getSelectedValue());
+                        //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
                }
         });
     }

@@ -223,6 +223,35 @@ public class Principal {
     
 }
     
+      public void cambiarAPanelAgregarAArbol(MaterialCapacitacion material){
+        this.ventana.remove(this.panelCtrl);
+        
+        if(crearBuscarDesde.equals("Libro")){
+            panelCtrl= new PanelAgregarAArbol(this, (Libro) material);
+        }
+        if(crearBuscarDesde.equals("Video")){
+            panelCtrl= new PanelAgregarAArbol(this, (Video) material);
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+            panelCtrl= new PanelAgregarAArbol(this, (Publicacion) material);
+        }
+        inicializarPanelCtrl();  
+}
+    
+            public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
+        this.ventana.remove(this.panelCtrl);
+        
+        if(crearBuscarDesde.equals("Libro")){
+            panelCtrl= new PanelBusquedaArbol(this, (Libro) material);
+        }
+        if(crearBuscarDesde.equals("Video")){
+            panelCtrl= new PanelBusquedaArbol(this, (Video) material);
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+            panelCtrl= new PanelBusquedaArbol(this, (Publicacion) material);
+        }
+        inicializarPanelCtrl();  
+}
 }
 //         LibrosDao librosDao= new LibrosDao();
 //         List<? extends MaterialCapacitacion> listaLibro= librosDao.cargarLista();

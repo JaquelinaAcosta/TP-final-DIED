@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashSet;
 import java.util.Objects;
+import tpfinal.tp.estructuraArbolNario.ArbolNario;
 
 
 
@@ -20,6 +21,7 @@ public abstract class MaterialCapacitacion implements Comparable<MaterialCapacit
     protected Integer id;
     protected String titulo;
     private Integer suscripciones;
+    protected ArbolNario arbolNario;
     
     public abstract void liquidar();
     
@@ -81,6 +83,13 @@ public abstract class MaterialCapacitacion implements Comparable<MaterialCapacit
         return costo;
     }
     
+    public ArbolNario setArbolNario(){
+        return arbolNario;
+    }
+    
+    public ArbolNario getArbolNario(){
+        return arbolNario;
+    }
     public TemasMateriales getTema(){
         return tema;
     }

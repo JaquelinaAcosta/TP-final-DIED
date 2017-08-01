@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tpfinal.tp.estructurasArbolNario;
+package tpfinal.tp.estructuraArbolNario;
 
 
 public enum TipoNodo {
-    TITULO,METADATO,AUTOR,FECHA_PUBLICACON,SECCION,PARRAFO,CAPITULO,EDITORIAL,RESUMEN,PALABRA_CLAVE;
+    TITULO,METADATO,AUTOR,FECHA_PUBLICACON,SECCION,PARRAFO,CAPITULO,EDITORIAL,RESUMEN,PALABRA_CLAVE, EJERCICIOS, SOLUCIONES;
 }
 

@@ -117,7 +117,6 @@ public class PanelBuscarOrdenar extends JPanel{
         this.add(new JLabel(" "));
         this.add(new JLabel("Precio"));
         this.add(boxPrecioOrden);
-        this.add(new JLabel(" "));
         this.add(botonBuscar);
         this.add(botonAsignarRelaciones);
         this.add(botonVolver);
@@ -181,7 +180,6 @@ temaSeleccionado=this.temaSeleccionado();
                          principal.principal();
             }
     });
-
         
     }
     
