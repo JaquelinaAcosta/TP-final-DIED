@@ -83,9 +83,7 @@ exactamente N saltos.*/
             public void mouseClicked(MouseEvent event) {
                 if (event.getClickCount() == 2 && !event.isConsumed()) {
                     event.consume();
-                    System.out.println("posicion x "+event.getX());
-                    System.out.println("posicion y "+event.getY());
-                    // controller.crearVertice(event.getX(),event.getY(), Color.yellow, "seleccion");
+                  
                 }
             }
           });
@@ -99,11 +97,7 @@ exactamente N saltos.*/
                 controller.titulo(seleccion);
                 controller.getMaterial(m);
                 controller.mostrarAristas();
-     
-                
-//            }catch(Exception ex){
-//            System.out.println("Error");
-//            }
+
           }
        });
         

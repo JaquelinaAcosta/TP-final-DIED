@@ -105,16 +105,16 @@ public class GrafoController {
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
         List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino,saltos);   
      
-//    for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
-//    {
-//        aristas.values().forEach((a) -> {
-//            a.setColor(Color.RED);
-//            this.vistaGrafo.agregar(a);
-//            });
-//        vertices.values().forEach((vert) -> {
-//            vert.setColor(Color.RED);
-//            });
-//    }
+    for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
+    {
+        aristas.values().forEach((a) -> {
+            a.setColor(Color.RED);
+            this.vistaGrafo.agregar(a);
+            });
+        vertices.values().forEach((vert) -> {
+            vert.setColor(Color.RED);
+            });
+    }
        
         this.vistaGrafo.repaint();
         
