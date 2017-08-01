@@ -6,6 +6,7 @@
 package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,26 +77,28 @@ public class PanelBuscarLibro extends JPanel{
         this.listaLibros= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
         this.listSuscriptores= new JList(listaSuscriptores.toArray(new Suscriptor[listaSuscriptores.size()]));
         
+        JPanel panelLista = new JPanel();
+        panelLista.setLayout(new FlowLayout()); 
+        panelLista.add(new JLabel("LIBROS"));
+        panelLista.add(listaLibros);
+        panelLista.add(new JLabel("SUSCRIPTORES"));
+        panelLista.add(listSuscriptores);
+        
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new FlowLayout()); 
+        panelBotones.add(botonAgregar);
+        panelBotones.add(botonActualizar);
+        panelBotones.add(botonBorrar);
+        panelBotones.add(botonBuscarArbol);
+        panelBotones.add(botonCargarArbol);
+        panelBotones.add(botonVolver);
+        panelBotones.add(botonSalir);               
         
         
         this.setLayout(new GridLayout(3,6, 10, 10));
-        this.add(new JLabel("LIBROS"));
-        this.add(new JLabel(" "));
-        this.add(new JLabel("SUSCRIPTORES"));
-        this.add(new JLabel(" "));
-        this.add(new JLabel(" "));
-        this.add(listaLibros);
-        this.add(new JLabel(" "));
-        this.add(listSuscriptores);
-        this.add(new JLabel(" "));
-        this.add(new JLabel(" "));
-        this.add(botonAgregar);
-        this.add(botonActualizar);
-        this.add(botonBorrar);
-        this.add(botonBuscarArbol);
-        this.add(botonCargarArbol);
-        this.add(botonVolver);
-        this.add(botonSalir);
+        this.add(panelLista);
+        this.add(panelBotones);
+        
         
         
         this.botonBorrar.addActionListener(new ActionListener(){
