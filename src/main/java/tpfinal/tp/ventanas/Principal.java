@@ -103,6 +103,7 @@ public class Principal {
         this.ventana.remove(this.panelCtrl);
         //como vamos a buscar, necesitamos importar los datos de las listas, segun el material en el que estemos
         //para importar llamamos al metodo cargarLista de las Clases Dao
+            this.listaResultado= new ArrayList<MaterialCapacitacion>();
         if(crearBuscarDesde.equals("Libro")){
             LibrosDao librosDao=new LibrosDao();
             panelCtrl= new PanelBuscarOrdenar(this, librosDao.cargarLista());
@@ -110,12 +111,17 @@ public class Principal {
         
         if(crearBuscarDesde.equals("Video")){
             VideosDao videosDao = new VideosDao();
-            panelCtrl= new PanelBuscarOrdenar(this, videosDao.cargarLista());
+            List<Video> listaVideo= new ArrayList<Video>();
+            listaVideo=videosDao.cargarLista();
+            listaResultado.addAll(listaVideo);
+            panelCtrl= new PanelBuscarOrdenar(this, listaResultado);
         }
         
         if(crearBuscarDesde.equals("Publicación")){
             PublicacionesDao publicacionesDao=new PublicacionesDao();
-            panelCtrl= new PanelBuscarOrdenar(this, publicacionesDao.cargarLista());
+             List<Publicacion> listaPublicacion= new ArrayList<Publicacion>();
+            listaPublicacion=publicacionesDao.cargarLista();
+            panelCtrl= new PanelBuscarOrdenar(this,listaPublicacion);
         }
         
         inicializarPanelCtrl();
@@ -132,7 +138,7 @@ public class Principal {
     //para cambiar a la pantalla de buscar y ordenar por.. segun lo que eligió, con la lista filtrada resultado de filtrar() en PanelBuscarOrdenar      
     public void cambiarBuscarLibroVideoPublicacion(List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
         this.ventana.remove(this.panelCtrl);
-        
+         this.listaResultado= new ArrayList<MaterialCapacitacion>();
         //si estamos con libros, va a cambiar a la ventana de buscar libro, donde tambien tiene la lista de suscriptores
         //donde pasamos la lista de materiales filtrada (esta lista fue filtrada en PanelBuscarOrdenar, metodo filtrar())
         if(crearBuscarDesde.equals("Libro")){
@@ -143,10 +149,12 @@ public class Principal {
         if(crearBuscarDesde.equals("Video")){
             //Para pasar la lista filtrada a la ventana siguiente(PanelBuscarVideoPublicacion), 
             //desde la ventana (PanelBuscarOrdenar)
-            panelCtrl= new PanelBuscarVideoPublicacion(this, listaMateriales);
+            listaResultado.addAll(listaMateriales);
+            panelCtrl= new PanelBuscarVideoPublicacion(this, listaResultado);
         }
         if(crearBuscarDesde.equals("Publicación")){
-            panelCtrl= new PanelBuscarVideoPublicacion(this, listaMateriales);
+             listaResultado.addAll(listaMateriales);
+            panelCtrl= new PanelBuscarVideoPublicacion(this, listaResultado);
         }
         inicializarPanelCtrl();        
     }
@@ -251,8 +259,9 @@ public class Principal {
         }
         inicializarPanelCtrl();  
 }
-    
-            public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
+   
+      
+   public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
         this.ventana.remove(this.panelCtrl);
         
         if(crearBuscarDesde.equals("Libro")){

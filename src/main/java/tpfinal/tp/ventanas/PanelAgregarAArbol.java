@@ -4,6 +4,8 @@ package tpfinal.tp.ventanas;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -30,6 +32,7 @@ public class PanelAgregarAArbol extends JPanel{
     private Principal principal;
     private JButton botonAceptar;
     private MaterialCapacitacion material;
+    private JTextField textAutor;
     
     public PanelAgregarAArbol(Principal principal, MaterialCapacitacion material){
         this.principal = principal;
@@ -44,6 +47,7 @@ public class PanelAgregarAArbol extends JPanel{
      private void armarPanel(){
          TipoNodo[] listaHRaiz = {TipoNodo.CAPITULO, TipoNodo.METADATO, TipoNodo.RESUMEN};
         this.comboHRaiz= new JComboBox<>(listaHRaiz);
+      
         TipoNodo[] listaHMetadatos = {TipoNodo.AUTOR,  TipoNodo.EDITORIAL, TipoNodo.FECHA_PUBLICACON, TipoNodo.PALABRA_CLAVE};
         this.comboHMetadatos= new JComboBox<>(listaHMetadatos);
         TipoNodo[] listaHResumen = {TipoNodo.PARRAFO};
@@ -60,16 +64,45 @@ public class PanelAgregarAArbol extends JPanel{
         this.txtDato = new JTextField(10);
         this.botonAceptar= new JButton("Aceptar");
         
-
+          
+        /**titulo es el que viene como resultado de la busqueda*/
+        this.textAutor= new JTextField(10);
         JPanel panelRaiz = new JPanel();
         panelRaiz.setLayout(new FlowLayout());  
         panelRaiz.add(new JLabel("Metadatos: "));
         panelRaiz.add(comboHMetadatos);
+        panelRaiz.add(textAutor);
         panelRaiz.add(new JLabel("Resumen "));
         panelRaiz.add(comboHResumen);
+      
         panelRaiz.add(new JLabel("Capitulos "));
         panelRaiz.add(comboHCapitulos); 
         
+        comboHRaiz.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+          try{
+              String eleccion=comboHRaiz.getSelectedItem().toString();
+              System.out.println("esto elegi"+eleccion);
+          }catch(Exception ex){
+            System.out.println("Error");
+            }
+          }
+        });
+        
+        comboHMetadatos.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+          try{
+              String eleccion=comboHMetadatos.getSelectedItem().toString();
+              System.out.println("esto elegi"+eleccion);
+          }catch(Exception ex){
+            System.out.println("Error");
+            }
+          }
+        });
+                
+                
+    
+  
         JPanel panelCapitulos = new JPanel();
         panelCapitulos.setLayout(new FlowLayout()); 
         panelCapitulos.add(new JLabel("Solo para capitulos: "));
@@ -94,8 +127,8 @@ public class PanelAgregarAArbol extends JPanel{
         this.add(panelRaiz);
         this.add(panelCapitulos);
         this.add(panelTexto);
+      
         
-        //falta completar
  
      }
     
