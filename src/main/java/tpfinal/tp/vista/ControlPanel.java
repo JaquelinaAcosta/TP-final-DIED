@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.ventanas.Principal;
@@ -28,15 +29,18 @@ public class ControlPanel extends JPanel {
      private JTextField txtNombreVertice2; 
      private JTextField cantSalto; 
     private JButton boton;
+    private JButton botonPR;
     private JComboBox<Object> comboMaterial;
     private Principal principal;
     private ArrayList<MaterialCapacitacion> listaRtdo;
     private JList enList;
+//    private JList listaPr;
     
     
     public ControlPanel(){
         this.armarPanel();
     }
+    
     
      public ControlPanel(Principal principal,ArrayList<MaterialCapacitacion> lista){
          this.principal=principal;
@@ -61,11 +65,14 @@ exactamente N saltos.*/
         this.txtNombreVertice2 =new JTextField(20);
         this.cantSalto =new JTextField(5); 
         this.boton= new JButton("Buscar Camino");
+        this.botonPR= new JButton("Page Rank");
        this.comboMaterial= new JComboBox<>();
+//      this.listaPr=new JList();
           for(int i=0;i<listaRtdo.size();i++)
         {
             comboMaterial.addItem(listaRtdo.get(i).getTitulo());
         }
+          
         this.add(new JLabel("Vertice Origen"));
         this.add(txtNombreVertice1);
         this.add(new JLabel("Vertice Destino"));
@@ -75,6 +82,10 @@ exactamente N saltos.*/
         this.add(boton);
          this.add(comboMaterial);
      //   this.add(enList);
+     
+        this.add(botonPR);
+//        this.add(listaPr);
+        
       
         
         
@@ -116,6 +127,17 @@ exactamente N saltos.*/
             }catch(Exception ex){
             System.out.println("Error");
             }
+        }
+    });
+        
+        //Muestra Page Rank
+        botonPR.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                ArrayList lista=new ArrayList();
+                lista=controller.calcularPageRank();
+                principal.cambiarPR(lista);
+                
+            
         }
     });
 }

@@ -20,6 +20,7 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
+import tpfinal.tp.vista.PageRank;
 
 /*****************************************************
  ******ESTA CLASE ES LA PRINCIPAL DEL SISTEMA*********
@@ -275,4 +276,10 @@ public class Principal {
         }
         inicializarPanelCtrl();  
     }
+   
+   public void cambiarPR(List lista){
+        this.ventana.remove(this.panelCtrl);  
+        panelCtrl = new PageRank(this,lista);
+        inicializarPanelCtrl(); 
+   }
 }

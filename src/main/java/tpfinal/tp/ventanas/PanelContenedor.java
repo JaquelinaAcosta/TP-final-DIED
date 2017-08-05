@@ -27,7 +27,7 @@ public class PanelContenedor extends JPanel {
     {
         JFrame f = new JFrame();//ventana
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ControlPanel panelCtrl = new ControlPanel(lista);
+        ControlPanel panelCtrl = new ControlPanel(principal,lista);
         GrafoPanel panelGrf = new GrafoPanel();
         GrafoController gf = new GrafoController(panelGrf, panelCtrl);
         panelGrf.setController(gf);

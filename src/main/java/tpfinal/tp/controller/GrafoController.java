@@ -127,19 +127,66 @@ public class GrafoController {
         return null;
     }
     
-    public void calcularPageRank()//no se termino de implementar
+    public ArrayList calcularPageRank()//no se termino de implementar
     {
-     // NÃºmero de enlaces salientes para cada nodo
-   HashMap<Vertice<MaterialCapacitacion>, Integer> enlacesSalientes= new HashMap<>(); 
-     // Lista de enlaces salientes
-   HashMap<Vertice<MaterialCapacitacion>, ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesSalientes= new HashMap<>(); 
-    // Lista de enlaces entrantes en la colecciÃ³n para cada identificador
-    HashMap<Vertice<MaterialCapacitacion>,ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesEntrantes= new HashMap<>();    
-    // Valor de PageRank calculado para cada identificador de documento
-   HashMap<Vertice<MaterialCapacitacion>, Double> pageRank=new HashMap<>();
-    
-    // Tabla temporal para el calculo interativo de Pageranks
-   HashMap<Vertice<MaterialCapacitacion>, Double> tempPageRank= new HashMap<>();
-    }
+//     // NÃºmero de enlaces salientes para cada nodo
+//        HashMap<Vertice<MaterialCapacitacion>, Integer> enlacesSalientes= new HashMap<>(); 
+//     // Lista de enlaces salientes
+//        HashMap<Vertice<MaterialCapacitacion>, ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesSalientes= new HashMap<>(); 
+//    // Lista de enlaces entrantes en la colecciÃ³n para cada identificador
+//        HashMap<Vertice<MaterialCapacitacion>,ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesEntrantes= new HashMap<>();    
 
+//    // Tabla temporal para el calculo interativo de Pageranks
+//        HashMap<Vertice<MaterialCapacitacion>, Double> tempPageRank= new HashMap<>();
+
+
+      // Valor de PageRank calculado para cada identificador de documento
+        HashMap<Vertice<MaterialCapacitacion>, Double> pageRank=new HashMap<>();
+        
+        HashMap<String, Double> pageRankAux=new HashMap<>();
+        ArrayList lista=new ArrayList();
+   
+        //carga el pageRank, inicializando con valor 1
+        for(Vertice<MaterialCapacitacion> unVertice: grafo.getVertices()){
+            pageRank.put(unVertice, 1.0);
+            pageRankAux.put(unVertice.getValor().getTitulo(), 1.0);
+        }
+   
+        Double e=0.01;
+        Double resultado=0.0;
+        Double resAuxiliar=0.0; 
+        Boolean bandera=true;
+
+        while(bandera){
+            bandera=false;
+            for(Vertice<MaterialCapacitacion> unVertice: grafo.getVertices()){
+                Double i=0.0;
+                Double d=0.5;
+                resAuxiliar=pageRank.get(unVertice);
+
+                for(Vertice<MaterialCapacitacion> unVertice1: grafo.getVerticesEntrantes(unVertice)){
+                    i += d * (pageRank.get(unVertice1) / grafo.gradoSalida(unVertice1));
+                    System.out.println("esto es i: "+i);
+                }
+                resultado=(1.0 - d)+ i;
+                pageRankAux.put(unVertice.getValor().getTitulo(), resultado);
+                pageRank.put(unVertice, resultado);
+                if(e<Math.abs(resAuxiliar-resultado)){
+                    bandera=true;
+                }
+            }
+             
+             System.out.println("pageRank: "+pageRank);
+             System.out.println("pageRankAux: "+pageRankAux);
+            
+        }
+        lista.add(pageRankAux);
+//        lista.sort(pageRankAux.);
+        System.out.println("Lista final: "+lista);
+        return lista;
+       
+    }
 }
+    
+    
+

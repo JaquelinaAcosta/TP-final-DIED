@@ -78,6 +78,10 @@ public class Grafo<T> {
 	public Vertice<T> getNodo(T valor){
 		return this.vertices.get(this.vertices.indexOf(new Vertice<T>(valor)));
 	}
+        
+        public List<Vertice<T>> getVertices(){
+            return vertices;
+        }
 
 	/**
 	 * @param valor
@@ -108,6 +112,17 @@ public class Grafo<T> {
 		}
 		return salida;
 	}
+        
+        //para page rank.. marca los caminos de llegada
+        public List<Vertice<T>> getVerticesEntrantes(Vertice<T> unNodo){
+            List<Vertice<T>> llegada = new ArrayList<Vertice<T>>();
+            for(Arista<T> enlace: this.aristas){
+                if(enlace.getFin().equals(unNodo)){
+                    llegada.add(enlace.getInicio());
+                }
+            }
+            return llegada;
+        }
                 
 	
 	public void imprimirAristas(){
