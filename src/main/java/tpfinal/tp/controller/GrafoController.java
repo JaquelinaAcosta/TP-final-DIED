@@ -7,10 +7,14 @@ package tpfinal.tp.controller;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 import tpfinal.tp.estructuras.grafo.Arista;
 import tpfinal.tp.estructuras.grafo.Grafo;
 import tpfinal.tp.estructuras.grafo.Vertice;
@@ -174,17 +178,34 @@ public class GrafoController {
                 if(e<Math.abs(resAuxiliar-resultado)){
                     bandera=true;
                 }
-            }
-             
+            }           
              System.out.println("pageRank: "+pageRank);
-             System.out.println("pageRankAux: "+pageRankAux);
-            
+             System.out.println("pageRankAux: "+pageRankAux);          
         }
-        lista.add(pageRankAux);
-//        lista.sort(pageRankAux.);
+        
+        //Ordenar los valores del hashMap de mayor a menor 
+        LinkedHashMap ordenadoMap = new LinkedHashMap();
+        ArrayList values = new ArrayList(pageRankAux.values());
+        Comparator<Double> comparador = Collections.reverseOrder();
+        Collections.sort(values, comparador);
+        Iterator it = values.iterator();
+        double tmp=0;
+        while(it.hasNext()){
+            tmp = (double) it.next();
+            for(Map.Entry k : pageRankAux.entrySet()){
+                if(tmp == (double)k.getValue())
+                    {ordenadoMap.put(k.getKey(), k.getValue());}
+            }
+        }
+        
+        System.out.println("hashMap ordenado: "+ ordenadoMap);
+        
+        lista.add(ordenadoMap);
+        
         System.out.println("Lista final: "+lista);
         return lista;
-       
+        
+             
     }
 }
     
