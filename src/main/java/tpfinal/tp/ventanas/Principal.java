@@ -99,12 +99,11 @@ public class Principal {
         }
         inicializarPanelCtrl();
     }
-    
+
     public void cambiarAPanelBuscar(){
         this.ventana.remove(this.panelCtrl);
         //como vamos a buscar, necesitamos importar los datos de las listas, segun el material en el que estemos
         //para importar llamamos al metodo cargarLista de las Clases Dao
-            this.listaResultado= new ArrayList<MaterialCapacitacion>();
         if(crearBuscarDesde.equals("Libro")){
             LibrosDao librosDao=new LibrosDao();
             panelCtrl= new PanelBuscarOrdenar(this, librosDao.cargarLista());
@@ -112,22 +111,17 @@ public class Principal {
         
         if(crearBuscarDesde.equals("Video")){
             VideosDao videosDao = new VideosDao();
-            List<Video> listaVideo= new ArrayList<Video>();
-            listaVideo=videosDao.cargarLista();
-            listaResultado.addAll(listaVideo);
-            panelCtrl= new PanelBuscarOrdenar(this, listaResultado);
+            panelCtrl= new PanelBuscarOrdenar(this, videosDao.cargarLista());
         }
         
-        if(crearBuscarDesde.equals("Publicación")){
+        if(crearBuscarDesde.equals("Publicacion")){
             PublicacionesDao publicacionesDao=new PublicacionesDao();
-             List<Publicacion> listaPublicacion= new ArrayList<Publicacion>();
-            listaPublicacion=publicacionesDao.cargarLista();
-            panelCtrl= new PanelBuscarOrdenar(this,listaPublicacion);
+            panelCtrl= new PanelBuscarOrdenar(this, publicacionesDao.cargarLista());
         }
         
         inicializarPanelCtrl();
     }
-    
+
     public void cambiarAPanelCrearBuscar(String desde) {
         this.ventana.remove(this.panelCtrl);
         crearBuscarDesde = desde;
@@ -135,11 +129,10 @@ public class Principal {
         inicializarPanelCtrl();
     }
     
-    
-    //para cambiar a la pantalla de buscar y ordenar por.. segun lo que eligió, con la lista filtrada resultado de filtrar() en PanelBuscarOrdenar      
+//para cambiar a la pantalla de buscar y ordenar por.. segun lo que eligiÃ³, con la lista filtrada resultado de filtrar() en PanelBuscarOrdenar      
     public void cambiarBuscarLibroVideoPublicacion(List<? extends MaterialCapacitacion> listaMateriales) throws Exception{
         this.ventana.remove(this.panelCtrl);
-         this.listaResultado= new ArrayList<MaterialCapacitacion>();
+        
         //si estamos con libros, va a cambiar a la ventana de buscar libro, donde tambien tiene la lista de suscriptores
         //donde pasamos la lista de materiales filtrada (esta lista fue filtrada en PanelBuscarOrdenar, metodo filtrar())
         if(crearBuscarDesde.equals("Libro")){
@@ -150,16 +143,14 @@ public class Principal {
         if(crearBuscarDesde.equals("Video")){
             //Para pasar la lista filtrada a la ventana siguiente(PanelBuscarVideoPublicacion), 
             //desde la ventana (PanelBuscarOrdenar)
-            listaResultado.addAll(listaMateriales);
-            panelCtrl= new PanelBuscarVideoPublicacion(this, listaResultado);
+            panelCtrl= new PanelBuscarVideoPublicacion(this, listaMateriales);
         }
-        if(crearBuscarDesde.equals("Publicación")){
-             listaResultado.addAll(listaMateriales);
-            panelCtrl= new PanelBuscarVideoPublicacion(this, listaResultado);
+        if(crearBuscarDesde.equals("PublicaciÃ³n")){
+            panelCtrl= new PanelBuscarVideoPublicacion(this, listaMateriales);
         }
         inicializarPanelCtrl();        
     }
-    
+
     //esta funcion va a dibujar los nodos segun el tema que se filtro
  
 

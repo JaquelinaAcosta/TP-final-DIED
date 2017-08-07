@@ -9,10 +9,7 @@ import java.util.List;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.persistencia.GenericDaoJSON;
 
-/**
- *
- * @author jaque
- */
+
 public class LibrosDao {
     private GenericDaoJSON db;
     
