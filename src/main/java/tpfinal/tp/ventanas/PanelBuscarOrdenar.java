@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,14 +47,13 @@ public class PanelBuscarOrdenar extends JPanel{
     private JComboBox comboTema;
     private JComboBox comboCalificacion;
     private JTextField txtTitulo;
-    private TemasMateriales tema;  
+   private TemasMateriales tema;  
     private TemasMateriales temaSeleccionado;  
     private Portal portal;
     
     private MaterialCapacitacion material;
     private List<? extends MaterialCapacitacion> listaMateriales;
-    private ArrayList<MaterialCapacitacion> listaM;
-    
+
     public PanelBuscarOrdenar(){
         this.armarPanel();
     }
@@ -73,12 +71,6 @@ public class PanelBuscarOrdenar extends JPanel{
     public PanelBuscarOrdenar(Principal principal, List<? extends MaterialCapacitacion> listaMateriales){
         this.principal = principal;
         this.listaMateriales = listaMateriales;
-        this.armarPanel();
-    }
-    
-      public PanelBuscarOrdenar(Principal principal, ArrayList<MaterialCapacitacion> listaM){
-        this.principal = principal;
-        this.listaM= listaM;
         this.armarPanel();
     }
     
@@ -107,11 +99,11 @@ public class PanelBuscarOrdenar extends JPanel{
         this.add(new JLabel(" "));
         this.add(new JLabel("Ordenar por"));
         this.add(new JLabel(" "));
-        this.add(new JLabel("Título"));
+        this.add(new JLabel("TÃ­tulo"));
         this.add(boxTitulo);
         this.add(txtTitulo);
         this.add(new JLabel(" "));
-        this.add(new JLabel("Titulo Alfabético"));
+        this.add(new JLabel("Titulo AlfabÃ©tico"));
         this.add(boxTituloAlfabetico);
         this.add(new JLabel("Calificacion"));
         this.add(boxCalificacion);
@@ -138,7 +130,7 @@ temaSeleccionado=this.temaSeleccionado();
                public void actionPerformed (ActionEvent e){
                    try {
                        filtrar();
-                       principal.cambiarBuscarLibroVideoPublicacion(listaM);
+                       principal.cambiarBuscarLibroVideoPublicacion(listaMateriales);
                         //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
                    } catch (MaterialNoEncontradoException ex) {
                        JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -153,7 +145,7 @@ temaSeleccionado=this.temaSeleccionado();
                public void actionPerformed (ActionEvent e){
                    try {
                       filtrarTema();
-                       principal.cambiarDibujarNodo(temaSeleccionado(),listaM);
+                       principal.cambiarDibujarNodo(temaSeleccionado(),listaMateriales);
                        } catch (MaterialNoEncontradoException ex) {
                        JOptionPane.showMessageDialog(null, ex.getMessage());
                          } catch (Exception ex) {
@@ -192,72 +184,40 @@ temaSeleccionado=this.temaSeleccionado();
       
        }
    }
-       
+    
     //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
    private void filtrar() throws MaterialNoEncontradoException{
         if(boxTitulo.isSelected()){
-            listaM.removeIf(m -> ! m.getTitulo().equals(txtTitulo.getText()));
+      
+            listaMateriales.removeIf(material -> ! material.getTitulo().equals(txtTitulo.getText()));
         }
         if(boxCalificacion.isSelected()){
-            listaM.removeIf(m -> ! m.getCalificacion().equals((Integer) comboCalificacion.getSelectedItem()));
+            listaMateriales.removeIf(material -> ! material.getCalificacion().equals((Integer) comboCalificacion.getSelectedItem()));
         }
         if(boxTema.isSelected()){
-            listaM.removeIf(m -> ! m.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
+            listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
         }
         
         //Uso la clase Portal para ordenar la listaMateriales
         portal = new Portal();
         //Cargo la lista con los materiales para que la ordene
-        listaM.forEach((m) -> {
-            portal.agregar(m);
-        }); //en estos ordenas las listas con los metodos que estaban en portal, segun lo que elegimos en el checkBox
-//        if(boxTituloAlfabetico.isSelected()){
-//            listaM = portal.ordenadaAlfabeticamente();
-//        }
-//        if(boxCalificacionOrden.isSelected()){
-//            listaM = portal.ordenadaPorCalificacionEditor();
-//        }
-//        
-//        if(boxPrecioOrden.isSelected()){
-//            listaM = portal.ordenadaPorPrecio();
-//        }
-//        if(listaMateriales.isEmpty()){
-//            throw new MaterialNoEncontradoException();
-//        }
-//    
-//    //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
-//   private void filtrar() throws MaterialNoEncontradoException{
-//        if(boxTitulo.isSelected()){
-//      
-//            listaMateriales.removeIf(material -> ! material.getTitulo().equals(txtTitulo.getText()));
-//        }
-//        if(boxCalificacion.isSelected()){
-//            listaMateriales.removeIf(material -> ! material.getCalificacion().equals((Integer) comboCalificacion.getSelectedItem()));
-//        }
-//        if(boxTema.isSelected()){
-//            listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
-//        }
-//        
-//        //Uso la clase Portal para ordenar la listaMateriales
-//        portal = new Portal();
-//        //Cargo la lista con los materiales para que la ordene
-//        for(MaterialCapacitacion material: listaMateriales){
-//            portal.agregar(material);
-//        }
-//        //en estos ordenas las listas con los metodos que estaban en portal, segun lo que elegimos en el checkBox
-//        if(boxTituloAlfabetico.isSelected()){
-//            listaMateriales = portal.ordenadaAlfabeticamente();
-//        }
-//        if(boxCalificacionOrden.isSelected()){
-//            listaMateriales = portal.ordenadaPorCalificacionEditor();
-//        }
-//        if(boxPrecioOrden.isSelected()){
-//            listaMateriales = portal.ordenadaPorPrecio();
-//        }
-//        if(listaMateriales.isEmpty()){
-//            throw new MaterialNoEncontradoException();
-//        }
-//        
+        for(MaterialCapacitacion material: listaMateriales){
+            portal.agregar(material);
+        }
+        //en estos ordenas las listas con los metodos que estaban en portal, segun lo que elegimos en el checkBox
+        if(boxTituloAlfabetico.isSelected()){
+            listaMateriales = portal.ordenadaAlfabeticamente();
+        }
+        if(boxCalificacionOrden.isSelected()){
+            listaMateriales = portal.ordenadaPorCalificacionEditor();
+        }
+        if(boxPrecioOrden.isSelected()){
+            listaMateriales = portal.ordenadaPorPrecio();
+        }
+        if(listaMateriales.isEmpty()){
+            throw new MaterialNoEncontradoException();
+        }
+        
        
    }
 

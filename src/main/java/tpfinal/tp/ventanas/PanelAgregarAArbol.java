@@ -12,12 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import tpfinal.tp.controller.ArbolController;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
 /*En esta clase se van a ingresar los datos en el arbol Nario
 para la Busqueda de texto
 */
+
 
 public class PanelAgregarAArbol extends JPanel{
     private JTextField txtDato;
@@ -33,10 +35,27 @@ public class PanelAgregarAArbol extends JPanel{
     private JButton botonAceptar;
     private MaterialCapacitacion material;
     private JTextField textAutor;
+    private JTextField txtMaterialBuscado;
+    private JTextField txtCapitulo;
+    private TipoNodo tipoNodo;
     
-    public PanelAgregarAArbol(Principal principal, MaterialCapacitacion material){
+    
+   private ArbolController arbolControl;
+    private JButton botonAgregarCap;
+    private JTextField txtSecciones;
+     private JTextField txtMetadatos;
+    private JButton botonAgregarSecciones;
+    private JButton botonAgregarMetadatos;
+    
+    public PanelAgregarAArbol(Principal principal, MaterialCapacitacion materialR){
         this.principal = principal;
-        this.material=material;
+        this.material=materialR;
+        System.out.println("este material recibi"+material);
+        this.armarPanel();
+    }
+        public PanelAgregarAArbol(MaterialCapacitacion materialR){
+        this.material=materialR;
+        System.out.println("este material recibi"+material);
         this.armarPanel();
     }
     
@@ -45,92 +64,130 @@ public class PanelAgregarAArbol extends JPanel{
     }
     
      private void armarPanel(){
+         txtMaterialBuscado= new JTextField(20);
+         this.txtSecciones= new JTextField(20);
+         this.txtMetadatos= new JTextField(20);
          TipoNodo[] listaHRaiz = {TipoNodo.CAPITULO, TipoNodo.METADATO, TipoNodo.RESUMEN};
         this.comboHRaiz= new JComboBox<>(listaHRaiz);
-      
-        TipoNodo[] listaHMetadatos = {TipoNodo.AUTOR,  TipoNodo.EDITORIAL, TipoNodo.FECHA_PUBLICACON, TipoNodo.PALABRA_CLAVE};
-        this.comboHMetadatos= new JComboBox<>(listaHMetadatos);
+        this.txtCapitulo= new JTextField(20);
         TipoNodo[] listaHResumen = {TipoNodo.PARRAFO};
         this.comboHResumen= new JComboBox<>(listaHResumen);
         TipoNodo[] listaHCapitulos = {TipoNodo.METADATO, TipoNodo.SECCION};
         this.comboHCapitulos= new JComboBox<>(listaHCapitulos);
         TipoNodo[] listaHSecciones = { TipoNodo.PARRAFO };
         this.comboHSecciones= new JComboBox<>(listaHSecciones);
-        TipoNodo[] listaHCapMetadatos = { TipoNodo.PALABRA_CLAVE, TipoNodo.EJERCICIOS, TipoNodo.SOLUCIONES};
+        TipoNodo[] listaHCapMetadatos = { TipoNodo.PALABRA_CLAVE, TipoNodo.EJERCICIOS, TipoNodo.SOLUCIONES,TipoNodo.AUTOR,  TipoNodo.EDITORIAL, TipoNodo.FECHA_PUBLICACON, TipoNodo.PALABRA_CLAVE};
         this.comboHCapMetadatos= new JComboBox<>(listaHCapMetadatos);
-        TipoNodo[] listaArbol = { TipoNodo.TITULO };
-        this.comboArbol= new JComboBox<>(listaArbol);
         
         this.txtDato = new JTextField(10);
         this.botonAceptar= new JButton("Aceptar");
-        
-          
+        this.txtMaterialBuscado.setText(material.getTitulo().toString());
+        this.txtMaterialBuscado.setEditable(false);
         /**titulo es el que viene como resultado de la busqueda*/
         this.textAutor= new JTextField(10);
-        JPanel panelRaiz = new JPanel();
-        panelRaiz.setLayout(new FlowLayout());  
-        panelRaiz.add(new JLabel("Metadatos: "));
-        panelRaiz.add(comboHMetadatos);
-        panelRaiz.add(textAutor);
-        panelRaiz.add(new JLabel("Resumen "));
-        panelRaiz.add(comboHResumen);
-      
-        panelRaiz.add(new JLabel("Capitulos "));
-        panelRaiz.add(comboHCapitulos); 
+        this.botonAgregarCap=new JButton("Agregar");
+        this.botonAgregarSecciones= new JButton("Agregar");
+        this.botonAgregarMetadatos=new JButton("Agregar");
         
-        comboHRaiz.addActionListener(new ActionListener(){
-         public void actionPerformed(ActionEvent e){
-          try{
-              String eleccion=comboHRaiz.getSelectedItem().toString();
-              System.out.println("esto elegi"+eleccion);
-          }catch(Exception ex){
-            System.out.println("Error");
-            }
-          }
-        });
+        /**Desde aca comienzo agregar los paneles*/
+        this.setLayout(new GridLayout(10,2));
+        this.add(new JLabel("AGREGAR DATOS AL MATERIAL"));
+        this.add(txtMaterialBuscado);
         
-        comboHMetadatos.addActionListener(new ActionListener(){
-         public void actionPerformed(ActionEvent e){
-          try{
-              String eleccion=comboHMetadatos.getSelectedItem().toString();
-              System.out.println("esto elegi"+eleccion);
-          }catch(Exception ex){
-            System.out.println("Error");
-            }
-          }
-        });
-                
-                
-    
-  
-        JPanel panelCapitulos = new JPanel();
-        panelCapitulos.setLayout(new FlowLayout()); 
-        panelCapitulos.add(new JLabel("Solo para capitulos: "));
-        panelCapitulos.add(new JLabel(" "));
-        panelCapitulos.add(new JLabel("secciones "));
-        panelCapitulos.add(comboHSecciones);
-        panelCapitulos.add(new JLabel("metadatos "));
-        panelCapitulos.add(comboHCapMetadatos);
-        
-        JPanel panelTexto = new JPanel();
-        panelTexto.setLayout(new FlowLayout()); 
-        panelTexto.add(new JLabel("Cargar dato "));
-        panelTexto.add(txtDato);
-        panelTexto.add(new JLabel(""));
-        panelTexto.add(botonAceptar);
-        
-        this.setLayout(new GridLayout(7,0, 10, 10));
-        this.add(new JLabel("AGREGAR DATO AL MATERIAL (seleccione una opción por linea))"));
-         this.add(new JLabel("Agregar como hijo del nodo:"));
-        this.add(comboArbol);
         this.add(comboHRaiz);
-        this.add(panelRaiz);
-        this.add(panelCapitulos);
-        this.add(panelTexto);
-      
+        this.add(txtCapitulo);
         
+        this.add(botonAgregarCap); 
+        this.add(new JLabel("                   "));
+        
+        this.add(new JLabel("Solo para capitulos"));
+        this.add(new JLabel("                   "));
+        
+        this.add(comboHSecciones);
+        this.add(txtSecciones);
+        
+        this.add(botonAgregarSecciones);
+        this.add(new JLabel("                   "));
+        
+        this.add(new JLabel("metadatos "));
+       this.add(new JLabel("                   "));
+        
+       this.add(comboHCapMetadatos);    
+        this.add(txtMetadatos);
+        this.add(botonAgregarMetadatos);
+        
+TipoNodo tipoNodoRaiz=(TipoNodo) comboHRaiz.getSelectedItem();
+        comboHRaiz.addActionListener((ActionEvent e) -> {
+            try{
+                System.out.println("hola entreeeeeeeeeee titulo de material "+material.getTitulo());
+              arbolControl.cargarRaizArbol(material.getTitulo(),TipoNodo.TITULO);
+              //this.tipoNodo=(TipoNodo) comboHRaiz.getSelectedItem();
+        
+            }catch(Exception ex){
+                System.out.println("Error no puedo cargar el arbol");
+            }
+         });
+        
+
+       this.botonAgregarCap.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+          try{
+             arbolControl.cargarMetadatos(tipoNodoRaiz,txtCapitulo.getText());//tiene q ir el txt field que tiene el dato
+          }catch(Exception ex){
+            System.out.println("Error no puedo agregar material");
+            }
+          }
+        });
+         
+       TipoNodo tipoNodoSeccion=(TipoNodo) comboHSecciones.getSelectedItem();
+       this.comboHSecciones.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+          try{
+          TipoNodo tipo=(TipoNodo) comboHSecciones.getSelectedItem();
+          }catch(Exception ex){
+            System.out.println("Error");
+            }
+          }
+        });
+        
+        this.botonAgregarSecciones.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+             arbolControl.cargarMetadatos(tipoNodoSeccion,txtSecciones.getText());
+                }
+        
+                });
+                
+                
+         TipoNodo tipoNodoMetadato=(TipoNodo) comboHCapMetadatos.getSelectedItem();
+                
+        this.comboHCapMetadatos.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+          try{
+             arbolControl.cargarMetadatos(tipoNodo,txtSecciones.getText());
+          }catch(Exception ex){
+            System.out.println("Error en secciones");
+            }
+          }
+        });
+        
+        this.botonAgregarMetadatos.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+             arbolControl.cargarMetadatos(tipoNodoMetadato,txtMetadatos.getText());
+                }
+        
+                });
+     
+    
  
      }
+         public ArbolController getController() {
+        return arbolControl;
+    }
+
+    public void setController(ArbolController controller) {
+        this.arbolControl = controller;
+    }
+    
     
 
 private static void crearShowGUI(){

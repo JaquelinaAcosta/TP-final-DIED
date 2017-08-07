@@ -5,8 +5,12 @@
  */
 package tpfinal.tp.controller;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import tpfinal.tp.estructuraArbolNario.ArbolNario;
 import tpfinal.tp.estructuraArbolNario.Nodo;
+import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.ventanas.PanelAgregarAArbol;
 import tpfinal.tp.ventanas.PanelBusquedaArbol;
@@ -17,14 +21,38 @@ import tpfinal.tp.ventanas.PanelBusquedaArbol;
  * 
  */
 public class ArbolController {
-   private ArbolNario<MaterialCapacitacion> arbolN;
-   private Nodo<MaterialCapacitacion> nodo;
-   private PanelAgregarAArbol panelAgregar;
-   private PanelBusquedaArbol panelBusqueda;
+   private final ArbolNario<TipoNodo> arbolN;
+   //private final Nodo<MaterialCapacitacion> nodo;
+   private final PanelAgregarAArbol panelAgregar;
+   private final PanelBusquedaArbol panelBusqueda;
+  private Map<TipoNodo,String> nodoMetadatos;
+   private Nodo<TipoNodo> nodo;
+   private List<Nodo<TipoNodo>> listaNodo;
    
-   public void cargarArbol()
+   public ArbolController(PanelAgregarAArbol panelA,PanelBusquedaArbol panelB)
    {
-    
+       this.panelAgregar=panelA;
+       this.panelBusqueda=panelB;
+       this.arbolN= new ArbolNario<>();
+       this.nodo= new Nodo<TipoNodo>();
+      this.nodoMetadatos= new LinkedHashMap<>();
+   }
+   
+   public void cargarRaizArbol(String material,TipoNodo tipo)
+   {
+    Nodo<TipoNodo> raiz= new Nodo(tipo,material);
+    this.arbolN.setRaiz(raiz);
+    System.out.println(arbolN);
+       System.out.println("esto recibo "+material+" tipo : "+tipo);
    }    
-    
+   
+    public void cargarMetadatos(TipoNodo tipoNodo,String txtViene)
+    {      
+        this.nodoMetadatos.put(tipoNodo, txtViene);
+       for (Map.Entry e : nodoMetadatos.entrySet()) {
+           System.out.println("NODO -> Tipo "+e.getKey() + ":" + e.getValue());
+       }
+      
+      }
     }
+

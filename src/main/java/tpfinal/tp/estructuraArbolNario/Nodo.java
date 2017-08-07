@@ -2,25 +2,41 @@
 package tpfinal.tp.estructuraArbolNario;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class Nodo<T> {
  
-    public T dato;
-    public List<Nodo<T>> hijos;
- 
+    private T dato;
+    private List<Nodo<T>> hijos;
+    private Map<TipoNodo,String> listaNodos;
+    private TipoNodo tipo;
    
     public Nodo() {
         super();
     }
  
  
-    public Nodo(T dato) {
+    public Nodo(TipoNodo tipoN,T dato) {
         this();
-        setDato(dato);
+       this.dato=(T) dato;
+       this.tipo=tipoN;
+       this.listaNodos= new EnumMap<>(TipoNodo.class);
+            
+      //  setDato(dato);
+    }
+    public void setDato(T hijo)
+    {
+        this.dato=hijo;
+    }
+    public void setDato(T hijo,TipoNodo tipo)
+    {
+        this.dato=hijo;
+        this.tipo=tipo;
     }
 
-    
+
     public List<Nodo<T>> getHijos() {
         if (this.hijos == null) {
             return new ArrayList<Nodo<T>>();
@@ -51,44 +67,15 @@ public class Nodo<T> {
         }
         hijos.add(child);
     }
-     
-  
-    public void insertHijoEn(int index, Nodo<T> child) throws IndexOutOfBoundsException {
-        if (index == getCantHijos()) {
-    
-            addHijo(child);
-            return;
-        } else {
-            hijos.get(index);
-            hijos.add(index, child);
-        }
-    }
-     
+
  
     public void eliminarHijoAt(int indice) throws IndexOutOfBoundsException {
         hijos.remove(indice);
     }
  
-    public T getDato() {
-        return this.dato;
-    }
- 
-    public void setDato(T data) {
-        this.dato = data;
-    }
+
      
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{").append(getDato().toString()).append(",[");
-        int i = 0;
-        for (Nodo<T> e : getHijos()) {
-            if (i > 0) {
-                sb.append(",");
-            }
-            sb.append(e.getDato().toString());
-            i++;
-        }
-        sb.append("]").append("}");
-        return sb.toString();
-    }
+  return "(Nodo->Tipo: "+this.tipo+":"+this.dato+")";
+         }
 }

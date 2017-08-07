@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import tpfinal.tp.controller.ArbolController;
 import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.vista.ControlPanel;
@@ -35,6 +36,18 @@ public class PanelContenedor extends JPanel {
         f.add(panelCtrl, BorderLayout.PAGE_START);
         f.add(panelGrf);
 
+        f.pack();
+        f.setVisible(true);
+    }
+     public PanelContenedor(Principal principal,MaterialCapacitacion materialE)
+    {
+         JFrame f = new JFrame();//ventana
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        PanelBusquedaArbol panelBusqueda= new PanelBusquedaArbol();
+        PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(principal,materialE);
+        ArbolController arbolctrl= new ArbolController(panelAgregar,panelBusqueda);
+        panelAgregar.setController(arbolctrl);
+        f.add(panelAgregar);
         f.pack();
         f.setVisible(true);
     }

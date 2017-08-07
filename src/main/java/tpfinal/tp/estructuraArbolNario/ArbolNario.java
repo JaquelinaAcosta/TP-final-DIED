@@ -14,41 +14,58 @@ import java.util.Objects;
 
 public class ArbolNario<T> {
  
-    private Nodo<T> raiz;
-     
+    private Nodo<TipoNodo> raiz;
+    protected List<Nodo<TipoNodo>> listaNodo; 
   
+    
     public ArbolNario() {
-        super();
+        this.listaNodo= new ArrayList<Nodo<TipoNodo>>();
     }
- 
+     public ArbolNario(Nodo<TipoNodo> nodo) {
+        this.raiz=nodo;
+        this.listaNodo= new ArrayList<Nodo<TipoNodo>>();
+       raiz.setHijos(listaNodo);
+    }
    
-    public Nodo<T> getRaizE() {
+    public void addHijo(Nodo<TipoNodo> nodo){
+		this.listaNodo.add(nodo);
+	}
+   
+   
+    public Nodo<TipoNodo> getRaizE() {
         return this.raiz;
     }
- 
-
-    
-    public void setRaiz(Nodo<T> raiz) {
+  
+    public void setRaiz(Nodo<TipoNodo> raiz) {
         this.raiz = raiz;
     }
-     
-
-    public List<Nodo<T>> toList() {
-        List<Nodo<T>> list = new ArrayList<Nodo<T>>();
-        walk(raiz, list);
+ 
+    public List<Nodo<T>> addNodoList(Nodo<T> nodo, List<Nodo<T>> list) {
+        if(list==null)
+        {
+            list=new ArrayList<>();
+            list.add(nodo);
+        }
+        else  
+        {
+     list.add(nodo);
+        }
         return list;
     }
-     
-  
-    public String toString() {
+      public String toString() {
         return toList().toString();
     }
-     
- 
+      public List<Nodo<T>> toList() {
+        List<Nodo<T>> list = new ArrayList<Nodo<T>>();
+        walk((Nodo<T>) raiz, list);
+        return list;
+    }
+
     private void walk(Nodo<T> element, List<Nodo<T>> list) {
         list.add(element);
-        element.getHijos().forEach((data) -> {
+        for (Nodo<T> data : element.getHijos()) {
             walk(data, list);
-        });
+        }
     }
+  
 }

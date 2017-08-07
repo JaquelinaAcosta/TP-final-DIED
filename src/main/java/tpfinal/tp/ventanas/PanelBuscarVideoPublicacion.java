@@ -9,10 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -31,13 +29,10 @@ public class PanelBuscarVideoPublicacion extends JPanel{
     private JButton botonVolver;
     private JList lista;
     private Principal principal;
-    private JButton botonBuscarArbol;
+        private JButton botonBuscarArbol;
     private JButton botonCargarArbol;
     private List<? extends MaterialCapacitacion> listaMateriales;
-    private ArrayList<MaterialCapacitacion> listaRtdo;
-    private JComboBox comboLista;
-    private MaterialCapacitacion materialSeleccionado;
-    
+
     public PanelBuscarVideoPublicacion(){
         this.armarPanel();
     }
@@ -48,38 +43,25 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.armarPanel();
     }
     
-     public PanelBuscarVideoPublicacion(Principal principal, ArrayList<MaterialCapacitacion> listaM){
-        this.principal = principal;
-        this.listaRtdo = listaM;
-        this.armarPanel();
-    }
-    
     public PanelBuscarVideoPublicacion(Principal principal){
         this.principal= principal;
         this.armarPanel();
     }
    
     private void armarPanel(){
-        this.comboLista = new JComboBox<>();
         this.botonActualizar= new JButton("Actualizar");
         this.botonSalir= new JButton("Salir");
         this.botonBorrar= new JButton("Borrar");
         this.botonVolver= new JButton("Volver a Principal");
         //Para pasar la lista (listaMateriales) resultado de filtrar busqueda de panel BuscarOdenar, 
         // y que salga en el JList (lista),
-        //this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
-        for(int i=0;i<listaRtdo.size();i++)
-        {
-            comboLista.addItem(listaRtdo.get(i).getTitulo());
-        }
-        
-        this.botonBuscarArbol= new JButton("Buscar detalles de Material");
+        this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
+                this.botonBuscarArbol= new JButton("Buscar detalles de Material");
         this.botonCargarArbol= new JButton("Cargar datos en Material");
         
         this.setLayout(new GridLayout(2,3, 10, 10));
         this.add(new JLabel("LISTA"));
-        this.add(comboLista);
-       // this.add(lista);
+        this.add(lista);
         this.add(new JLabel(" "));
         this.add(new JLabel(" "));
         this.add(botonActualizar);
@@ -89,26 +71,18 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         this.add(botonVolver);
         this.add(botonSalir);
         
-
-       comboLista.addActionListener(new ActionListener(){
-           public void actionPerformed(ActionEvent e)
-           {
-               Integer indice=comboLista.getSelectedIndex();
-               materialSeleccionado=listaRtdo.get(indice);
-           }
-        });
       //  Para borrar un material de la lista..
         this.botonBorrar.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
-                   principal.cambiarAPanelBorrar(materialSeleccionado);
+                   principal.cambiarAPanelBorrar((MaterialCapacitacion) lista.getSelectedValue());
                }
         });
         
         this.botonActualizar.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
-                   principal.actualizarDatos(materialSeleccionado);
+                   principal.actualizarDatos((MaterialCapacitacion) lista.getSelectedValue());
                }
         });
            

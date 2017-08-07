@@ -246,20 +246,21 @@ public class Principal {
     
 }
     
-      public void cambiarAPanelAgregarAArbol(MaterialCapacitacion material){
+   public void cambiarAPanelAgregarAArbol(MaterialCapacitacion material){
         this.ventana.remove(this.panelCtrl);
         
         if(crearBuscarDesde.equals("Libro")){
-            panelCtrl= new PanelAgregarAArbol(this, (Libro) material);
+            panelCtrl= new PanelContenedor(this,material);
         }
         if(crearBuscarDesde.equals("Video")){
-            panelCtrl= new PanelAgregarAArbol(this, (Video) material);
+            panelCtrl= new PanelContenedor(this, material);
         }
         if(crearBuscarDesde.equals("Publicación")){
-            panelCtrl= new PanelAgregarAArbol(this, (Publicacion) material);
+            panelCtrl= new PanelContenedor(this,material);
         }
         inicializarPanelCtrl();  
 }
+   
    
       
    public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
