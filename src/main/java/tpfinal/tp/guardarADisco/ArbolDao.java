@@ -5,6 +5,7 @@
  */
 package tpfinal.tp.guardarADisco;
 
+import java.util.ArrayList;
 import java.util.List;
 import tpfinal.tp.estructuraArbolNario.ArbolNario;
 import tpfinal.tp.estructuraArbolNario.Tree;
@@ -13,6 +14,7 @@ import tpfinal.tp.persistencia.GenericDaoJSON;
 
 public class ArbolDao {
 
+  
    
   
     public class LibrosDao {
@@ -38,10 +40,10 @@ public class ArbolDao {
 //        db.editar(new com.google.gson.reflect.TypeToken<List<ArbolNario>>(){}.getType(), viejo, editar);
 //    }
 //    
-//    public void agregar(ArbolNario arbol){
-//        db.agregar(new com.google.gson.reflect.TypeToken<List<ArbolNario>>(){}.getType(), arbol);
-//    }
-//    
+    public void agregar(Tree arbol){
+        db.agregar(new com.google.gson.reflect.TypeToken<List<Tree>>(){}.getType(), arbol);
+    }
+    
 //    public void borrar(ArbolNario borrar){
 //        db.borrar(new com.google.gson.reflect.TypeToken<List<ArbolNario>>(){}.getType(), borrar);
 //    }

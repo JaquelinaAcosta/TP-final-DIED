@@ -26,9 +26,9 @@ public class TestArbol {
     Node<TipoNodo> n4;
 //    Nodo<TipoNodo> raiz;
 //    
-    private ArbolDao arbolDao= new ArbolDao();
+  // protected ArbolDao arbolDao= new ArbolDao();
     private List<Node<TipoNodo>> arbol;
-   private List<Node<TipoNodo>> nodoLista;
+   protected List<Node<TipoNodo>> nodoLista;
   private TipoNodo tipo;
     private Node n5;
     public TestArbol()
@@ -58,11 +58,11 @@ public class TestArbol {
       n1.setChildren(arbol);
       n2.setChildren(nodoLista);
       
+      ArbolDao arbolDao= new ArbolDao();
+      arbolDao.
       
       
-      ArrayList arbol = new ArrayList<Tree>()
-                arbol.add(arbolN);
-               arbolDao.guardarLista(arbol);
+      
        System.out.println("esrte es el arbol"+arbolN.toString());
       
     }
