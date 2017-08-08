@@ -18,7 +18,7 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 
 /**
  *Clase que se utiliza para el ingresar el contenido del material de capacitacion 
- * NO SE LLEGO A IMPLEMENTAR
+ * 
  */
 public class PanelBusquedaArbol extends JPanel{
     private JTextField txtDato;
@@ -55,6 +55,43 @@ public class PanelBusquedaArbol extends JPanel{
         this.add(botonBuscar);
         
         //falta completar
+        
+   
+    
+//    //aca filtramos la lista que fue importada en Principal, en el metodo cambiarAPanelBuscar()
+//   private void filtrar() throws MaterialNoEncontradoException{
+//        if(boxTitulo.isSelected()){
+//      
+//            listaMateriales.removeIf(material -> ! material.getTitulo().equals(txtTitulo.getText()));
+//        }
+//        if(boxCalificacion.isSelected()){
+//            listaMateriales.removeIf(material -> ! material.getCalificacion().equals((Integer) comboCalificacion.getSelectedItem()));
+//        }
+//        if(boxTema.isSelected()){
+//            listaMateriales.removeIf(material -> ! material.getTema().equals((TemasMateriales) comboTema.getSelectedItem()));
+//        }
+//        
+//        //Uso la clase Portal para ordenar la listaMateriales
+//        portal = new Portal();
+//        //Cargo la lista con los materiales para que la ordene
+//        for(MaterialCapacitacion material: listaMateriales){
+//            portal.agregar(material);
+//        }
+//        //en estos ordenas las listas con los metodos que estaban en portal, segun lo que elegimos en el checkBox
+//        if(boxTituloAlfabetico.isSelected()){
+//            listaMateriales = portal.ordenadaAlfabeticamente();
+//        }
+//        if(boxCalificacionOrden.isSelected()){
+//            listaMateriales = portal.ordenadaPorCalificacionEditor();
+//        }
+//        if(boxPrecioOrden.isSelected()){
+//            listaMateriales = portal.ordenadaPorPrecio();
+//        }
+//        if(listaMateriales.isEmpty()){
+//            throw new MaterialNoEncontradoException();
+//        }
+        
+       
      }
     
 

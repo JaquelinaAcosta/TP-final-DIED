@@ -5,13 +5,15 @@
  */
 package tpfinal.tp.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import tpfinal.tp.estructuraArbolNario.ArbolNario;
+import tpfinal.tp.estructuraArbolNario.Node;
 import tpfinal.tp.estructuraArbolNario.Nodo;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
-import tpfinal.tp.integrador.MaterialCapacitacion;
+import tpfinal.tp.estructuraArbolNario.Tree;
 import tpfinal.tp.ventanas.PanelAgregarAArbol;
 import tpfinal.tp.ventanas.PanelBusquedaArbol;
 
@@ -21,38 +23,43 @@ import tpfinal.tp.ventanas.PanelBusquedaArbol;
  * 
  */
 public class ArbolController {
-   private final ArbolNario<TipoNodo> arbolN;
+   private Tree<TipoNodo> arbolN;
    //private final Nodo<MaterialCapacitacion> nodo;
    private final PanelAgregarAArbol panelAgregar;
    private final PanelBusquedaArbol panelBusqueda;
   private Map<TipoNodo,String> nodoMetadatos;
    private Nodo<TipoNodo> nodo;
-   private List<Nodo<TipoNodo>> listaNodo;
+   private List<Node<TipoNodo>> listaNodo;
    
    public ArbolController(PanelAgregarAArbol panelA,PanelBusquedaArbol panelB)
    {
        this.panelAgregar=panelA;
        this.panelBusqueda=panelB;
-       this.arbolN= new ArbolNario<>();
+       this.arbolN= new Tree<>();
        this.nodo= new Nodo<TipoNodo>();
       this.nodoMetadatos= new LinkedHashMap<>();
    }
    
    public void cargarRaizArbol(String material,TipoNodo tipo)
    {
-    Nodo<TipoNodo> raiz= new Nodo(tipo,material);
-    this.arbolN.setRaiz(raiz);
+    Node<TipoNodo> raiz= new Node(tipo,material);
+    this.arbolN.setRootElement(raiz);
     System.out.println(arbolN);
-       System.out.println("esto recibo "+material+" tipo : "+tipo);
-   }    
-   
-    public void cargarMetadatos(TipoNodo tipoNodo,String txtViene)
-    {      
-        this.nodoMetadatos.put(tipoNodo, txtViene);
-       for (Map.Entry e : nodoMetadatos.entrySet()) {
-           System.out.println("NODO -> Tipo "+e.getKey() + ":" + e.getValue());
-       }
       
-      }
+   }
+   
+    public void cargarMetadatosRaiz(TipoNodo tipoNodo,String txtViene)
+    {      
+      this.listaNodo= new ArrayList<>();
+      Node<TipoNodo> nodo= new Node(tipoNodo,txtViene);
+      listaNodo.add(nodo);
     }
+    
+      public void cargarMetadatos(TipoNodo tipoNodo,String txtViene)
+    {      
+      this.listaNodo= new ArrayList<>();
+      Node<TipoNodo> nodo= new Node(tipoNodo,txtViene);
+      listaNodo.add(nodo);
+    }
+}
 

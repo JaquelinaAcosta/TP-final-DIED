@@ -119,10 +119,7 @@ public class PanelAgregarAArbol extends JPanel{
 TipoNodo tipoNodoRaiz=(TipoNodo) comboHRaiz.getSelectedItem();
         comboHRaiz.addActionListener((ActionEvent e) -> {
             try{
-                System.out.println("hola entreeeeeeeeeee titulo de material "+material.getTitulo());
               arbolControl.cargarRaizArbol(material.getTitulo(),TipoNodo.TITULO);
-              //this.tipoNodo=(TipoNodo) comboHRaiz.getSelectedItem();
-        
             }catch(Exception ex){
                 System.out.println("Error no puedo cargar el arbol");
             }
