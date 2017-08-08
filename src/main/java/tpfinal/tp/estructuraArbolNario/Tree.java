@@ -47,7 +47,7 @@ import java.util.List;
      */
     public List<Node<T>> toList() {
         List<Node<T>> list = new ArrayList<Node<T>>();
-        walk(rootElement, list);
+        listarNodos(rootElement, list);
         return list;
     }
      
@@ -67,10 +67,26 @@ import java.util.List;
      * @param element the starting element.
      * @param list the output of the walk.
      */
-    private void walk(Node<T> element, List<Node<T>> list) {
+    public void listarNodos(Node<T> element, List<Node<T>> list) {
         list.add(element);
         for (Node<T> data : element.getChildren()) {
-            walk(data, list);
+            listarNodos(data, list);
+        }
+    }
+    
+
+    
+    public void buscarDato(Node<T> nodo,String txtBuscado,TipoNodo ingresado,List<Node<T>> list)
+    {
+        if(nodo.dato().equalsIgnoreCase(txtBuscado))
+        {
+            listarNodos(nodo,list);
+            System.out.println("esta es mi lista "+list);
+        }
+        else if(nodo.getData().equals(ingresado))
+        {
+             listarNodos(nodo,list);
+            System.out.println("esta es mi lista "+list);
         }
     }
 }

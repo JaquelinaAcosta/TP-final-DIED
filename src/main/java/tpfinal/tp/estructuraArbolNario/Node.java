@@ -8,10 +8,7 @@ package tpfinal.tp.estructuraArbolNario;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Araujo
- */
+
 
     public class Node<TipoNodo> {
  

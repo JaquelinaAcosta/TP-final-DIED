@@ -12,6 +12,9 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
+import tpfinal.tp.estructuraArbolNario.Node;
+import tpfinal.tp.estructuraArbolNario.TipoNodo;
+import tpfinal.tp.guardarADisco.ArbolDao;
 import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
@@ -252,22 +255,32 @@ public class Principal {
         inicializarPanelCtrl();  
 }
    
-   
-      
+    
    public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
         this.ventana.remove(this.panelCtrl);
         
         if(crearBuscarDesde.equals("Libro")){
-            panelCtrl= new PanelBusquedaArbol(this, (Libro) material);
+            ArbolDao arbolDao= new ArbolDao();
+            panelCtrl= new PanelBusquedaArbol(this, (Libro) material,arbolDao.cargarLista());
         }
         if(crearBuscarDesde.equals("Video")){
-            panelCtrl= new PanelBusquedaArbol(this, (Video) material);
+             ArbolDao arbolDao= new ArbolDao();
+            panelCtrl= new PanelBusquedaArbol(this, (Video) material,arbolDao.cargarLista());
         }
         if(crearBuscarDesde.equals("Publicación")){
-            panelCtrl= new PanelBusquedaArbol(this, (Publicacion) material);
+             ArbolDao arbolDao= new ArbolDao();
+            panelCtrl= new PanelBusquedaArbol(this, (Publicacion) material,arbolDao.cargarLista());
         }
         inicializarPanelCtrl();  
     }
+   
+   public void BusquedaArbol(TipoNodo tipo,String dato,List listaDatos)
+   {
+       this.ventana.remove(this.panelCtrl);
+       Node<TipoNodo> nodo= new Node(tipo,dato);
+        panelCtrl= new ArbolBusqueda(this,nodo,listaDatos);
+        inicializarPanelCtrl();  
+   }
    
    public void cambiarPR(List lista){
         this.ventana.remove(this.panelCtrl);  

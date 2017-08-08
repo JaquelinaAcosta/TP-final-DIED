@@ -39,6 +39,7 @@ public class PanelContenedor extends JPanel {
         f.pack();
         f.setVisible(true);
     }
+    
      public PanelContenedor(Principal principal,MaterialCapacitacion materialE)
     {
          JFrame f = new JFrame();//ventana

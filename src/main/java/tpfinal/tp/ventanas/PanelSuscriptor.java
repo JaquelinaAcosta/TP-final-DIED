@@ -10,17 +10,12 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
-import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Suscriptor;
 
 /**

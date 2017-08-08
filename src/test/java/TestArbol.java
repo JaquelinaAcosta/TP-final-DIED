@@ -60,11 +60,11 @@ public class TestArbol {
       n2.setChildren(nodoLista);
       
 //      ArbolDao arbolDao= new ArbolDao();
-      arbolDao.agregar(arbolN);
+  //    arbolDao.agregar(arbolN);
       
       
       
-//       System.out.println("esrte es el arbol"+arbolN.toString());
+     System.out.println("esrte es el arbol"+arbolN.toString());
       
     }
     

@@ -2,7 +2,6 @@
 package tpfinal.tp.ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +45,7 @@ public class PanelAgregarAArbol extends JPanel{
      private JTextField txtMetadatos;
     private JButton botonAgregarSecciones;
     private JButton botonAgregarMetadatos;
+    private JButton botonAgregarArbol;
     
     public PanelAgregarAArbol(Principal principal, MaterialCapacitacion materialR){
         this.principal = principal;
@@ -88,7 +88,7 @@ public class PanelAgregarAArbol extends JPanel{
         this.botonAgregarCap=new JButton("Agregar");
         this.botonAgregarSecciones= new JButton("Agregar");
         this.botonAgregarMetadatos=new JButton("Agregar");
-        
+        this.botonAgregarArbol=new JButton("Agregar Arbol");
         /**Desde aca comienzo agregar los paneles*/
         this.setLayout(new GridLayout(10,2));
         this.add(new JLabel("AGREGAR DATOS AL MATERIAL"));
@@ -110,73 +110,54 @@ public class PanelAgregarAArbol extends JPanel{
         this.add(new JLabel("                   "));
         
         this.add(new JLabel("metadatos "));
-       this.add(new JLabel("                   "));
+        this.add(new JLabel("                   "));
         
        this.add(comboHCapMetadatos);    
-        this.add(txtMetadatos);
-        this.add(botonAgregarMetadatos);
+       this.add(txtMetadatos);
+       this.add(botonAgregarMetadatos);
+       this.add(new JLabel("                   "));
+       this.add(botonAgregarArbol);
         
-TipoNodo tipoNodoRaiz=(TipoNodo) comboHRaiz.getSelectedItem();
-        comboHRaiz.addActionListener((ActionEvent e) -> {
-            try{
-              arbolControl.cargarRaizArbol(material.getTitulo(),TipoNodo.TITULO);
-            }catch(Exception ex){
-                System.out.println("Error no puedo cargar el arbol");
-            }
-         });
-        
+
 
        this.botonAgregarCap.addActionListener(new ActionListener(){
          public void actionPerformed(ActionEvent e){
           try{
-             arbolControl.cargarMetadatos(tipoNodoRaiz,txtCapitulo.getText());//tiene q ir el txt field que tiene el dato
+              arbolControl.cargarRaizArbol(txtMaterialBuscado.getText(), tipoNodo.TITULO);
+              TipoNodo tipoNodoRaiz=(TipoNodo) comboHRaiz.getSelectedItem();
+             arbolControl.cargarNodoDeRaiz(txtCapitulo.getText(),tipoNodoRaiz);//tiene q ir el txt field que tiene el dato
           }catch(Exception ex){
             System.out.println("Error no puedo agregar material");
             }
           }
         });
          
-       TipoNodo tipoNodoSeccion=(TipoNodo) comboHSecciones.getSelectedItem();
-       this.comboHSecciones.addActionListener(new ActionListener(){
-         public void actionPerformed(ActionEvent e){
-          try{
-          TipoNodo tipo=(TipoNodo) comboHSecciones.getSelectedItem();
-          }catch(Exception ex){
-            System.out.println("Error");
-            }
-          }
-        });
-        
+      
         this.botonAgregarSecciones.addActionListener(new ActionListener(){
          public void actionPerformed(ActionEvent e){
-             arbolControl.cargarMetadatos(tipoNodoSeccion,txtSecciones.getText());
+             TipoNodo tipoNodoSeccion=(TipoNodo) comboHSecciones.getSelectedItem();
+            arbolControl.agregarHijos(txtSecciones.getText(),tipoNodoSeccion);
                 }
         
                 });
-                
-                
-         TipoNodo tipoNodoMetadato=(TipoNodo) comboHCapMetadatos.getSelectedItem();
-                
-        this.comboHCapMetadatos.addActionListener(new ActionListener(){
+               
+        this.botonAgregarMetadatos.addActionListener(new ActionListener(){   
          public void actionPerformed(ActionEvent e){
-          try{
-             arbolControl.cargarMetadatos(tipoNodo,txtSecciones.getText());
-          }catch(Exception ex){
-            System.out.println("Error en secciones");
-            }
-          }
-        });
-        
-        this.botonAgregarMetadatos.addActionListener(new ActionListener(){
-         public void actionPerformed(ActionEvent e){
-             arbolControl.cargarMetadatos(tipoNodoMetadato,txtMetadatos.getText());
-                }
+             TipoNodo tipoNodoMetadato=(TipoNodo) comboHCapMetadatos.getSelectedItem();
+          arbolControl.agregarHijosdeHijos(txtMetadatos.getText(),tipoNodoMetadato);
+         }
         
                 });
-     
-    
- 
+        
+        this.botonAgregarArbol.addActionListener(new ActionListener(){   
+         public void actionPerformed(ActionEvent e){
+             arbolControl.cargarArbol();
+         }
+
+         });     
      }
+     
+     
          public ArbolController getController() {
         return arbolControl;
     }

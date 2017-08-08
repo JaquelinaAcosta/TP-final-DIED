@@ -14,6 +14,7 @@ import tpfinal.tp.estructuraArbolNario.Node;
 import tpfinal.tp.estructuraArbolNario.Nodo;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.estructuraArbolNario.Tree;
+import tpfinal.tp.guardarADisco.ArbolDao;
 import tpfinal.tp.ventanas.PanelAgregarAArbol;
 import tpfinal.tp.ventanas.PanelBusquedaArbol;
 
@@ -24,42 +25,96 @@ import tpfinal.tp.ventanas.PanelBusquedaArbol;
  */
 public class ArbolController {
    private Tree<TipoNodo> arbolN;
-   //private final Nodo<MaterialCapacitacion> nodo;
    private final PanelAgregarAArbol panelAgregar;
    private final PanelBusquedaArbol panelBusqueda;
-  private Map<TipoNodo,String> nodoMetadatos;
-   private Nodo<TipoNodo> nodo;
+   private Map<TipoNodo,String> nodoMetadatos;
+   private Node<TipoNodo> nodo;
+   private Node<TipoNodo> raiz;
    private List<Node<TipoNodo>> listaNodo;
+   private List<Node<TipoNodo>> listaNodoHijos;
+     private List<Node<TipoNodo>> listaNodoHijosHijos;
+   
+   private ArbolDao arbolDao = new ArbolDao();
+
    
    public ArbolController(PanelAgregarAArbol panelA,PanelBusquedaArbol panelB)
    {
        this.panelAgregar=panelA;
        this.panelBusqueda=panelB;
        this.arbolN= new Tree<>();
-       this.nodo= new Nodo<TipoNodo>();
-      this.nodoMetadatos= new LinkedHashMap<>();
+       this.nodo= new Node<TipoNodo>();
+       this.nodoMetadatos= new LinkedHashMap<>();
+       this.listaNodo= new ArrayList<>();
+       this.listaNodoHijos= new ArrayList<>();
+       this.listaNodoHijosHijos= new ArrayList<>();
    }
-   
+  
+   //cargamos la raiz al arbol
    public void cargarRaizArbol(String material,TipoNodo tipo)
    {
-    Node<TipoNodo> raiz= new Node(tipo,material);
+    this.raiz= new Node(tipo,material);
     this.arbolN.setRootElement(raiz);
-    System.out.println(arbolN);
-      
+   
    }
    
-    public void cargarMetadatosRaiz(TipoNodo tipoNodo,String txtViene)
-    {      
-      this.listaNodo= new ArrayList<>();
-      Node<TipoNodo> nodo= new Node(tipoNodo,txtViene);
-      listaNodo.add(nodo);
-    }
+   public List<Node<TipoNodo>> cargarNodoDeRaiz(String material,TipoNodo tipo)
+   {
+       
+       Node<TipoNodo> n= new Node(tipo,material);
+        listaNodo.add(n);  
+        System.out.println("listaNodo"+listaNodo);
+        return listaNodo;
+   }
+   
+   public void unirNodosRaiz()
+   {
+       this.raiz.setChildren(listaNodo);
+       this.cargarNodosHijos();
+   }
+   
+   public void cargarNodosHijos()
+   {
+      for(int i=0;i<listaNodo.size();i++)
+      {
+          listaNodo.get(i).setChildren(listaNodoHijos);
+          
+      }
+       
+   }
+   
+   public List<Node<TipoNodo>> agregarHijos(String material,TipoNodo tipo)
+   {
+        Node<TipoNodo> n= new Node(tipo,material);
+        this.listaNodoHijos.add(n);
+        return listaNodoHijos;
+   }
+   
+     public void cargarNodosHijosdeHijos()
+   {
+      for(int i=0;i<listaNodoHijos.size();i++)
+      {
+          listaNodoHijos.get(i).setChildren(listaNodoHijosHijos);
+          
+      }
+       
+   }
+    public List<Node<TipoNodo>> agregarHijosdeHijos(String material,TipoNodo tipo)
+   {
+        Node<TipoNodo> n= new Node(tipo,material);
+        this.listaNodoHijosHijos.add(n);
+        return listaNodoHijosHijos;
+   }
     
-      public void cargarMetadatos(TipoNodo tipoNodo,String txtViene)
-    {      
-      this.listaNodo= new ArrayList<>();
-      Node<TipoNodo> nodo= new Node(tipoNodo,txtViene);
-      listaNodo.add(nodo);
-    }
+    public void cargarArbol()
+      {
+         this.unirNodosRaiz();
+         System.out.println("c argue el arbol"+arbolN.toString());
+         arbolDao.agregar(arbolN);
+      }
+      
+
+        
+          
+      
 }
 

@@ -29,7 +29,7 @@ public class PanelBuscarVideoPublicacion extends JPanel{
     private JButton botonVolver;
     private JList lista;
     private Principal principal;
-        private JButton botonBuscarArbol;
+    private JButton botonBuscarArbol;
     private JButton botonCargarArbol;
     private List<? extends MaterialCapacitacion> listaMateriales;
 
@@ -56,7 +56,7 @@ public class PanelBuscarVideoPublicacion extends JPanel{
         //Para pasar la lista (listaMateriales) resultado de filtrar busqueda de panel BuscarOdenar, 
         // y que salga en el JList (lista),
         this.lista= new JList(listaMateriales.toArray(new MaterialCapacitacion[listaMateriales.size()]));
-                this.botonBuscarArbol= new JButton("Buscar detalles de Material");
+        this.botonBuscarArbol= new JButton("Buscar detalles de Material");
         this.botonCargarArbol= new JButton("Cargar datos en Material");
         
         this.setLayout(new GridLayout(2,3, 10, 10));

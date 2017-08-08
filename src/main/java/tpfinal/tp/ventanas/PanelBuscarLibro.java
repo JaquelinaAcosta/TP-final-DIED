@@ -12,24 +12,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.excepcion.CreditoInsuficienteException;
-import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Suscriptor;
-import tpfinal.tp.vista.ControlPanel;
-import tpfinal.tp.vista.GrafoPanel;
 
 
 public class PanelBuscarLibro extends JPanel{
