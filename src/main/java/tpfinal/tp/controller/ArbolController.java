@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import tpfinal.tp.estructuraArbolNario.ArbolNario;
+
 import tpfinal.tp.estructuraArbolNario.Node;
-import tpfinal.tp.estructuraArbolNario.Nodo;
+
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.estructuraArbolNario.Tree;
 import tpfinal.tp.guardarADisco.ArbolDao;

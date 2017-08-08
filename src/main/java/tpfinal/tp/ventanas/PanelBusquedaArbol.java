@@ -72,11 +72,23 @@ public class PanelBusquedaArbol extends JPanel{
                public void actionPerformed (ActionEvent e){
                    TipoNodo tipo= (TipoNodo) comboTipo.getSelectedItem();
                    String dato= txtDato.getText();
-                 principal.BusquedaArbol(tipo,dato,lista);
+                   Node<TipoNodo> nodo= new Node(tipo,dato);
+               
+                   filtrarLista(nodo);
                    
             }
         });
      }
+       public void filtrarLista(Node<TipoNodo> n)
+   {
+      System.out.println("esta lista recibi "+lista);
+      for(int i=0;i< lista.size();i++)
+      {
+       List<Node<TipoNodo>> nodoAux = lista.get(i).buscarDato(n);
+       
+      }
+       
+   }
      
  
     public ArbolController getController() {

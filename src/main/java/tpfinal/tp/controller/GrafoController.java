@@ -108,7 +108,31 @@ public class GrafoController {
         Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
         List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino,saltos);   
+    
+    
+   for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
+    {
+      
+        aristas.values().forEach((a) -> {
+            a.setColor(Color.RED);
+            this.vistaGrafo.agregar(a);
+            });
+      
+        vertices.values().forEach((vert) -> {
+            vert.setColor(Color.RED);
+            });
+
+   }
+       
+        this.vistaGrafo.repaint();  
+    }
+   
+    public void buscarCamino(String nodo1,String nodo2){
+        Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
+        Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
+        List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino);   
      
+        System.out.println("Este es el camino"+camino);
     for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
     {
         aristas.values().forEach((a) -> {
@@ -124,6 +148,7 @@ public class GrafoController {
         
     }
     
+    
     private Vertice<MaterialCapacitacion> buscarVerticePorNombre(String nombre){
         for(Vertice<MaterialCapacitacion> unVertice: this.vertices.keySet()){
             if(unVertice.getValor().getTitulo().equals(nombre)) return unVertice;
@@ -133,18 +158,7 @@ public class GrafoController {
     
     public ArrayList calcularPageRank()//no se termino de implementar
     {
-//     // NÃºmero de enlaces salientes para cada nodo
-//        HashMap<Vertice<MaterialCapacitacion>, Integer> enlacesSalientes= new HashMap<>(); 
-//     // Lista de enlaces salientes
-//        HashMap<Vertice<MaterialCapacitacion>, ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesSalientes= new HashMap<>(); 
-//    // Lista de enlaces entrantes en la colecciÃ³n para cada identificador
-//        HashMap<Vertice<MaterialCapacitacion>,ArrayList<Vertice<MaterialCapacitacion>>> listaEnlacesEntrantes= new HashMap<>();    
 
-//    // Tabla temporal para el calculo interativo de Pageranks
-//        HashMap<Vertice<MaterialCapacitacion>, Double> tempPageRank= new HashMap<>();
-
-
-      // Valor de PageRank calculado para cada identificador de documento
         HashMap<Vertice<MaterialCapacitacion>, Double> pageRank=new HashMap<>();
         
         HashMap<String, Double> pageRankAux=new HashMap<>();

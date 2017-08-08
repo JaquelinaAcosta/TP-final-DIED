@@ -117,7 +117,7 @@ public class Principal {
             panelCtrl= new PanelBuscarOrdenar(this, videosDao.cargarLista());
         }
         
-        if(crearBuscarDesde.equals("Publicacion")){
+        if(crearBuscarDesde.equals("Publicación")){
             PublicacionesDao publicacionesDao=new PublicacionesDao();
             panelCtrl= new PanelBuscarOrdenar(this, publicacionesDao.cargarLista());
         }
@@ -197,7 +197,7 @@ public class Principal {
        panelCtrl= new PanelContenedor(this,listaResultado);
      
            }
-        if(crearBuscarDesde.equals("Publicacion")){
+        if(crearBuscarDesde.equals("Publicación")){
        listaResultado.addAll(listaLibro);
        listaResultado.addAll(listaVideo);
        System.out.println(listaResultado);
@@ -273,14 +273,7 @@ public class Principal {
         }
         inicializarPanelCtrl();  
     }
-   
-   public void BusquedaArbol(TipoNodo tipo,String dato,List listaDatos)
-   {
-       this.ventana.remove(this.panelCtrl);
-       Node<TipoNodo> nodo= new Node(tipo,dato);
-        panelCtrl= new ArbolBusqueda(this,nodo,listaDatos);
-        inicializarPanelCtrl();  
-   }
+ 
    
    public void cambiarPR(List lista){
         this.ventana.remove(this.panelCtrl);  

@@ -107,7 +107,7 @@ exactamente N saltos.*/
                 System.out.println("material"+m);
                 controller.titulo(seleccion);
                 controller.getMaterial(m);
-                controller.mostrarAristas();
+               
 
           }
        });
@@ -117,7 +117,7 @@ exactamente N saltos.*/
             try{
             if(cantSalto.getText().isEmpty())//va a la funcion de buscar tdos los caminos
             {
-            
+            controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText());
             }
             else
             {

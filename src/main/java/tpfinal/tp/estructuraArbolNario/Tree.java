@@ -8,65 +8,37 @@ package tpfinal.tp.estructuraArbolNario;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Araujo
- */
+
 
     public class Tree<T> {
  
     private Node<T> rootElement;
      
-    /**
-     * Default ctor.
-     */
+  
     public Tree() {
         super();
     }
- 
-    /**
-     * Return the root Node of the tree.
-     * @return the root element.
-     */
+
     public Node<T> getRootElement() {
         return this.rootElement;
     }
  
-    /**
-     * Set the root Element for the tree.
-     * @param rootElement the root element to set.
-     */
+ 
     public void setRootElement(Node<T> rootElement) {
         this.rootElement = rootElement;
     }
      
-    /**
-     * Returns the Tree<T> as a List of Node<T> objects. The elements of the
-     * List are generated from a pre-order traversal of the tree.
-     * @return a List<Node<T>>.
-     */
+  
     public List<Node<T>> toList() {
         List<Node<T>> list = new ArrayList<Node<T>>();
         listarNodos(rootElement, list);
         return list;
     }
-     
-    /**
-     * Returns a String representation of the Tree. The elements are generated
-     * from a pre-order traversal of the Tree.
-     * @return the String representation of the Tree.
-     */
+  
     public String toString() {
         return toList().toString();
     }
-     
-    /**
-     * Walks the Tree in pre-order style. This is a recursive method, and is
-     * called from the toList() method with the root element as the first
-     * argument. It appends to the second argument, which is passed by reference     * as it recurses down the tree.
-     * @param element the starting element.
-     * @param list the output of the walk.
-     */
+ 
     public void listarNodos(Node<T> element, List<Node<T>> list) {
         list.add(element);
         for (Node<T> data : element.getChildren()) {
@@ -76,17 +48,18 @@ import java.util.List;
     
 
     
-    public void buscarDato(Node<T> nodo,String txtBuscado,TipoNodo ingresado,List<Node<T>> list)
+    public List<Node<T>> buscarDato(Node<T> nodo)
     {
-        if(nodo.dato().equalsIgnoreCase(txtBuscado))
+        List<Node<T>> lista = new ArrayList<Node<T>>();
+        lista=toList();
+      
+        for(int i=0;i<lista.size();i++)
         {
-            listarNodos(nodo,list);
-            System.out.println("esta es mi lista "+list);
+            if(lista.get(i).children.get(i).equals(nodo))
+            System.out.println("esta es la lista "+toList().get(i).children.get(i));    
         }
-        else if(nodo.getData().equals(ingresado))
-        {
-             listarNodos(nodo,list);
-            System.out.println("esta es mi lista "+list);
-        }
+      
+       return lista;
+       
+               }
     }
-}
