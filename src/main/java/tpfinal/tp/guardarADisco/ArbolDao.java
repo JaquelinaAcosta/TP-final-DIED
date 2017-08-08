@@ -14,13 +14,9 @@ import tpfinal.tp.persistencia.GenericDaoJSON;
 
 public class ArbolDao {
 
-  
-   
-  
-    public class LibrosDao {
     private GenericDaoJSON db;
     
-    public LibrosDao(){
+    public ArbolDao(){
         db = new GenericDaoJSON("Arbol.json");
 //        nombre del archivo donde guardaran los datos. 
     }
@@ -50,4 +46,4 @@ public class ArbolDao {
     
 }
 
-}
+

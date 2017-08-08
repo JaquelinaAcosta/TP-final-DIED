@@ -145,7 +145,7 @@ public class Principal {
             //desde la ventana (PanelBuscarOrdenar)
             panelCtrl= new PanelBuscarVideoPublicacion(this, listaMateriales);
         }
-        if(crearBuscarDesde.equals("PublicaciÃ³n")){
+        if(crearBuscarDesde.equals("Publicación")){
             panelCtrl= new PanelBuscarVideoPublicacion(this, listaMateriales);
         }
         inicializarPanelCtrl();        

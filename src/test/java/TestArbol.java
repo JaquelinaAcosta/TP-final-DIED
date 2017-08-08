@@ -31,6 +31,7 @@ public class TestArbol {
    protected List<Node<TipoNodo>> nodoLista;
   private TipoNodo tipo;
     private Node n5;
+    private ArbolDao arbolDao = new ArbolDao();
     public TestArbol()
     {
         
@@ -58,12 +59,12 @@ public class TestArbol {
       n1.setChildren(arbol);
       n2.setChildren(nodoLista);
       
-      ArbolDao arbolDao= new ArbolDao();
-      arbolDao.
+//      ArbolDao arbolDao= new ArbolDao();
+      arbolDao.agregar(arbolN);
       
       
       
-       System.out.println("esrte es el arbol"+arbolN.toString());
+//       System.out.println("esrte es el arbol"+arbolN.toString());
       
     }
     
