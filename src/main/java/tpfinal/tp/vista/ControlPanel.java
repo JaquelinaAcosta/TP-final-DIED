@@ -117,12 +117,15 @@ exactamente N saltos.*/
             try{
             if(cantSalto.getText().isEmpty())//va a la funcion de buscar tdos los caminos
             {
-            controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText());
+                 ArrayList lista= new ArrayList();
+           lista=  controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText());
+             principal.cambiarPR(lista);
             }
             else
             {
-      controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText(), Integer.parseInt(cantSalto.getText()));
-          
+                ArrayList lista= new ArrayList();
+                lista = controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText(), Integer.parseInt(cantSalto.getText()));
+                principal.cambiarPR(lista);
             }
             }catch(Exception ex){
             System.out.println("Error");

@@ -104,10 +104,12 @@ public class GrafoController {
         this.grafo.imprimirAristas();
     }
     
-    public void buscarCamino(String nodo1,String nodo2,Integer saltos){
+    //public void buscarCamino(String nodo1,String nodo2,Integer saltos){
+            public ArrayList buscarCamino(String nodo1,String nodo2,Integer saltos){
+
         Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
-        List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino,saltos);   
+        ArrayList<Arista<MaterialCapacitacion>> camino = (ArrayList<Arista<MaterialCapacitacion>>) this.grafo.buscarCamino(origen, destino,saltos);   
     
     
    for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
@@ -123,16 +125,18 @@ public class GrafoController {
             });
 
    }
+     this.vistaGrafo.repaint(); 
+       return camino;
        
-        this.vistaGrafo.repaint();  
     }
    
-    public void buscarCamino(String nodo1,String nodo2){
+    public ArrayList buscarCamino(String nodo1,String nodo2){
         Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
-        List<Arista<MaterialCapacitacion>> camino = this.grafo.buscarCamino(origen, destino);   
+        ArrayList<Arista<MaterialCapacitacion>> camino = (ArrayList<Arista<MaterialCapacitacion>>) this.grafo.buscarCamino(origen, destino);   
      
         System.out.println("Este es el camino"+camino);
+        
     for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
     {
         aristas.values().forEach((a) -> {
@@ -145,7 +149,7 @@ public class GrafoController {
     }
        
         this.vistaGrafo.repaint();
-        
+        return camino;
     }
     
     

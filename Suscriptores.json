@@ -17,14 +17,6 @@
   },
   {
     "nombre": "suscriptor",
-    "apellido": "cuatro",
-    "nroDocumento": 12343,
-    "credito": 400.0,
-    "material": [],
-    "suscriptores": {}
-  },
-  {
-    "nombre": "suscriptor",
     "apellido": "cinco",
     "nroDocumento": 12346,
     "credito": 50.0,
@@ -55,6 +47,26 @@
         "tema": "PROGRAMACION",
         "titulo": "Libro4",
         "calificacion": 5,
+        "costo": 0.0,
+        "fechaPublicacion": "25/07/2017",
+        "suscriptores": []
+      }
+    ],
+    "suscriptores": {}
+  },
+  {
+    "nombre": "suscriptor",
+    "apellido": "cuatro",
+    "nroDocumento": 12343,
+    "credito": 161.5,
+    "material": [
+      {
+        "precioCompra": 250.0,
+        "isbn": "12344",
+        "paginas": 300,
+        "tema": "PROGRAMACION",
+        "titulo": "Libro5",
+        "calificacion": 10,
         "costo": 0.0,
         "fechaPublicacion": "25/07/2017",
         "suscriptores": []

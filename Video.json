@@ -43,5 +43,14 @@
     "costo": 600.0,
     "fechaPublicacion": "24/07/2017",
     "suscriptores": []
+  },
+  {
+    "duracionEnSegundos": 500,
+    "tema": "MATEMATICA",
+    "titulo": "VIDEO10",
+    "calificacion": 2,
+    "costo": 60.0,
+    "fechaPublicacion": "08/08/2017",
+    "suscriptores": []
   }
 ]

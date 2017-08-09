@@ -46,5 +46,23 @@
         }
       ]
     }
+  },
+  {
+    "rootElement": {
+      "dato": "video4",
+      "tipo": "TITULO",
+      "children": [
+        {
+          "dato": "",
+          "tipo": "METADATO",
+          "children": [
+            {
+              "dato": "parrafo1",
+              "tipo": "PARRAFO"
+            }
+          ]
+        }
+      ]
+    }
   }
 ]
