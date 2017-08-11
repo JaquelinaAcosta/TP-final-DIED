@@ -11,6 +11,8 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
+import tpfinal.tp.windows.PanelLibro;
+
 import tpfinal.tp.windows.Principal;
 
 
@@ -44,6 +46,16 @@ public class MaterialCapacitacionController {
        librosDao.agregar(libro1);
    //    this.mostrarLista();
     }
+     
+     public void mostrarPanelLibro()
+     {
+      PanelLibro panel= new PanelLibro(this);
+        panel.armarPanel();
+        this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+     }
  /*   
 
 
