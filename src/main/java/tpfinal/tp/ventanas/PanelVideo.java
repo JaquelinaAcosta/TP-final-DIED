@@ -49,8 +49,12 @@ public class PanelVideo extends JPanel{
         this.video=video;
         this.armarPanel();
     }
+
+    public PanelVideo(tpfinal.tp.windows.Principal vistaPrincipal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    private void armarPanel(){
+    public void armarPanel(){
         this.botonAceptar= new JButton("Aceptar");
         this.botonCancelar= new JButton("Volver a Principal");
         this.txtCalificacion= new JTextField(20);

@@ -84,9 +84,10 @@ public class PanelLibro extends JPanel {
         
         //Al presionar el boton Aceptar te guarda todos los datos que ingrasas en un archivo JSON 
         //(como estamos trabajando con libro) el archivo se va a llamar Libros.jason y se va a guardar automaticamente en la carpeta de netbeans donde tenemos el tp integrador
-//        this.botonAceptar.addActionListener(new ActionListener(){
-//            @Override
-//            public void actionPerformed (ActionEvent e){
+        this.botonAceptar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed (ActionEvent e){
+                controller.crearLibro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
 //                //si es para actualizar, entra en el if
 //                if(libro!=null){
 //                    Libro libro1 = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
@@ -97,8 +98,9 @@ public class PanelLibro extends JPanel {
 //                   // librosDao.agregar(libro1);
 //                }
 //            
-//            }
- //       });
+            }
+        });
+        
         this.botonCancelar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){

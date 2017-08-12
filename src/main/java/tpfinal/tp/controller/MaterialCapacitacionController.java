@@ -11,9 +11,11 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
+import tpfinal.tp.ventanas.PanelVideo;
 import tpfinal.tp.windows.PanelLibro;
-
 import tpfinal.tp.windows.Principal;
+
+
 
 
 public class MaterialCapacitacionController {
@@ -44,9 +46,14 @@ public class MaterialCapacitacionController {
      public void crearLibro(String titulo,Double costo,String isbn,Integer pagina, TemasMateriales tema, Integer calificacion){
        Libro libro1 = new Libro(titulo,costo,isbn,pagina,tema,calificacion);
        librosDao.agregar(libro1);
-   //    this.mostrarLista();
+  
     }
      
+     public void modificarLibro()
+     {
+         
+         
+     }
      public void mostrarPanelLibro()
      {
       PanelLibro panel= new PanelLibro(this);
@@ -56,17 +63,20 @@ public class MaterialCapacitacionController {
         this.vistaPrincipal.revalidate();
         this.vistaPrincipal.pack();
      }
- /*   
-
-
-    public void mostrarLista(){
-        PanelListaPlato panel= new PanelListaPlato(this);
-        panel.armarPanel(new ArrayList<>(carta.getCartaPlatos()));
+     
+     public void crearVideo()
+     {
+         
+     }
+     
+     public void mostrarPanelVideo()
+     {
+        PanelVideo panel= new PanelVideo(this.vistaPrincipal);
+        panel.armarPanel();
         this.vistaPrincipal.getContentPane().removeAll();
         this.vistaPrincipal.getContentPane().add(panel);
         this.vistaPrincipal.revalidate();
         this.vistaPrincipal.pack();
-    }
-}
-    */
+     }
+
 }
