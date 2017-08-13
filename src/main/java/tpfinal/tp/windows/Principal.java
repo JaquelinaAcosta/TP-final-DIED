@@ -47,12 +47,13 @@ public class Principal extends JFrame {
 
      
       menuLibro = new JMenu("Libro");
-      menuLibro.addActionListener((e) -> {
-            controller.mostrarPanelLibro();
-        });
+     
       menu.add(menuLibro);
       menu.addSeparator();//para mostrar la rayita que separa
       menuLibro.add(menuCrearLibro);
+      this.menuCrearLibro.addActionListener((e) -> {
+            controller.mostrarPanelLibro();
+        });
       menuLibro.addSeparator();
       menuLibro.add(this.menuModificarLibro);
       menuLibro.addSeparator();
@@ -63,12 +64,13 @@ public class Principal extends JFrame {
       
       
       menuVideo = new JMenu("Video");
-      menuVideo.addActionListener((e) -> {
-            controller.mostrarPanelVideo();
-        });
+      
       menu.add(menuVideo);
       menu.addSeparator();
       menuVideo.add(this.menuCrearVideo);
+      this.menuCrearVideo.addActionListener((e) -> {
+            controller.mostrarPanelVideo();
+        });
       menuVideo.addSeparator();
       menuVideo.add(this.menuModificarVideo);
       menuVideo.addSeparator();
@@ -79,12 +81,13 @@ public class Principal extends JFrame {
       
       
       menuPublicacion = new JMenu("Publicacion");
-      menuPublicacion.addActionListener((e) -> {
-            controller.mostrarPanelPublicacion();
-        });
+     
       menu.add(menuPublicacion);
       menu.addSeparator();
       menuPublicacion.add(this.menuCrearPublicacion);
+      this.menuCrearPublicacion.addActionListener((e) -> {
+            controller.mostrarPanelPublicacion();
+        });
       menuPublicacion.addSeparator();
       menuPublicacion.add(this.menuModificarPublicacion);
       menuPublicacion.addSeparator();

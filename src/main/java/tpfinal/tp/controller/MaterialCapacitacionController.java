@@ -124,7 +124,7 @@ public class MaterialCapacitacionController {
      
      public void mostrarPanelPublicacion()
      {
-      PanelPublicacion panel= new PanelPublicacion(this);
+        PanelPublicacion panel= new PanelPublicacion(this);
         panel.armarPanel();
         this.vistaPrincipal.getContentPane().removeAll();
         this.vistaPrincipal.getContentPane().add(panel);
