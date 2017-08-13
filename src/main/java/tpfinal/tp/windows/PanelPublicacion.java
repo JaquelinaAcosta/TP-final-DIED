@@ -42,19 +42,18 @@ public class PanelPublicacion extends JPanel {
     private Publicacion publicacion;
     private MaterialCapacitacionController controller;
     
-    public PanelPublicacion(){
-        this.armarPanel();
-    }
-      public void setController(MaterialCapacitacionController matctrl)
-   {
+   
+    
+      public void setController(MaterialCapacitacionController matctrl){
        this.controller=matctrl;
    }
+      
   public PanelPublicacion(MaterialCapacitacionController contrl){
         this.controller = contrl;
     
   }
    
-    private void armarPanel(){
+    public void armarPanel(){
         
         this.txtDia=new JTextField(6);
         this.txtMes=new JTextField (6);
@@ -78,18 +77,7 @@ public class PanelPublicacion extends JPanel {
         this.comboTema= new JComboBox<>(listaTemas);
 
         this.txtTitulo=new JTextField(20);
-        
-        
-//        //para que se visualicen los datos en la pantalla a la hora de actualizar un material de tipo publicacion
-//        if(publicacion != null){
-//            txtTitulo.setText(publicacion.getTitulo());
-//            txtCalificacion.setText(publicacion.getCalificacion().toString());
-//            txtPrecio.setText(publicacion.getCosto().toString());
-//            comboTema.getModel().setSelectedItem(publicacion.getTema());  
-//            txtDia.setText(String.valueOf(publicacion.getFechaPublicacion().getDate()));
-//            txtMes.setText(String.valueOf(publicacion.getFechaPublicacion().getMonth()+1));
-//            txtAño.setText(String.valueOf(publicacion.getFechaPublicacion().getYear()+1900));
-//        }
+
         
         
         this.setLayout(new GridLayout(10,1,10,10));
@@ -111,16 +99,8 @@ public class PanelPublicacion extends JPanel {
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                //si es para actualizar, va a entrar al if
-                if(publicacion != null){
-                Publicacion publicacion1 = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
-                publicacionesDao.editar(publicacion, publicacion1);
-                }
-                //si es para crear va a entrar al else
-                else{
-                    Publicacion publicacion1 = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
-                    publicacionesDao.agregar(publicacion);
-                }
+                controller.crearPublicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+               
             }
         });
         
@@ -132,28 +112,7 @@ public class PanelPublicacion extends JPanel {
     });
     }
     
-     
-    private static void crearPublicacionShowGUI(){
-        JFrame ventana = new JFrame("Biblioteca");
-        ventana.setSize(300, 200);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        PanelPublicacion publicacionPanel = new PanelPublicacion();
-        publicacionPanel.setSize(300, 200);
-        ventana.add(publicacionPanel);
-    
-        ventana.add(publicacionPanel, BorderLayout.PAGE_START);
-        
-        ventana.pack();
-        ventana.setVisible(true);
-}
-//     public static void main(String[] args) {
-//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                crearPublicacionShowGUI();
-//
-//            }
-//        });
-//    }
+
 }
 
 

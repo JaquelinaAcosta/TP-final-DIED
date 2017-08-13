@@ -5,8 +5,12 @@
  */
 package tpfinal.tp.windows;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.controller.MaterialCapacitacionController;
@@ -24,7 +28,7 @@ public class PanelVideo extends JPanel {
     private JTextField txtPrecio;
     private JTextField txtCalificacion;
     private JComboBox comboTema;
-    private tpfinal.tp.ventanas.Principal principal;
+ 
     private VideosDao videosDao = new VideosDao();
     private Video video;
     
@@ -33,7 +37,6 @@ public class PanelVideo extends JPanel {
     
       }
       
-     
     
       public void setController(MaterialCapacitacionController matctrl)
    {
@@ -49,6 +52,32 @@ public class PanelVideo extends JPanel {
         TemasMateriales[] listaTemas = {TemasMateriales.ENTRETENIMIENTO, TemasMateriales.MATEMATICA, TemasMateriales.PROGRAMACION};
         this.comboTema= new JComboBox<>(listaTemas);
         this.txtTitulo=new JTextField(20);
-
-      }
+        this.botonAceptar= new JButton("Aceptar");
+        
+        this.setLayout(new GridLayout(10,1,10,10));
+        this.add(new JLabel("VIDEO"));
+        this.add(new JLabel("Cargar datos"));
+        this.add(new JLabel("Título"));
+        this.add(txtTitulo);
+        this.add(new JLabel("Tema"));
+        this.add(comboTema);
+        this.add(new JLabel("Duración"));
+        this.add(txtDuracion);
+        this.add(new JLabel("Calificacion"));
+        this.add(txtCalificacion);
+        this.add(new JLabel("Precio"));
+        this.add(txtPrecio);
+        this.add(botonAceptar);
+        this.add(botonCancelar);
+    
+        this.botonAceptar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed (ActionEvent e){
+   
+      controller.crearVideo(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+            }
+        });
+               
+    }
+      
 }
