@@ -204,7 +204,7 @@ public class Grafo<T> {
 public List<Arista<T>> buscarCaminos(Vertice<T> n1,Vertice<T> n2,ArrayList<Arista<T>> resultado)
     {
        List<Vertice<T>> verticesAdy= new ArrayList<Vertice<T>>();
-     verticesAdy= this.getAdyacentes(n1);
+       verticesAdy= this.getAdyacentes(n1);
      
       if(verticesAdy!=null)
       {

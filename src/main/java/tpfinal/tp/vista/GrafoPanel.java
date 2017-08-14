@@ -27,7 +27,7 @@ public class GrafoPanel extends JPanel {
     private JFrame framePadre;
     private Queue<Color> colaColores;
     private GrafoController controller;
-
+    
     private List<VerticeView> vertices;
     private List<AristaView> aristas;
 

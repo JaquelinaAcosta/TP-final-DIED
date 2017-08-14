@@ -26,15 +26,14 @@ public class ControlPanel extends JPanel {
     
     private GrafoController controller;
     private JTextField txtNombreVertice1; 
-     private JTextField txtNombreVertice2; 
-     private JTextField cantSalto; 
-    private JButton boton;
+    private JTextField txtNombreVertice2; 
+    private JTextField cantSalto; 
+    private JButton botonBuscarCamino;
     private JButton botonPR;
     private JComboBox<Object> comboMaterial;
     private Principal principal;
     private ArrayList<MaterialCapacitacion> listaRtdo;
-    private JList enList;
-//    private JList listaPr;
+ 
     
     
     public ControlPanel(){
@@ -53,21 +52,17 @@ public class ControlPanel extends JPanel {
          System.out.println("esta lista recibi"+listaRtdo.get(0).getTitulo());
         this.armarPanel();
     }
-    /*En la clase ControlPanel, agregar los campos de ingresos de texto y el botÃ³n para poder indicar al
-sistema que se necesita buscar un camino entre una arista origen, y una arista destino en
-exactamente N saltos.*/
+
+      
     private void armarPanel(){
         
-      String nodo[]={"nodo1","nodo2","nodo3"};
-        
-         this.enList= new JList();      
+       
         this.txtNombreVertice1 =new JTextField(20);
         this.txtNombreVertice2 =new JTextField(20);
         this.cantSalto =new JTextField(5); 
-        this.boton= new JButton("Buscar Camino");
+        this.botonBuscarCamino= new JButton("Buscar Camino");
         this.botonPR= new JButton("Page Rank");
        this.comboMaterial= new JComboBox<>();
-//      this.listaPr=new JList();
           for(int i=0;i<listaRtdo.size();i++)
         {
             comboMaterial.addItem(listaRtdo.get(i).getTitulo());
@@ -79,12 +74,10 @@ exactamente N saltos.*/
         this.add(txtNombreVertice2);  
         this.add(new JLabel("Cantidad de saltos"));   
         this.add(cantSalto);
-        this.add(boton);
-         this.add(comboMaterial);
-     //   this.add(enList);
-     
+        this.add(botonBuscarCamino);
+        this.add(comboMaterial);
         this.add(botonPR);
-//        this.add(listaPr);
+
         
       
         
@@ -101,28 +94,28 @@ exactamente N saltos.*/
         
         comboMaterial.addActionListener(new ActionListener(){
          public void actionPerformed(ActionEvent e){
-//            try{
                 String seleccion=comboMaterial.getSelectedItem().toString();
                 MaterialCapacitacion m=listaRtdo.get(comboMaterial.getSelectedIndex());
                 System.out.println("material"+m);
                 controller.titulo(seleccion);
                 controller.getMaterial(m);
-               
-
           }
        });
         
-        boton.addActionListener(new ActionListener(){
+        botonBuscarCamino.addActionListener(new ActionListener(){
          public void actionPerformed(ActionEvent e){
             try{
+               
             if(cantSalto.getText().isEmpty())//va a la funcion de buscar tdos los caminos
             {
-                 ArrayList lista= new ArrayList();
-           lista=  controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText());
-             principal.cambiarPR(lista);
+                
+           ArrayList lista= new ArrayList();
+           lista=controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText());
+           principal.cambiarPR(lista);
             }
             else
             {
+                
                 ArrayList lista= new ArrayList();
                 lista = controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText(), Integer.parseInt(cantSalto.getText()));
                 principal.cambiarPR(lista);
@@ -145,9 +138,6 @@ exactamente N saltos.*/
     });
 }
     
-    /*Capturar el evento en el botÃ³n, validar los datos (los 3 valores son obligatorios y la cantidad de
-saltos debe coincidir con un valor entero) e invocar al mÃ©todo del controlador â€œpublic void
-buscarCamino(String nodo1,String nodo2,Integer saltos)â€, para que se realice una bÃºsqueda.*/
 
     public GrafoController getController() {
         return controller;
