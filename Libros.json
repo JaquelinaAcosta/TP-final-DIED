@@ -1,16 +1,5 @@
 [
   {
-    "precioCompra": 56.0,
-    "isbn": "12340",
-    "paginas": 32,
-    "tema": "ENTRETENIMIENTO",
-    "titulo": "Libro1",
-    "calificacion": 10,
-    "costo": 0.0,
-    "fechaPublicacion": "25/07/2017",
-    "suscriptores": []
-  },
-  {
     "precioCompra": 650.0,
     "isbn": "12342",
     "paginas": 90,
@@ -44,14 +33,25 @@
     "suscriptores": []
   },
   {
-    "precioCompra": 600.0,
-    "isbn": "12345",
-    "paginas": 300,
-    "tema": "MATEMATICA",
-    "titulo": "Libro6",
+    "precioCompra": 60.0,
+    "isbn": "25668",
+    "paginas": 52,
+    "tema": "PROGRAMACION",
+    "titulo": "Libro 2",
+    "calificacion": 5,
+    "costo": 0.0,
+    "fechaPublicacion": "13/08/2017",
+    "suscriptores": []
+  },
+  {
+    "precioCompra": 0.0,
+    "isbn": "12340",
+    "paginas": 32,
+    "tema": "ENTRETENIMIENTO",
+    "titulo": "Libro1",
     "calificacion": 9,
     "costo": 0.0,
-    "fechaPublicacion": "25/07/2017",
+    "fechaPublicacion": "19/08/2017",
     "suscriptores": []
   }
 ]

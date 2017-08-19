@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import tpfinal.tp.controller.GrafoController;
+import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.ventanas.Principal;
 
@@ -31,8 +32,8 @@ public class ControlPanel extends JPanel {
     private JButton botonBuscarCamino;
     private JButton botonPR;
     private JComboBox<Object> comboMaterial;
-    private Principal principal;
     private ArrayList<MaterialCapacitacion> listaRtdo;
+    MaterialCapacitacionController controllerM;
  
     
     
@@ -41,8 +42,8 @@ public class ControlPanel extends JPanel {
     }
     
     
-     public ControlPanel(Principal principal,ArrayList<MaterialCapacitacion> lista){
-         this.principal=principal;
+     public ControlPanel(MaterialCapacitacionController controllerM,ArrayList<MaterialCapacitacion> lista){
+         this.controllerM=controllerM;
          this.listaRtdo=lista;
          System.out.println("esta lista recibi"+listaRtdo);
         this.armarPanel();
@@ -111,14 +112,14 @@ public class ControlPanel extends JPanel {
                 
            ArrayList lista= new ArrayList();
            lista=controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText());
-           principal.cambiarPR(lista);
+           controllerM.cambiarPR(lista);
             }
             else
             {
                 
                 ArrayList lista= new ArrayList();
                 lista = controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText(), Integer.parseInt(cantSalto.getText()));
-                principal.cambiarPR(lista);
+                controllerM.cambiarPR(lista);
             }
             }catch(Exception ex){
             System.out.println("Error");
@@ -131,7 +132,7 @@ public class ControlPanel extends JPanel {
             public void actionPerformed(ActionEvent e){
                 ArrayList lista=new ArrayList();
                 lista=controller.calcularPageRank();
-                principal.cambiarPR(lista);
+               controllerM.cambiarPR(lista);
                 
             
         }

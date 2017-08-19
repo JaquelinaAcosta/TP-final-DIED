@@ -8,6 +8,7 @@ package tpfinal.tp.vista;
 import java.util.List;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.ventanas.Principal;
 
 /**
@@ -17,15 +18,16 @@ import tpfinal.tp.ventanas.Principal;
 public class PageRank extends JPanel{
     private JList listaPr;
     private List lista;
-    private Principal principal;
+    MaterialCapacitacionController controller;
+    
     
     public PageRank(){
         this.armarPanel();
     }
     
-    public PageRank(Principal principal, List lista){
+    public PageRank(MaterialCapacitacionController controller, List lista){
         this.lista=lista;
-        this.principal=principal;
+        this.controller=controller;
         armarPanel();
     }
     
