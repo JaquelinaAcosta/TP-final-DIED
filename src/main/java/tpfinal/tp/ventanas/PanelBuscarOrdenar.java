@@ -54,7 +54,7 @@ public class PanelBuscarOrdenar extends JPanel{
     public PanelBuscarOrdenar(){
         this.armarPanel();
     }
-    
+       
     public PanelBuscarOrdenar (Principal principal){
         this.principal= principal;
         this.armarPanel();
@@ -70,8 +70,8 @@ public class PanelBuscarOrdenar extends JPanel{
         this.listaMateriales = listaMateriales;
         this.armarPanel();
     }
-    
-    private void armarPanel(){
+   
+    public void armarPanel(){
         this.botonBuscar= new JButton("Buscar");
          this.botonVolver= new JButton("Volver a Principal");
         this.botonAsignarRelaciones= new JButton("Asignar Relaciones");
