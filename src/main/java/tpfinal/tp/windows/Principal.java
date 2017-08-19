@@ -10,6 +10,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import tpfinal.tp.controller.MaterialCapacitacionController;
+import tpfinal.tp.guardarADisco.LibrosDao;
+import tpfinal.tp.guardarADisco.PublicacionesDao;
+import tpfinal.tp.guardarADisco.VideosDao;
 import tpfinal.tp.integrador.TemasMateriales;
 
 
@@ -17,27 +20,25 @@ public class Principal extends JFrame {
     //Where the GUI is created:
    private JMenuBar menuMaterialCapacitacion;
    private JMenu menu,menuLibro,menuPublicacion,menuVideo;
-   private JMenuItem menuCrearVideo,menuEliminarVideo,menuModificarVideo;
-   private JMenuItem menuCrearLibro,menuEliminarLibro,menuModificarLibro;
-   private JMenuItem menuCrearPublicacion,menuEliminarPublicacion,menuModificarPublicacion;
+   private JMenuItem menuCrearVideo;
+   private JMenuItem menuCrearLibro;
+   private JMenuItem menuCrearPublicacion;
    private JMenuItem menuBuscarLibro,menuBuscarVideo,menuBuscarPublicacion;
 
   private MaterialCapacitacionController controller;
 
     public Principal() {
+        this.armarPanel();
+    }
+    
         
+    private void armarPanel(){    
     controller = new MaterialCapacitacionController(this);
         
     menuMaterialCapacitacion = new JMenuBar();
-    this.menuCrearLibro= new JMenuItem("Crear");
-    this.menuModificarLibro= new JMenuItem("Modificar");
-    this.menuEliminarLibro= new JMenuItem("Eliminar");
-    this.menuCrearVideo= new JMenuItem("Crear");
-    this.menuModificarVideo= new JMenuItem("Modificar");
-    this.menuEliminarVideo= new JMenuItem("Eliminar");
+    this.menuCrearLibro= new JMenuItem("Crear");   
+    this.menuCrearVideo= new JMenuItem("Crear");   
     this.menuCrearPublicacion= new JMenuItem("Crear");
-    this.menuModificarPublicacion= new JMenuItem("Modificar");
-    this.menuEliminarPublicacion= new JMenuItem("Eliminar");
     this.menuBuscarLibro= new JMenuItem("Buscar");
     this.menuBuscarVideo= new JMenuItem("Buscar");
     this.menuBuscarPublicacion= new JMenuItem("Buscar");
@@ -55,11 +56,11 @@ public class Principal extends JFrame {
             controller.mostrarPanelLibro();
         });
       menuLibro.addSeparator();
-      menuLibro.add(this.menuModificarLibro);
-      menuLibro.addSeparator();
-      menuLibro.add(this.menuEliminarLibro);
-      menuLibro.addSeparator();
       menuLibro.add(this.menuBuscarLibro);
+      this.menuBuscarLibro.addActionListener((e) ->{
+          LibrosDao librosDao=new LibrosDao();
+          controller.mostrarBuscarOrdenar(librosDao.cargarLista(), "Libro");
+      });
      
       
       
@@ -72,11 +73,11 @@ public class Principal extends JFrame {
             controller.mostrarPanelVideo();
         });
       menuVideo.addSeparator();
-      menuVideo.add(this.menuModificarVideo);
-      menuVideo.addSeparator();
-      menuVideo.add(this.menuEliminarVideo);
-      menuVideo.addSeparator();
       menuVideo.add(this.menuBuscarVideo);
+      this.menuBuscarVideo.addActionListener((e) ->{
+          VideosDao videosDao = new VideosDao();
+          controller.mostrarBuscarOrdenar(videosDao.cargarLista(), "Video");
+      });
      
       
       
@@ -89,11 +90,11 @@ public class Principal extends JFrame {
             controller.mostrarPanelPublicacion();
         });
       menuPublicacion.addSeparator();
-      menuPublicacion.add(this.menuModificarPublicacion);
-      menuPublicacion.addSeparator();
-      menuPublicacion.add(this.menuEliminarPublicacion);
-      menuPublicacion.addSeparator();
       menuPublicacion.add(this.menuBuscarPublicacion);
+      this.menuBuscarPublicacion.addActionListener((e) ->{
+          PublicacionesDao publicacionesDao=new PublicacionesDao();
+          controller.mostrarBuscarOrdenar(publicacionesDao.cargarLista(), "Publicación");
+      });
 
       
       this.setJMenuBar(menuMaterialCapacitacion);
@@ -101,6 +102,7 @@ public class Principal extends JFrame {
 
         
     }       
+    
     
 }
 

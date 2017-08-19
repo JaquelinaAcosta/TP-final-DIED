@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.guardarADisco.VideosDao;
+import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
 
@@ -28,15 +29,21 @@ public class PanelVideo extends JPanel {
     private JTextField txtPrecio;
     private JTextField txtCalificacion;
     private JComboBox comboTema;
+    private Video video;
  
     private VideosDao videosDao = new VideosDao();
-    private Video video;
     
       public PanelVideo(MaterialCapacitacionController contrl){
         this.controller = contrl;
     
       }
-      
+
+    public PanelVideo(MaterialCapacitacionController controller, Video video) {
+       this.controller=controller;
+       this.video=video;
+       this.armarPanel();
+    }
+   
     
       public void setController(MaterialCapacitacionController matctrl)
    {
@@ -54,6 +61,15 @@ public class PanelVideo extends JPanel {
         this.txtTitulo=new JTextField(20);
         this.botonAceptar= new JButton("Aceptar");
         
+        //para que se visualicen los datos en la pantalla a la hora de actualizar un material de tipo video
+        if(video != null){
+            txtTitulo.setText(video.getTitulo());
+            txtCalificacion.setText(video.getCalificacion().toString());
+            txtDuracion.setText(video.getDuracionEnSegundos().toString());
+            txtPrecio.setText(video.getCosto().toString());
+            comboTema.getModel().setSelectedItem(video.getTema());            
+        }
+        
         this.setLayout(new GridLayout(10,1,10,10));
         this.add(new JLabel("VIDEO"));
         this.add(new JLabel("Cargar datos"));
@@ -70,14 +86,28 @@ public class PanelVideo extends JPanel {
         this.add(botonAceptar);
         this.add(botonCancelar);
     
-        this.botonAceptar.addActionListener(new ActionListener(){
+      this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-   
-      controller.crearVideo(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                //si es para actualizar, entrar en el if
+                if(video!= null){
+                    Video video1 = new Video(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                    videosDao.editar(video, video1);
+                }
+                //si es para crear va a entrar al else
+                else{
+                   controller.crearVideo(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                }
             }
         });
-               
-    }
+    
+    this.botonCancelar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed (ActionEvent e){
+                controller.principal();
+            }
+    });
+      }
+    
       
 }

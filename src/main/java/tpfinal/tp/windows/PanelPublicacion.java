@@ -41,6 +41,11 @@ public class PanelPublicacion extends JPanel {
     private tpfinal.tp.ventanas.Principal principal;
     private Publicacion publicacion;
     private MaterialCapacitacionController controller;
+
+    public PanelPublicacion(MaterialCapacitacionController controller, Publicacion publicacion) {
+             this.controller=controller;
+       this.publicacion=publicacion;
+       this.armarPanel();}
     
    
     
@@ -77,6 +82,17 @@ public class PanelPublicacion extends JPanel {
         this.comboTema= new JComboBox<>(listaTemas);
 
         this.txtTitulo=new JTextField(20);
+        
+        //para que se visualicen los datos en la pantalla a la hora de actualizar un material de tipo publicacion
+        if(publicacion != null){
+            txtTitulo.setText(publicacion.getTitulo());
+            txtCalificacion.setText(publicacion.getCalificacion().toString());
+            txtPrecio.setText(publicacion.getCosto().toString());
+            comboTema.getModel().setSelectedItem(publicacion.getTema());  
+            txtDia.setText(String.valueOf(publicacion.getFechaPublicacion().getDate()));
+            txtMes.setText(String.valueOf(publicacion.getFechaPublicacion().getMonth()+1));
+            txtAño.setText(String.valueOf(publicacion.getFechaPublicacion().getYear()+1900));
+        }
 
         
         
@@ -99,15 +115,22 @@ public class PanelPublicacion extends JPanel {
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                controller.crearPublicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
-               
+                //si es para actualizar, va a entrar al if
+                if(publicacion != null){
+                Publicacion publicacion1 = new Publicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                publicacionesDao.editar(publicacion, publicacion1);
+                }
+                //si es para crear va a entrar al else
+                else{
+                    controller.crearPublicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                }
             }
         });
         
         this.botonCancelar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                principal.principal();
+                controller.principal();
             }
     });
     }

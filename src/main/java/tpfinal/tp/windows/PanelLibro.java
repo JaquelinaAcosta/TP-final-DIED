@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.controller.MaterialCapacitacionController;
+import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.TemasMateriales;
 
@@ -28,6 +29,14 @@ public class PanelLibro extends JPanel {
     private JTextField txtPrecio;
     private JComboBox<TemasMateriales> comboTema;
     private JTextField txtTitulo;
+    private Libro libro;
+    private LibrosDao librosDao = new LibrosDao();
+
+    public PanelLibro(MaterialCapacitacionController controller, Libro libro) {
+         this.controller=controller;
+       this.libro=libro;
+       this.armarPanel();
+    }
     
    
     
@@ -35,7 +44,7 @@ public class PanelLibro extends JPanel {
    {
        this.controller=matctrl;
    }
-   
+      
     public PanelLibro(MaterialCapacitacionController contrl){
         this.controller = contrl;
     }
@@ -54,14 +63,14 @@ public class PanelLibro extends JPanel {
         
         
         //para que se visualicen los datos en la pantalla a la hora de actualizar un material de tipo video
-//        if(libro != null){
-//            txtTitulo.setText(libro.getTitulo());
-//            txtCalificacion.setText(libro.getCalificacion().toString());
-//            txtIsbn.setText(libro.getIsbn());
-//            txtPrecio.setText(libro.getCosto().toString());
-//            comboTema.getModel().setSelectedItem(libro.getTema()); 
-//            txtPaginas.setText(libro.getPaginas().toString());
-//        }
+        if(libro != null){
+            txtTitulo.setText(libro.getTitulo());
+            txtCalificacion.setText(libro.getCalificacion().toString());
+            txtIsbn.setText(libro.getIsbn());
+            txtPrecio.setText(libro.getCosto().toString());
+            comboTema.getModel().setSelectedItem(libro.getTema()); 
+            txtPaginas.setText(libro.getPaginas().toString());
+        }
         
         
         this.setLayout(new GridLayout(10,1,10,10));
@@ -87,24 +96,22 @@ public class PanelLibro extends JPanel {
         this.botonAceptar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-                controller.crearLibro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
-//                //si es para actualizar, entra en el if
-//                if(libro!=null){
-//                    Libro libro1 = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
-//                  //  librosDao.editar(libro, libro1);
-//                }
-//                else{
-//                    Libro libro1 = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
-//                   // librosDao.agregar(libro1);
-//                }
-//            
+                //si es para actualizar, entra en el if
+                if(libro!=null){
+                    Libro libro1 = new Libro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
+                    librosDao.editar(libro, libro1);
+                }
+                else{
+                   controller.crearLibro(txtTitulo.getText(), Double.parseDouble(txtPrecio.getText()), txtIsbn.getText(), Integer.parseInt(txtPaginas.getText()), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtCalificacion.getText()));
+                }
+            
             }
         });
         
         this.botonCancelar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed (ActionEvent e){
-               // principal.principal();
+               controller.principal();
             }
     });
 
