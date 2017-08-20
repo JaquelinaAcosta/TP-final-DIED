@@ -21,8 +21,9 @@ import tpfinal.tp.estructuraArbolNario.Nodo;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.estructuraArbolNario.ArbolNario;
 import tpfinal.tp.guardarADisco.ArbolDao;
-import tpfinal.tp.ventanas.PanelAgregarAArbol;
-import tpfinal.tp.ventanas.PanelBusquedaArbol;
+import tpfinal.tp.windows.PanelAgregarAArbol;
+import tpfinal.tp.windows.PanelBusquedaArbol;
+
 
 
 /**

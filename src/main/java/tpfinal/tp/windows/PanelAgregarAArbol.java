@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.controller.ArbolController;
+import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
@@ -30,7 +31,7 @@ public class PanelAgregarAArbol extends JPanel{
     private JComboBox comboHijoMetadatos;
     private JComboBox comboArbol;
     
-    private tpfinal.tp.ventanas.Principal principal;
+    private MaterialCapacitacionController matController;
     private JButton botonAceptar;
     private MaterialCapacitacion material;
     private JTextField textAutor;
@@ -57,8 +58,8 @@ public class PanelAgregarAArbol extends JPanel{
     private JTextField txtHijoSecciones;
     private JButton botonAgregarHijoSeciones;
     
-    public PanelAgregarAArbol(tpfinal.tp.ventanas.Principal principal, MaterialCapacitacion materialR){
-        this.principal = principal;
+    public PanelAgregarAArbol(MaterialCapacitacionController control, MaterialCapacitacion materialR){
+        this.matController = control;
         this.material=materialR;
         System.out.println("este material recibi"+material);
         this.armarPanel();

@@ -288,6 +288,42 @@ public class MaterialCapacitacionController {
         }
         }
      
+     /*
+        public void cambiarAPanelAgregarAArbol(MaterialCapacitacion material){
+        this.ventana.remove(this.panelCtrl);
+        
+        if(crearBuscarDesde.equals("Libro")){
+            panelCtrl= new PanelContenedor(this,material);
+        }
+        if(crearBuscarDesde.equals("Video")){
+            panelCtrl= new PanelContenedor(this, material);
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+            panelCtrl= new PanelContenedor(this,material);
+        }
+        inicializarPanelCtrl();  
+}
+   
+    
+   public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
+        this.ventana.remove(this.panelCtrl);
+        
+        if(crearBuscarDesde.equals("Libro")){
+            ArbolDao arbolDao= new ArbolDao();
+            panelCtrl= new PanelContenedor(this,material);
+        }
+        if(crearBuscarDesde.equals("Video")){
+             ArbolDao arbolDao= new ArbolDao();
+            panelCtrl= new PanelContenedor(this,material);
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+             ArbolDao arbolDao= new ArbolDao();
+            panelCtrl= new PanelContenedor(this,material);
+        }
+        inicializarPanelCtrl();  
+    }
+     */
+     
      public void principal(){ 
         this.vistaPrincipal.getContentPane().removeAll();
         this.vistaPrincipal.revalidate();

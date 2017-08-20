@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.controller.ArbolController;
+import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.estructuraArbolNario.Nodo;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.estructuraArbolNario.ArbolNario;
@@ -28,7 +29,7 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 public class PanelBusquedaArbol extends JPanel{
     private JTextField txtDato;
     private JComboBox comboTipo;
-    private tpfinal.tp.ventanas.Principal principal;
+    private MaterialCapacitacionController matController;
     private JButton botonBuscar;
     private MaterialCapacitacion material;
     private ArbolDao arbolDao;
@@ -41,8 +42,8 @@ public class PanelBusquedaArbol extends JPanel{
     }
    
     
-    public PanelBusquedaArbol(tpfinal.tp.ventanas.Principal principal, MaterialCapacitacion material){
-        this.principal = principal;
+    public PanelBusquedaArbol(MaterialCapacitacionController mat, MaterialCapacitacion material){
+        this.matController = mat;
         this.material=material;
       
         this.armarPanel();

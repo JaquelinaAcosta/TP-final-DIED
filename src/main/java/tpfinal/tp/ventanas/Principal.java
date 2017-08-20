@@ -277,7 +277,7 @@ public class Principal {
    
    public void cambiarPR(List lista){
         this.ventana.remove(this.panelCtrl);  
-        panelCtrl = new PageRank(this,lista);
+//        panelCtrl = new PageRank(this,lista);
         inicializarPanelCtrl(); 
    }
 }

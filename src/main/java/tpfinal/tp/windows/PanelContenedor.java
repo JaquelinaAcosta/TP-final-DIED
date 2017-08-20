@@ -38,15 +38,17 @@ public class PanelContenedor extends JPanel {
         f.setVisible(true);
     }
     
-     public PanelContenedor(MaterialCapacitacionController controller,MaterialCapacitacion materialE)
+    public PanelContenedor(MaterialCapacitacionController controller,MaterialCapacitacion materialE)
     {
          JFrame f = new JFrame();//ventana
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        PanelBusquedaArbol panelBusqueda= new PanelBusquedaArbol();
-        PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(principal,materialE);
+       PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
+       PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
         ArbolController arbolctrl= new ArbolController(panelAgregar,panelBusqueda);
         panelAgregar.setController(arbolctrl);
+        panelBusqueda.setController(arbolctrl);
         f.add(panelAgregar);
+        f.add(panelBusqueda);
         f.pack();
         f.setVisible(true);
     }

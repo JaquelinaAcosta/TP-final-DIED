@@ -136,7 +136,7 @@ public class PanelAgregarAArbol extends JPanel{
         this.botonAgregarSecciones.addActionListener(new ActionListener(){
          public void actionPerformed(ActionEvent e){
              TipoNodo tipoNodoSeccion=(TipoNodo) comboHSecciones.getSelectedItem();
-            arbolControl.agregarHijos(txtSecciones.getText(),tipoNodoSeccion);
+         //   arbolControl.agregarHijos(txtSecciones.getText(),tipoNodoSeccion);
                 }
         
                 });
@@ -144,7 +144,7 @@ public class PanelAgregarAArbol extends JPanel{
         this.botonAgregarMetadatos.addActionListener(new ActionListener(){   
          public void actionPerformed(ActionEvent e){
              TipoNodo tipoNodoMetadato=(TipoNodo) comboHCapMetadatos.getSelectedItem();
-          arbolControl.agregarHijosdeHijos(txtMetadatos.getText(),tipoNodoMetadato);
+       //   arbolControl.agregarHijosdeHijos(txtMetadatos.getText(),tipoNodoMetadato);
          }
         
                 });

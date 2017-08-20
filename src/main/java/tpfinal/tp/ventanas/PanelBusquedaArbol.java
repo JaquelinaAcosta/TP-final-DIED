@@ -84,7 +84,7 @@ public class PanelBusquedaArbol extends JPanel{
       System.out.println("esta lista recibi "+lista);
       for(int i=0;i< lista.size();i++)
       {
-       List<Nodo<TipoNodo>> nodoAux = lista.get(i).buscarDato(n);
+    //   List<Nodo<TipoNodo>> nodoAux = lista.get(i).buscarDato(n);
        
       }
        

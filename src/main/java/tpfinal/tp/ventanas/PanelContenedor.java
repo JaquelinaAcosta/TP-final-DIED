@@ -28,12 +28,12 @@ public class PanelContenedor extends JPanel {
     {
         JFrame f = new JFrame();//ventana
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ControlPanel panelCtrl = new ControlPanel(principal,lista);
+      //  ControlPanel panelCtrl = new ControlPanel(principal,lista);
         GrafoPanel panelGrf = new GrafoPanel();
-        GrafoController gf = new GrafoController(panelGrf, panelCtrl);
-        panelGrf.setController(gf);
-        panelCtrl.setController(gf);
-        f.add(panelCtrl, BorderLayout.PAGE_START);
+//        GrafoController gf = new GrafoController(panelGrf, panelCtrl);
+//        panelGrf.setController(gf);
+//        panelCtrl.setController(gf);
+//        f.add(panelCtrl, BorderLayout.PAGE_START);
         f.add(panelGrf);
 
         f.pack();
@@ -46,8 +46,8 @@ public class PanelContenedor extends JPanel {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         PanelBusquedaArbol panelBusqueda= new PanelBusquedaArbol();
         PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(principal,materialE);
-        ArbolController arbolctrl= new ArbolController(panelAgregar,panelBusqueda);
-        panelAgregar.setController(arbolctrl);
+      //  ArbolController arbolctrl= new ArbolController(panelAgregar,panelBusqueda);
+    //    panelAgregar.setController(arbolctrl);
         f.add(panelAgregar);
         f.pack();
         f.setVisible(true);
