@@ -19,10 +19,7 @@ import javax.swing.JPanel;
 import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-/**
- *
- * @author jaque
- */
+
 public class PanelResultadoBusquedaVP extends JPanel{
 
     private JButton botonActualizar;

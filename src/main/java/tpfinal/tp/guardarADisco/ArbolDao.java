@@ -8,7 +8,7 @@ package tpfinal.tp.guardarADisco;
 import java.util.ArrayList;
 import java.util.List;
 
-import tpfinal.tp.estructuraArbolNario.Tree;
+import tpfinal.tp.estructuraArbolNario.ArbolNario;
 import tpfinal.tp.persistencia.GenericDaoJSON;
 
 
@@ -21,12 +21,12 @@ public class ArbolDao {
 //        nombre del archivo donde guardaran los datos. 
     }
     
-    public void guardarLista(List<Tree> arbol){
+    public void guardarLista(List<ArbolNario> arbol){
         db.guardar(arbol);
     }
 
-    public List<Tree> cargarLista(){
-        return db.cargar(new com.google.gson.reflect.TypeToken<List<Tree>>(){}.getType());
+    public List<ArbolNario> cargarLista(){
+        return db.cargar(new com.google.gson.reflect.TypeToken<List<ArbolNario>>(){}.getType());
            /* cuando se cargan los datos desde el disco se debe pasar como parámetro
     al método, con el nombre de lo que estamos guardando (por ejemplo Libro o Empleado) 
     */
@@ -36,8 +36,8 @@ public class ArbolDao {
 //        db.editar(new com.google.gson.reflect.TypeToken<List<ArbolNario>>(){}.getType(), viejo, editar);
 //    }
 //    
-    public void agregar(Tree arbol){
-        db.agregar(new com.google.gson.reflect.TypeToken<List<Tree>>(){}.getType(), arbol);
+    public void agregar(ArbolNario arbol){
+        db.agregar(new com.google.gson.reflect.TypeToken<List<ArbolNario>>(){}.getType(), arbol);
     }
     
 //    public void borrar(ArbolNario borrar){

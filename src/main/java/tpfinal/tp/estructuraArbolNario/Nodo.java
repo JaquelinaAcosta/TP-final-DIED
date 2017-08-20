@@ -10,65 +10,66 @@ import java.util.List;
 
 
 
-    public class Node<TipoNodo> {
+public class Nodo<T> {
  
     public String dato;
     private TipoNodo tipo;
-    public List<Node<TipoNodo>> children;
+    public List<Nodo<T>> Hijos;
  
     /**
      * Default ctor.
      */
-    public Node() {
-        super();
+    public Nodo()
+    {
+        
+    }
+    public Nodo(String d) {
+     this.dato=dato;  
     }
 
-    
-      public Node(TipoNodo tipoN,String dato) {
-        this();
-    
+      public Nodo(TipoNodo tipoN,String dato) {
         setData(tipoN,dato);
      
       }
  
-    public List<Node<TipoNodo>> getChildren() {
-        if (this.children == null) {
-            return new ArrayList<Node<TipoNodo>>();
+    public List<Nodo<T>> getHijos() {
+        if (this.Hijos == null) {
+            return new ArrayList<Nodo<T>>();
         }
-        return this.children;
+        return this.Hijos;
     }
  
-    public void setChildren(List<Node<TipoNodo>> children) {
-        this.children = children;
+    public void setHijos(List<Nodo<T>> Hijos) {
+        this.Hijos = Hijos;
     }
 
     public int getNumberOfChildren() {
-        if (children == null) {
+        if (Hijos == null) {
             return 0;
         }
-        return children.size();
+        return Hijos.size();
     }
 
-    public void addChild(Node<TipoNodo> child) {
-        if (children == null) {
-            children = new ArrayList<Node<TipoNodo>>();
+    public void addChild(Nodo<T> child) {
+        if (Hijos == null) {
+            Hijos = new ArrayList<Nodo<T>>();
         }
-        children.add(child);
+        Hijos.add(child);
     }
 
-    public void insertChildAt(int index, Node<TipoNodo> child) throws IndexOutOfBoundsException {
+    public void insertChildAt(int index, Nodo<T> child) throws IndexOutOfBoundsException {
         if (index == getNumberOfChildren()) {
             // this is really an append
             addChild(child);
             return;
         } else {
-            children.get(index); //just to throw the exception, and stop here
-            children.add(index, child);
+            Hijos.get(index); //just to throw the exception, and stop here
+            Hijos.add(index, child);
         }
     }
 
     public void removeChildAt(int index) throws IndexOutOfBoundsException {
-        children.remove(index);
+        Hijos.remove(index);
     }
  
    public TipoNodo getData() {
@@ -89,7 +90,7 @@ import java.util.List;
         StringBuilder sb = new StringBuilder();
         sb.append("{NODO -> Tipo : ").append(getData().toString()).append(":").append(dato().toString()).append(",[");
         int i = 0;
-        for (Node<TipoNodo> e : getChildren()) {
+        for (Nodo<T> e : getHijos()) {
             if (i > 0) {
                 sb.append(",");
             }

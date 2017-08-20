@@ -20,10 +20,7 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.Video;
 
-/**
- *
- * @author jaque
- */
+
 public class PanelBorrarMaterial extends JPanel{
     
     private JButton botonSi;

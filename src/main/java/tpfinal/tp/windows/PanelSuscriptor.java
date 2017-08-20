@@ -18,10 +18,7 @@ import javax.swing.JTextField;
 import tpfinal.tp.guardarADisco.SuscriptoresDao;
 import tpfinal.tp.integrador.Suscriptor;
 
-/**
- *
- * @author jaque
- */
+
 public class PanelSuscriptor extends JPanel {
  
     private JButton botonAceptar;

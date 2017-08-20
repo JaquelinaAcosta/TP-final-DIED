@@ -13,15 +13,11 @@ import tpfinal.tp.controller.ArbolController;
 import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.integrador.MaterialCapacitacion;
-import tpfinal.tp.ventanas.PanelAgregarAArbol;
-import tpfinal.tp.ventanas.PanelBusquedaArbol;
+
 import tpfinal.tp.vista.ControlPanel;
 import tpfinal.tp.vista.GrafoPanel;
 
-/**
- *
- * @author jaque
- */
+
 public class PanelContenedor extends JPanel {
     private ArrayList<MaterialCapacitacion> listaMaterial;
     MaterialCapacitacionController controller;
@@ -42,7 +38,7 @@ public class PanelContenedor extends JPanel {
         f.setVisible(true);
     }
     
-     public PanelContenedor(tpfinal.tp.ventanas.Principal principal,MaterialCapacitacion materialE)
+     public PanelContenedor(MaterialCapacitacionController controller,MaterialCapacitacion materialE)
     {
          JFrame f = new JFrame();//ventana
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

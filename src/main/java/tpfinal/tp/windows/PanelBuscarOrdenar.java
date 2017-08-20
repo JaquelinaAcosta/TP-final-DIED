@@ -29,10 +29,7 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Portal;
 import tpfinal.tp.integrador.TemasMateriales;
 
-/**
- *
- * @author jaque
- */
+
 public class PanelBuscarOrdenar extends JPanel{
     
    private JMenuBar menuMaterialCapacitacion;

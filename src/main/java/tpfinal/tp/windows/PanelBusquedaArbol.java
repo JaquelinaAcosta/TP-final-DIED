@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tpfinal.tp.ventanas;
+package tpfinal.tp.windows;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -24,14 +24,11 @@ import tpfinal.tp.estructuraArbolNario.ArbolNario;
 import tpfinal.tp.guardarADisco.ArbolDao;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 
-/**
- *Clase que se utiliza para el ingresar el contenido del material de capacitacion 
- * 
- */
+
 public class PanelBusquedaArbol extends JPanel{
     private JTextField txtDato;
     private JComboBox comboTipo;
-    private Principal principal;
+    private tpfinal.tp.ventanas.Principal principal;
     private JButton botonBuscar;
     private MaterialCapacitacion material;
     private ArbolDao arbolDao;
@@ -44,10 +41,10 @@ public class PanelBusquedaArbol extends JPanel{
     }
    
     
-    public PanelBusquedaArbol(Principal principal, MaterialCapacitacion material,List arbolCargado){
+    public PanelBusquedaArbol(tpfinal.tp.ventanas.Principal principal, MaterialCapacitacion material){
         this.principal = principal;
         this.material=material;
-        this.lista=arbolCargado;
+      
         this.armarPanel();
     }
 
@@ -70,25 +67,22 @@ public class PanelBusquedaArbol extends JPanel{
         
         botonBuscar.addActionListener(new ActionListener(){
                public void actionPerformed (ActionEvent e){
-                   TipoNodo tipo= (TipoNodo) comboTipo.getSelectedItem();
-                   String dato= txtDato.getText();
-                   Nodo<TipoNodo> nodo= new Nodo(tipo,dato);
+//                  try
+//                  {
+                      TipoNodo tipo= (TipoNodo) comboTipo.getSelectedItem();
+                  System.out.println("este es el tipo "+tipo);
+                  System.out.println("este es el txt "+txtDato.getText());
+                  arbolControl.buscarNodo(txtDato.getText(),tipo);
                
-                   filtrarLista(nodo);
                    
+//                  }catch(Exception err){
+//                      System.out.println("Error no puedo buscar nada");
+//                  }
             }
         });
      }
-       public void filtrarLista(Nodo<TipoNodo> n)
-   {
-      System.out.println("esta lista recibi "+lista);
-      for(int i=0;i< lista.size();i++)
-      {
-       List<Nodo<TipoNodo>> nodoAux = lista.get(i).buscarDato(n);
-       
-      }
-       
-   }
+
+   
      
  
     public ArbolController getController() {
@@ -109,19 +103,17 @@ private static void crearShowGUI(){
         PanelBusquedaArbol boPanel = new PanelBusquedaArbol();
         boPanel.setSize(300, 200);
         ventana.add(boPanel);
-    
         ventana.add(boPanel, BorderLayout.PAGE_START);
-        
         ventana.pack();
         ventana.setVisible(true);
 }
-//
-//public static void main(String[] args) {
-//    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//        public void run() {
-//           PanelBusquedaArbol pBuscar=new PanelBusquedaArbol();
-//          pBuscar.crearShowGUI();
-//        }
-//    });
-//}
+
+public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+           PanelBusquedaArbol pBuscar=new PanelBusquedaArbol();
+          pBuscar.crearShowGUI();
+        }
+    });
+}
 }

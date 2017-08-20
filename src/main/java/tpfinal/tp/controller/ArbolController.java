@@ -9,14 +9,21 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.WindowConstants;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
-import tpfinal.tp.estructuraArbolNario.Node;
+import tpfinal.tp.estructuraArbolNario.Nodo;
 
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
-import tpfinal.tp.estructuraArbolNario.Tree;
+import tpfinal.tp.estructuraArbolNario.ArbolNario;
 import tpfinal.tp.guardarADisco.ArbolDao;
 import tpfinal.tp.ventanas.PanelAgregarAArbol;
 import tpfinal.tp.ventanas.PanelBusquedaArbol;
+
 
 /**
  *Esta clase va a controlar las relaciones entre las pantallas de ingresar
@@ -24,16 +31,19 @@ import tpfinal.tp.ventanas.PanelBusquedaArbol;
  * 
  */
 public class ArbolController {
-   private Tree<TipoNodo> arbolN;
+    
+   private ArbolNario<TipoNodo> arbolN;
    private final PanelAgregarAArbol panelAgregar;
    private final PanelBusquedaArbol panelBusqueda;
    private Map<TipoNodo,String> nodoMetadatos;
-   private Node<TipoNodo> nodo;
-   private Node<TipoNodo> raiz;
-   private List<Node<TipoNodo>> listaNodo;
-   private List<Node<TipoNodo>> listaNodoHijos;
-     private List<Node<TipoNodo>> listaNodoHijosHijos;
-   
+   private Nodo nodo;
+   private Nodo raiz;
+   private List<Nodo<TipoNodo>> listaNodo;
+   private List<Nodo<TipoNodo>> listaNodoHijosCapitulo;
+   private List<Nodo<TipoNodo>> listaNodoHijosResumen;
+   private List<Nodo<TipoNodo>> listaNodoHijosMetadato;
+   private List<Nodo<TipoNodo>> listaNodoHijosHijos;
+   private TipoNodo tipo;
    private ArbolDao arbolDao = new ArbolDao();
 
    
@@ -41,26 +51,30 @@ public class ArbolController {
    {
        this.panelAgregar=panelA;
        this.panelBusqueda=panelB;
-       this.arbolN= new Tree<>();
-       this.nodo= new Node<TipoNodo>();
+       this.arbolN= new ArbolNario<>();
+       this.nodo= new Nodo();
        this.nodoMetadatos= new LinkedHashMap<>();
        this.listaNodo= new ArrayList<>();
-       this.listaNodoHijos= new ArrayList<>();
+       this.listaNodoHijosCapitulo= new ArrayList<>();
+       this.listaNodoHijosResumen= new ArrayList<>();
+       this.listaNodoHijosMetadato= new ArrayList<>();
        this.listaNodoHijosHijos= new ArrayList<>();
    }
+
+ 
   
    //cargamos la raiz al arbol
-   public void cargarRaizArbol(String material,TipoNodo tipo)
-   {
-    this.raiz= new Node(tipo,material);
-    this.arbolN.setRootElement(raiz);
+ public void cargarRaizArbol(String material,TipoNodo tipo)
+  {
+ this.raiz= new Nodo(tipo,material);
+ this.arbolN.setRaiz(raiz);
    
-   }
+  }
    
-   public List<Node<TipoNodo>> cargarNodoDeRaiz(String material,TipoNodo tipo)
+   public List<Nodo<TipoNodo>> cargarNodoDeRaiz(String material,TipoNodo tipo)
    {
        
-       Node<TipoNodo> n= new Node(tipo,material);
+       Nodo<TipoNodo> n= new Nodo(tipo,material);
         listaNodo.add(n);  
         System.out.println("listaNodo"+listaNodo);
         return listaNodo;
@@ -68,42 +82,60 @@ public class ArbolController {
    
    public void unirNodosRaiz()
    {
-       this.raiz.setChildren(listaNodo);
+       this.raiz.setHijos(listaNodo);
        this.cargarNodosHijos();
    }
    
    public void cargarNodosHijos()
    {
-      for(int i=0;i<listaNodo.size();i++)
-      {
-          listaNodo.get(i).setChildren(listaNodoHijos);
-          
-      }
+     for(int i=0;i <listaNodo.size();i++)
+     {
+          if(listaNodo.get(0).getData().equals(tipo.CAPITULO))
+                  {
+                     listaNodo.get(0).setHijos(listaNodoHijosCapitulo);  
+                      
+                   System.out.println("Agregue el hijo correctamente");
+                  }
+           if(listaNodo.get(1).getData().equals(tipo.METADATO))
+                  {
+                   listaNodo.get(1).setHijos(listaNodoHijosMetadato);   
+                    
+                   System.out.println("Agregue el hijo correctamente");
+                  }
+            if(listaNodo.get(2).getData().equals(tipo.RESUMEN))
+                  {
+                   listaNodo.get(2).setHijos(listaNodoHijosResumen);     
+                   System.out.println("Agregue el hijo correctamente");
+                  }
+         
+     }
+      
        
    }
    
-   public List<Node<TipoNodo>> agregarHijos(String material,TipoNodo tipo)
+   public List<Nodo<TipoNodo>> agregarHijosCapitulo(String material,TipoNodo tipo)
    {
-        Node<TipoNodo> n= new Node(tipo,material);
-        this.listaNodoHijos.add(n);
-        return listaNodoHijos;
+        Nodo<TipoNodo> n= new Nodo(tipo,material);
+        this.listaNodoHijosCapitulo.add(n);
+        return listaNodoHijosCapitulo;
    }
    
-     public void cargarNodosHijosdeHijos()
+    public List<Nodo<TipoNodo>> agregarHijosMetadato(String material,TipoNodo tipo)
    {
-      for(int i=0;i<listaNodoHijos.size();i++)
-      {
-          listaNodoHijos.get(i).setChildren(listaNodoHijosHijos);
-          
-      }
-       
+        Nodo<TipoNodo> n= new Nodo(tipo,material);
+        this.listaNodoHijosMetadato.add(n);
+        return listaNodoHijosMetadato;
    }
-    public List<Node<TipoNodo>> agregarHijosdeHijos(String material,TipoNodo tipo)
+    
+    public List<Nodo<TipoNodo>> agregarHijosResumen(String material,TipoNodo tipo)
    {
-        Node<TipoNodo> n= new Node(tipo,material);
-        this.listaNodoHijosHijos.add(n);
-        return listaNodoHijosHijos;
+        Nodo<TipoNodo> n= new Nodo(tipo,material);
+        this.listaNodoHijosResumen.add(n);
+        return listaNodoHijosResumen;
    }
+    
+    
+  
     
     public void cargarArbol()
       {
@@ -112,9 +144,108 @@ public class ArbolController {
          arbolDao.agregar(arbolN);
       }
       
+public void dibujarArbol()
+{
+        DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode(this.raiz.dato());
+        DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
+        JTree tree = new JTree(modelo);
 
+        // Construccion de los datos del arbol
+        DefaultMutableTreeNode padre = new DefaultMutableTreeNode(this.listaNodo.get(0).dato());
+        DefaultMutableTreeNode tio1 = new DefaultMutableTreeNode(this.listaNodo.get(1).dato());
+        DefaultMutableTreeNode tio2 = new DefaultMutableTreeNode(this.listaNodo.get(2).dato());
+        modelo.insertNodeInto(padre, abuelo, 0);
+        modelo.insertNodeInto(tio1, abuelo, 1);
+        modelo.insertNodeInto(tio2, abuelo, 2);
+
+        for(int i=0;i<this.listaNodoHijosCapitulo.size();i++)
+        {
+        DefaultMutableTreeNode hijo = new DefaultMutableTreeNode(this.listaNodoHijosCapitulo.get(i).dato());
+        modelo.insertNodeInto(hijo, padre, i);
+        }
         
-          
-      
+        for(int k=0;k<this.listaNodoHijosMetadato.size();k++)
+        {
+            DefaultMutableTreeNode hijo1 = new DefaultMutableTreeNode(this.listaNodoHijosMetadato.get(k).dato());
+            modelo.insertNodeInto(hijo1,tio1, k);
+        }
+        
+        for(int j=0;j<this.listaNodoHijosResumen.size();j++)
+        {
+             DefaultMutableTreeNode hijo2 = new DefaultMutableTreeNode(this.listaNodoHijosResumen.get(j).dato());
+             modelo.insertNodeInto(hijo2, tio2, j);
+        }
+        
+        // Construccion y visualizacion de la ventana
+        JFrame v = new JFrame();
+        JScrollPane scroll = new JScrollPane(tree);
+        v.getContentPane().add(scroll);
+        v.pack();
+        v.setVisible(true);
+        v.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 }
-
+    
+       public void buscarNodo(String titulo,TipoNodo tipoViene)
+       {
+        List<ArbolNario> listaArbol= new ArrayList<ArbolNario>();
+        listaArbol= arbolDao.cargarLista();  
+       
+       //  System.out.println("esta es mi lista "+listaArbol);
+         for(int i=0;i<listaArbol.size();i++)
+        {
+           Nodo<TipoNodo> n= listaArbol.get(i).getRaiz();
+           System.out.println("este es mi nodo "+n);
+           
+           List<Nodo<TipoNodo>> listaHijo= n.getHijos();
+           if((n.dato().equals(titulo))&&(n.getData().equals(tipoViene)))//si hay coincidencia en la raiz
+           {
+                  System.out.println("HUBO COINCIDENCIA del padre"); 
+                  /*creo el arbol*/
+                  
+                    DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode(n.dato());
+                    DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
+                    JTree tree = new JTree(modelo);
+                    //si tiene mas de un hijo exploro tdo el arbol   
+                        for(int z=0;z< listaHijo.size();z++)
+                        {
+                      DefaultMutableTreeNode padre = new DefaultMutableTreeNode(listaHijo.get(z).dato());
+                      modelo.insertNodeInto(padre, abuelo, z); 
+                        }
+                         JFrame v = new JFrame();
+                        JScrollPane scroll = new JScrollPane(tree);
+                        v.getContentPane().add(scroll);
+                        v.pack();
+                        v.setVisible(true);
+                        v.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                        
+           }
+           
+           for(int k=0;k< listaHijo.size();k++)
+           {
+//           Nodo<TipoNodo> nHijo= listaArbol.get(k).getRaiz();
+//           System.out.println("este es mi nodo de mi hijo "+nHijo);
+//           List<Nodo<TipoNodo>> listaSubHijo= nHijo.getHijos();
+          if((listaHijo.get(k).dato().equals(titulo))&&(listaHijo.get(k).getData().equals(tipoViene)))
+               {
+                    DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode(listaHijo.get(k).dato());
+                    DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
+                    JTree tree = new JTree(modelo);
+//                     for(int w=0;w< listaSubHijo.size();w++)
+//                        {
+//                      DefaultMutableTreeNode padre = new DefaultMutableTreeNode(listaSubHijo.get(w).dato());
+//                      modelo.insertNodeInto(padre, abuelo, w); 
+//                        }
+                         JFrame v = new JFrame();
+                        JScrollPane scroll = new JScrollPane(tree);
+                        v.getContentPane().add(scroll);
+                        v.pack();
+                        v.setVisible(true);
+                        v.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                   System.out.println("HUBO COINCIDENCIAaaaaaaaaaaaaa del hijo ");  
+               }
+           }
+       }
+         
+    }
+     
+}

@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import tpfinal.tp.controller.GrafoController;
-import tpfinal.tp.estructuraArbolNario.Node;
+import tpfinal.tp.estructuraArbolNario.Nodo;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.guardarADisco.ArbolDao;
 import tpfinal.tp.guardarADisco.LibrosDao;
