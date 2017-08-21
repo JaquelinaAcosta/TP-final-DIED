@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import tpfinal.tp.guardarADisco.ArbolDao;
 import tpfinal.tp.guardarADisco.LibrosDao;
 import tpfinal.tp.guardarADisco.PublicacionesDao;
 import tpfinal.tp.guardarADisco.VideosDao;
@@ -19,6 +20,7 @@ import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Publicacion;
 import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
+import tpfinal.tp.windows.PanelBusquedaArbol;
 import tpfinal.tp.vista.PageRank;
 import tpfinal.tp.windows.PanelBorrarMaterial;
 import tpfinal.tp.windows.PanelBuscarOrdenar;
@@ -338,4 +340,59 @@ public class MaterialCapacitacionController {
         this.vistaPrincipal.revalidate();
         this.vistaPrincipal.pack();
    }
+     
+    public void cambiarAPanelAgregarAArbol(MaterialCapacitacion material){
+        
+        
+        if(crearBuscarDesde.equals("Libro")){
+            PanelContenedor panel= new PanelContenedor(this,material);
+             this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+        }
+        if(crearBuscarDesde.equals("Video")){
+            PanelContenedor panel= new PanelContenedor(this,material);
+             this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+            PanelContenedor panel= new PanelContenedor(this,material);
+             this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+    }
+        
+}
+    public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
+        
+        if(crearBuscarDesde.equals("Libro")){
+            ArbolDao arbolDao= new ArbolDao();
+            PanelBusquedaArbol panel= new PanelBusquedaArbol(this, (Libro) material);
+            this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+        }
+        if(crearBuscarDesde.equals("Video")){
+             ArbolDao arbolDao= new ArbolDao();
+            PanelBusquedaArbol panel= new PanelBusquedaArbol(this, (Video) material);
+            this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+        }
+        if(crearBuscarDesde.equals("Publicación")){
+             ArbolDao arbolDao= new ArbolDao();
+            PanelBusquedaArbol panel= new PanelBusquedaArbol(this, (Publicacion) material);
+            this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+        }
+         
+    }
 }

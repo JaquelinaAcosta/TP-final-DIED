@@ -107,14 +107,14 @@ public class PanelResultadoBusquedaVP extends JPanel{
                this.botonCargarArbol.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
-                       principal.cambiarAPanelAgregarAArbol((MaterialCapacitacion) lista.getSelectedValue());
+                       controller.cambiarAPanelAgregarAArbol((MaterialCapacitacion) lista.getSelectedValue());
                         //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
                }
         });
               this.botonBuscarArbol.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
-                       principal.cambiarPanelBusquedaArbol((MaterialCapacitacion) lista.getSelectedValue());
+                       controller.cambiarPanelBusquedaArbol((MaterialCapacitacion) lista.getSelectedValue());
                         //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
                }
         });
