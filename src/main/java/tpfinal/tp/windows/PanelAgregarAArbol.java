@@ -64,11 +64,7 @@ public class PanelAgregarAArbol extends JPanel{
         System.out.println("este material recibi"+material);
         this.armarPanel();
     }
-        public PanelAgregarAArbol(MaterialCapacitacion materialR){
-        this.material=materialR;
-        System.out.println("este material recibi"+material);
-        this.armarPanel();
-    }
+      
     
     public PanelAgregarAArbol(){
         this.armarPanel();

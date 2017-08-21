@@ -45,7 +45,6 @@ public class PanelBusquedaArbol extends JPanel{
     public PanelBusquedaArbol(MaterialCapacitacionController mat, MaterialCapacitacion material){
         this.matController = mat;
         this.material=material;
-      
         this.armarPanel();
     }
 

@@ -1,63 +1,35 @@
 [
   {
-    "rootElement": {
-      "dato": "Video1",
+    "raiz": {
+      "dato": "video4",
       "tipo": "TITULO",
-      "children": [
+      "Hijos": [
         {
-          "dato": "",
-          "tipo": "METADATO",
-          "children": [
+          "dato": "capitulo1",
+          "tipo": "CAPITULO",
+          "Hijos": [
             {
-              "dato": "Alejandro",
+              "dato": "seccion1",
+              "tipo": "SECCION"
+            }
+          ]
+        },
+        {
+          "dato": "Metadato",
+          "tipo": "METADATO",
+          "Hijos": [
+            {
+              "dato": "gomez",
               "tipo": "AUTOR"
             }
           ]
-        }
-      ]
-    }
-  },
-  {
-    "rootElement": {
-      "dato": "Libro1",
-      "tipo": "TITULO",
-      "children": [
+        },
         {
-          "dato": "",
-          "tipo": "METADATO",
-          "children": [
+          "dato": "tematica",
+          "tipo": "RESUMEN",
+          "Hijos": [
             {
-              "dato": "Alejandro",
-              "tipo": "AUTOR"
-            }
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "rootElement": {
-      "dato": "video4",
-      "tipo": "TITULO",
-      "children": [
-        {
-          "dato": "ej",
-          "tipo": "EJERCICIOS"
-        }
-      ]
-    }
-  },
-  {
-    "rootElement": {
-      "dato": "video4",
-      "tipo": "TITULO",
-      "children": [
-        {
-          "dato": "",
-          "tipo": "METADATO",
-          "children": [
-            {
-              "dato": "parrafo1",
+              "dato": "parrafo10",
               "tipo": "PARRAFO"
             }
           ]

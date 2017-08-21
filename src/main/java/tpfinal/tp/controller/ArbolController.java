@@ -34,8 +34,8 @@ import tpfinal.tp.windows.PanelBusquedaArbol;
 public class ArbolController {
     
    private ArbolNario<TipoNodo> arbolN;
-   private final PanelAgregarAArbol panelAgregar;
-   private final PanelBusquedaArbol panelBusqueda;
+   private PanelAgregarAArbol panelAgregar;
+   private PanelBusquedaArbol panelBusqueda;
    private Map<TipoNodo,String> nodoMetadatos;
    private Nodo nodo;
    private Nodo raiz;
@@ -62,6 +62,33 @@ public class ArbolController {
        this.listaNodoHijosHijos= new ArrayList<>();
    }
 
+   public ArbolController(PanelBusquedaArbol panelb)
+   {
+       this.panelBusqueda=panelb;
+       this.arbolN= new ArbolNario<>();
+       this.nodo= new Nodo();
+       this.nodoMetadatos= new LinkedHashMap<>();
+       this.listaNodo= new ArrayList<>();
+       this.listaNodoHijosCapitulo= new ArrayList<>();
+       this.listaNodoHijosResumen= new ArrayList<>();
+       this.listaNodoHijosMetadato= new ArrayList<>();
+       this.listaNodoHijosHijos= new ArrayList<>();
+
+   }
+   
+      public ArbolController(PanelAgregarAArbol panelb)
+   {
+       this.panelAgregar=panelb;
+       this.arbolN= new ArbolNario<>();
+       this.nodo= new Nodo();
+       this.nodoMetadatos= new LinkedHashMap<>();
+       this.listaNodo= new ArrayList<>();
+       this.listaNodoHijosCapitulo= new ArrayList<>();
+       this.listaNodoHijosResumen= new ArrayList<>();
+       this.listaNodoHijosMetadato= new ArrayList<>();
+       this.listaNodoHijosHijos= new ArrayList<>();
+
+   }
  
   
    //cargamos la raiz al arbol
@@ -186,7 +213,7 @@ public void dibujarArbol()
         v.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 }
     
-       public void buscarNodo(String titulo,TipoNodo tipoViene)
+  public void buscarNodo(String titulo,TipoNodo tipoViene)
        {
         List<ArbolNario> listaArbol= new ArrayList<ArbolNario>();
         listaArbol= arbolDao.cargarLista();  

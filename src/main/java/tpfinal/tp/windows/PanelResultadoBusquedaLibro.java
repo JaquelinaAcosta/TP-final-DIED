@@ -5,7 +5,6 @@
  */
 package tpfinal.tp.windows;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -24,12 +22,8 @@ import tpfinal.tp.guardarADisco.SuscriptoresDao;
 import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
 import tpfinal.tp.integrador.Suscriptor;
-import tpfinal.tp.ventanas.PanelBuscarLibro;
 
-/**
- *
- * @author jaque
- */
+
 public class PanelResultadoBusquedaLibro extends JPanel{
     
    private JButton botonActualizar;
@@ -41,7 +35,7 @@ public class PanelResultadoBusquedaLibro extends JPanel{
     private JList listSuscriptores;
     private List<? extends MaterialCapacitacion> listaMateriales;
     private tpfinal.tp.ventanas.Principal principal;
-        private JButton botonBuscarArbol;
+    private JButton botonBuscarArbol;
     private JButton botonCargarArbol;
     private SuscriptoresDao suscriptoresDao;
     MaterialCapacitacionController controller;
@@ -142,14 +136,14 @@ public class PanelResultadoBusquedaLibro extends JPanel{
                @Override
                public void actionPerformed (ActionEvent e){
                        controller.cambiarAPanelAgregarAArbol((MaterialCapacitacion) listaLibros.getSelectedValue());
-                        //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
+                      
                }
         });
               this.botonBuscarArbol.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
-                       controller.cambiarPanelBusquedaArbol((MaterialCapacitacion) listaLibros.getSelectedValue());
-                        //Llama al metodo que estan en la ventana principal, y realiza la accion correspondiente.
+               controller.cambiarPanelBusquedaArbol((MaterialCapacitacion) listaLibros.getSelectedValue());
+                       
                }
         });
     }

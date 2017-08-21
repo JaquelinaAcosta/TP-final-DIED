@@ -102,8 +102,6 @@ public class PanelResultadoBusquedaVP extends JPanel{
             }
     });
         
-        
-        //falta hacer estos metodos que son de arbol
                this.botonCargarArbol.addActionListener(new ActionListener(){
                @Override
                public void actionPerformed (ActionEvent e){
