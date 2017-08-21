@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
 import tpfinal.tp.estructuras.grafo.Arista;
 import tpfinal.tp.estructuras.grafo.Grafo;
 import tpfinal.tp.estructuras.grafo.Vertice;
@@ -109,7 +110,7 @@ public class GrafoController {
         this.vistaGrafo.remove(vistaGrafo);
     }
     //public void buscarCamino(String nodo1,String nodo2,Integer saltos){
-    public ArrayList buscarCamino(String nodo1,String nodo2,Integer saltos){
+    public ArrayList buscarCamino(String nodo1,String nodo2,Integer saltos)  {
 
         Vertice<MaterialCapacitacion> origen = buscarVerticePorNombre(nodo1);
         Vertice<MaterialCapacitacion> destino = buscarVerticePorNombre(nodo2);
@@ -119,9 +120,29 @@ public class GrafoController {
       AristaView aristaVista= new AristaView();
       // this.vistaGrafo.agregar();
    }
- 
+
+   
+   for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
+    {
+//       TimeUnit.SECONDS.sleep (2);
+       int finalI=i;
+        aristas.values().forEach((a) -> {
+            if(a.getOrigen().getVertice().equals(camino.get(finalI).getInicio()) && 
+                    a.getDestino().getVertice().equals(camino.get(finalI).getFin())){
+            a.setColor(Color.RED);
+            a.getOrigen().setColor(Color.RED);
+            a.getDestino().setColor(Color.RED);
+            this.vistaGrafo.agregar(a);
+            }
+            });
+        vertices.values().forEach((vert) -> {
+            vert.setColor(Color.RED);
+            });
+        
+    }
      this.vistaGrafo.repaint(); 
        return camino;
+       
        
     }
    
@@ -133,9 +154,9 @@ public class GrafoController {
      
         System.out.println("Este es el camino"+camino);
         
-    for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
-    {
-        camino.get(i).getInicio();
+//    for(int i=0;i<camino.size();i++)//pinta todo revisar para que sea solo el camino
+//    {
+//        camino.get(i).getInicio();
 //        aristas.values().forEach((a) -> {
 //            a.setColor(Color.RED);
 //            this.vistaGrafo.agregar(a);
@@ -143,7 +164,7 @@ public class GrafoController {
 //        vertices.values().forEach((vert) -> {
 //            vert.setColor(Color.RED);
 //            });
-    }
+//    }
        
         this.vistaGrafo.repaint();
         return camino;

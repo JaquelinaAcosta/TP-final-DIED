@@ -182,12 +182,17 @@ public class Grafo<T> {
             resultado.add(new Arista(n1,n2));
             return resultado;
         }else{
+            if(saltos==1){
+                return new ArrayList<>();
+            }
+            
             listaVertice=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
 
             for(int i=0;i<listaVertice.size();i++)//empezamos a recorrer la lista de adyacentes de n1
             {
-                resultado.add(new Arista(n1,listaVertice.get(i)));
-                this.buscarCaminoAux(listaVertice.get(i),n2,saltos-1,resultado);                    
+                ArrayList<Arista<T>> a=new ArrayList<>();
+                a.add(new Arista(n1, listaVertice.get(i)));
+                resultado.addAll(this.buscarCaminoAux(listaVertice.get(i), n2, saltos-1, a));                  
                 }        
             }
                 

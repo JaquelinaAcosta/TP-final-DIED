@@ -6,6 +6,7 @@
 package tpfinal.tp.windows;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,18 +25,19 @@ public class PanelContenedor extends JPanel {
     
     public PanelContenedor(MaterialCapacitacionController controller,ArrayList<MaterialCapacitacion> lista)
     {
-        JFrame f = new JFrame();//ventana
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        JFrame f = new JFrame();//ventana
+//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ControlPanel panelCtrl = new ControlPanel(controller,lista);
         GrafoPanel panelGrf = new GrafoPanel();
         GrafoController gf = new GrafoController(panelGrf, panelCtrl);
         panelGrf.setController(gf);
         panelCtrl.setController(gf);
-        f.add(panelCtrl, BorderLayout.PAGE_START);
-        f.add(panelGrf);
+        this.setLayout(new BorderLayout());
+        this.add(panelCtrl, BorderLayout.PAGE_START);
+        this.add(panelGrf, BorderLayout.CENTER);
 
-        f.pack();
-        f.setVisible(true);
+//        f.pack();
+//        f.setVisible(true);
     }
     
     public PanelContenedor(MaterialCapacitacionController controller,MaterialCapacitacion materialE)

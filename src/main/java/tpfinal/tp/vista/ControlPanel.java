@@ -21,22 +21,23 @@ import javax.swing.ListModel;
 import tpfinal.tp.controller.GrafoController;
 import tpfinal.tp.controller.MaterialCapacitacionController;
 import tpfinal.tp.integrador.MaterialCapacitacion;
-import tpfinal.tp.ventanas.Principal;
+import tpfinal.tp.windows.Principal;
 
 public class ControlPanel extends JPanel {
-    
+
     private GrafoController controller;
     private JTextField txtNombreVertice1; 
     private JTextField txtNombreVertice2; 
     private JTextField cantSalto; 
     private JButton botonBuscarCamino;
     private JButton botonPR;
+    private JButton botonVolver;
     private JComboBox<Object> comboMaterial;
     private ArrayList<MaterialCapacitacion> listaRtdo;
     MaterialCapacitacionController controllerM;
+
  
-    
-    
+     
     public ControlPanel(){
         this.armarPanel();
     }
@@ -57,12 +58,13 @@ public class ControlPanel extends JPanel {
       
     private void armarPanel(){
         
-       
+   
         this.txtNombreVertice1 =new JTextField(20);
         this.txtNombreVertice2 =new JTextField(20);
         this.cantSalto =new JTextField(5); 
         this.botonBuscarCamino= new JButton("Buscar Camino");
         this.botonPR= new JButton("Page Rank");
+        this.botonVolver= new JButton("Volver al Inicio");
        this.comboMaterial= new JComboBox<>();
           for(int i=0;i<listaRtdo.size();i++)
         {
@@ -78,6 +80,7 @@ public class ControlPanel extends JPanel {
         this.add(botonBuscarCamino);
         this.add(comboMaterial);
         this.add(botonPR);
+        this.add(botonVolver);
 
         
       
@@ -112,14 +115,14 @@ public class ControlPanel extends JPanel {
                 
            ArrayList lista= new ArrayList();
            lista=controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText());
-           controllerM.cambiarPR(lista);
+//           controllerM.cambiarPR(lista);
             }
             else
             {
                 
                 ArrayList lista= new ArrayList();
                 lista = controller.buscarCamino(txtNombreVertice1.getText(), txtNombreVertice2.getText(), Integer.parseInt(cantSalto.getText()));
-                controllerM.cambiarPR(lista);
+//                controllerM.cambiarPR(lista);
             }
             }catch(Exception ex){
             System.out.println("Error");
@@ -136,6 +139,12 @@ public class ControlPanel extends JPanel {
                 
             
         }
+    });
+        this.botonVolver.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed (ActionEvent e){ 
+              controllerM.principal();
+            }
     });
 }
     

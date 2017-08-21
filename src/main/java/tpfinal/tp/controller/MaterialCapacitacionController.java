@@ -55,14 +55,7 @@ public class MaterialCapacitacionController {
     private ArrayList<MaterialCapacitacion> listaResultado;
     private TemasMateriales temaSeleccionado;
     
-    private void inicializarPanelCtrl(){
-        panelCtrl.setSize(500, 500);
-        ventana.add(panelCtrl);
 
-        ventana.add(panelCtrl, BorderLayout.PAGE_START);
-
-        ventana.pack();
-        }
     
     public MaterialCapacitacionController()
     {
@@ -108,16 +101,6 @@ public class MaterialCapacitacionController {
          videosDao.agregar(video);
      }
      
-     public void eliminarVideo()
-     {
-         
-        
-     }
-     
-     public void modificarVideo()
-     {
-         
-     }
      
      public void mostrarPanelVideo()
      {
@@ -136,15 +119,7 @@ public class MaterialCapacitacionController {
          publicacionesDao.agregar(publicacion);
      }
      
-     public void modificarPublicacion()
-     {
-         
-     }
      
-     public void eliminarPublicacion()
-     {
-         
-     }
      
      public void mostrarPanelPublicacion()
      {
