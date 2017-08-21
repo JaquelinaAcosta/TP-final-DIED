@@ -47,61 +47,61 @@ public class PanelContenedor extends JPanel {
     {
          JFrame f = new JFrame();//ventana
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       // PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
+      //  PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
         PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
         ArbolController arbolctrl= new ArbolController(panelAgregar);
         panelAgregar.setController(arbolctrl);
-     //   panelBusqueda.setController(arbolctrl);
+       // panelBusqueda.setController(arbolctrl);
         f.add(panelAgregar);
       //  f.add(panelBusqueda);
         f.pack();
         f.setVisible(true);
     }
     
-     public PanelContenedor(MaterialCapacitacionController controller,Video materialE)
-    {
-         JFrame f = new JFrame();//ventana
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
-       // PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
-        ArbolController arbolctrl= new ArbolController(panelBusqueda);
-      // panelAgregar.setController(arbolctrl);
-        panelBusqueda.setController(arbolctrl);
-      //  f.add(panelAgregar);
-        f.add(panelBusqueda);
-        f.pack();
-        f.setVisible(true);
-    }
-    
-     public PanelContenedor(MaterialCapacitacionController controller,Publicacion materialE)
-    {
-         JFrame f = new JFrame();//ventana
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
-      //  PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
-        ArbolController arbolctrl= new ArbolController(panelBusqueda);
-     //   panelAgregar.setController(arbolctrl);
-        panelBusqueda.setController(arbolctrl);
-     //   f.add(panelAgregar);
-        f.add(panelBusqueda);
-        f.pack();
-        f.setVisible(true);
-    }
-    
-     public PanelContenedor(MaterialCapacitacionController controller,Libro materialE)
-    {
-         JFrame f = new JFrame();//ventana
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
-       // PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
-        ArbolController arbolctrl= new ArbolController(panelBusqueda);
-       // panelAgregar.setController(arbolctrl);
-        panelBusqueda.setController(arbolctrl);
-     //   f.add(panelAgregar);
-        f.add(panelBusqueda);
-        f.pack();
-        f.setVisible(true);
-    }
+//     public PanelContenedor(MaterialCapacitacionController controller,Video materialE)
+//    {
+//         JFrame f = new JFrame();//ventana
+//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
+//       // PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
+//        ArbolController arbolctrl= new ArbolController(panelBusqueda);
+//      // panelAgregar.setController(arbolctrl);
+//        panelBusqueda.setController(arbolctrl);
+//      //  f.add(panelAgregar);
+//        f.add(panelBusqueda);
+//        f.pack();
+//        f.setVisible(true);
+//    }
+//    
+//     public PanelContenedor(MaterialCapacitacionController controller,Publicacion materialE)
+//    {
+//         JFrame f = new JFrame();//ventana
+//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
+//      //  PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
+//        ArbolController arbolctrl= new ArbolController(panelBusqueda);
+//     //   panelAgregar.setController(arbolctrl);
+//        panelBusqueda.setController(arbolctrl);
+//     //   f.add(panelAgregar);
+//        f.add(panelBusqueda);
+//        f.pack();
+//        f.setVisible(true);
+//    }
+//    
+//     public PanelContenedor(MaterialCapacitacionController controller,Libro materialE)
+//    {
+//         JFrame f = new JFrame();//ventana
+//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        PanelBusquedaArbol panelBusqueda = new PanelBusquedaArbol(controller,materialE);
+//       // PanelAgregarAArbol panelAgregar= new PanelAgregarAArbol(controller,materialE);
+//        ArbolController arbolctrl= new ArbolController(panelBusqueda);
+//       // panelAgregar.setController(arbolctrl);
+//        panelBusqueda.setController(arbolctrl);
+//     //   f.add(panelAgregar);
+//        f.add(panelBusqueda);
+//        f.pack();
+//        f.setVisible(true);
+//    }
     
     
 }

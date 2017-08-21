@@ -23,7 +23,10 @@ import tpfinal.tp.estructuraArbolNario.Nodo;
 import tpfinal.tp.estructuraArbolNario.TipoNodo;
 import tpfinal.tp.estructuraArbolNario.ArbolNario;
 import tpfinal.tp.guardarADisco.ArbolDao;
+import tpfinal.tp.integrador.Libro;
 import tpfinal.tp.integrador.MaterialCapacitacion;
+import tpfinal.tp.integrador.Publicacion;
+import tpfinal.tp.integrador.Video;
 
 
 public class PanelBusquedaArbol extends JPanel{
@@ -36,6 +39,9 @@ public class PanelBusquedaArbol extends JPanel{
     private List<ArbolNario> lista = new ArrayList<ArbolNario>();
     private ArbolController arbolControl;
     private Nodo<TipoNodo> nodoA;
+    private Libro libro;
+    private Video video;
+    private Publicacion publicacion;
     
     public PanelBusquedaArbol(){
         this.armarPanel();  
@@ -48,6 +54,21 @@ public class PanelBusquedaArbol extends JPanel{
         this.armarPanel();
     }
 
+//        public PanelBusquedaArbol(MaterialCapacitacionController mat, Libro material){
+//        this.matController = mat;
+//        this.libro=material;
+//        this.armarPanel();
+//    }
+//       public PanelBusquedaArbol(MaterialCapacitacionController mat,Video material){
+//        this.matController = mat;
+//        this.video=material;
+//        this.armarPanel();
+//    }
+//      public PanelBusquedaArbol(MaterialCapacitacionController mat, Publicacion material){
+//        this.matController = mat;
+//        this.publicacion=material;
+//        this.armarPanel();
+//    }
     
      private void armarPanel(){
          TipoNodo[] listaTipo = {TipoNodo.AUTOR, TipoNodo.CAPITULO, TipoNodo.EDITORIAL, TipoNodo.FECHA_PUBLICACON, TipoNodo.METADATO, TipoNodo.PALABRA_CLAVE, TipoNodo.PARRAFO, TipoNodo.RESUMEN, TipoNodo.SECCION, TipoNodo.TITULO};
@@ -69,7 +90,7 @@ public class PanelBusquedaArbol extends JPanel{
                public void actionPerformed (ActionEvent e){
 //                  try
 //                  {
-                      TipoNodo tipo= (TipoNodo) comboTipo.getSelectedItem();
+                  TipoNodo tipo= (TipoNodo) comboTipo.getSelectedItem();
                   System.out.println("este es el tipo "+tipo);
                   System.out.println("este es el txt "+txtDato.getText());
                   arbolControl.buscarNodo(txtDato.getText(),tipo);

@@ -215,6 +215,7 @@ public void dibujarArbol()
     
   public void buscarNodo(String titulo,TipoNodo tipoViene)
        {
+           System.out.println("Hola entreeeeee");
         List<ArbolNario> listaArbol= new ArrayList<ArbolNario>();
         listaArbol= arbolDao.cargarLista();  
        

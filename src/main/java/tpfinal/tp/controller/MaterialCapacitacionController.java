@@ -22,6 +22,7 @@ import tpfinal.tp.integrador.TemasMateriales;
 import tpfinal.tp.integrador.Video;
 import tpfinal.tp.windows.PanelBusquedaArbol;
 import tpfinal.tp.vista.PageRank;
+import tpfinal.tp.windows.Contenedor;
 import tpfinal.tp.windows.PanelBorrarMaterial;
 import tpfinal.tp.windows.PanelBuscarOrdenar;
 import tpfinal.tp.windows.PanelContenedor;
@@ -306,32 +307,35 @@ public class MaterialCapacitacionController {
     }
         
 }
-    public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
+
+   public void cambiarPanelBusquedaArbol(MaterialCapacitacion material){
+        
         
         if(crearBuscarDesde.equals("Libro")){
-     
-        PanelBusquedaArbol panel= new PanelBusquedaArbol(this,material);
+        ArbolDao arbolDao= new ArbolDao();
+        Contenedor panel= new Contenedor(this,material);
         this.vistaPrincipal.getContentPane().removeAll();
         this.vistaPrincipal.getContentPane().add(panel);
         this.vistaPrincipal.revalidate();
         this.vistaPrincipal.pack();
         }
         if(crearBuscarDesde.equals("Video")){
+        ArbolDao arbolDao= new ArbolDao();
+        Contenedor panel= new Contenedor(this,material);
+        this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+        }
+        if(crearBuscarDesde.equals("PublicaciÃ³n")){
+        ArbolDao arbolDao= new ArbolDao();
+        Contenedor panel= new Contenedor(this,material);
+        this.vistaPrincipal.getContentPane().removeAll();
+        this.vistaPrincipal.getContentPane().add(panel);
+        this.vistaPrincipal.revalidate();
+        this.vistaPrincipal.pack();
+        }
       
-        PanelBusquedaArbol panel= new PanelBusquedaArbol(this,material);
-        this.vistaPrincipal.getContentPane().removeAll();
-        this.vistaPrincipal.getContentPane().add(panel);
-        this.vistaPrincipal.revalidate();
-        this.vistaPrincipal.pack();
-        }
-        if(crearBuscarDesde.equals("Publicación")){
-       
-        PanelBusquedaArbol panel= new PanelBusquedaArbol(this,material);
-        this.vistaPrincipal.getContentPane().removeAll();
-        this.vistaPrincipal.getContentPane().add(panel);
-        this.vistaPrincipal.revalidate();
-        this.vistaPrincipal.pack();
-        }
-         
     }
+
 }
