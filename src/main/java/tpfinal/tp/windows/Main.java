@@ -8,6 +8,7 @@ package tpfinal.tp.windows;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+//inicio de las pantallas
 public class Main {
 public static void main(String[] args) {
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
