@@ -135,9 +135,9 @@ public class GrafoController {
             this.vistaGrafo.agregar(a);
             }
             });
-        vertices.values().forEach((vert) -> {
-            vert.setColor(Color.RED);
-            });
+//        vertices.values().forEach((vert) -> {
+//            vert.setColor(Color.RED);
+//            });
         
     }
      this.vistaGrafo.repaint(); 
