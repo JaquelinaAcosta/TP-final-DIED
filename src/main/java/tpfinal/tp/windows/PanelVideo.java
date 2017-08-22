@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.controller.MaterialCapacitacionController;
@@ -97,6 +98,7 @@ public class PanelVideo extends JPanel {
                 //si es para crear va a entrar al else
                 else{
                    controller.crearVideo(txtTitulo.getText(), (TemasMateriales) comboTema.getSelectedItem(), Integer.parseInt(txtDuracion.getText()), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                JOptionPane.showMessageDialog( null,"Se agrego corectamente el material");
                 }
             }
         });

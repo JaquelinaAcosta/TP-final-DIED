@@ -124,6 +124,7 @@ public class PanelResultadoBusquedaLibro extends JPanel{
                        Suscriptor suscriptorNuevo = (Suscriptor) listSuscriptores.getSelectedValue();
                         agregarSuscriptor((Libro) listaLibros.getSelectedValue(), suscriptorNuevo);
                         suscriptoresDao.editar((Suscriptor) listSuscriptores.getSelectedValue(),suscriptorNuevo);
+                         JOptionPane.showMessageDialog( null,"El Libro se agrego correctamente a la cuenta del Suscriptor");
                    } catch(CreditoInsuficienteException ex){
                        JOptionPane.showMessageDialog( null, ex.getMessage());
                    } 

@@ -223,13 +223,13 @@ private static void crearShowGUI(){
         ventana.setVisible(true);
 }
 
-public static void main(String[] args) {
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-           PanelAgregarAArbol pBuscar=new PanelAgregarAArbol();
-          pBuscar.crearShowGUI();
-        }
-    });
-}
+//public static void main(String[] args) {
+//    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//        public void run() {
+//           PanelAgregarAArbol pBuscar=new PanelAgregarAArbol();
+//          pBuscar.crearShowGUI();
+//        }
+//    });
+//}
     
 }

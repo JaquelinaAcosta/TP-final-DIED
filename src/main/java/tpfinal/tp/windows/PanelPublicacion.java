@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import tpfinal.tp.controller.MaterialCapacitacionController;
@@ -123,6 +124,7 @@ public class PanelPublicacion extends JPanel {
                 //si es para crear va a entrar al else
                 else{
                     controller.crearPublicacion(txtTitulo.getText(),(TemasMateriales) comboTema.getSelectedItem(), (new Date((Integer.parseInt(txtAño.getText())-1900), (Integer.parseInt(txtMes.getText())-1), Integer.parseInt(txtDia.getText()))), Integer.parseInt(txtCalificacion.getText()), Double.parseDouble(txtPrecio.getText()));
+                JOptionPane.showMessageDialog( null,"Se agrego corectamente el material");
                 }
             }
         });

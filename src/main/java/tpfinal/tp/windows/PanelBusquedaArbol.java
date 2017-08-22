@@ -54,21 +54,6 @@ public class PanelBusquedaArbol extends JPanel{
         this.armarPanel();
     }
 
-//        public PanelBusquedaArbol(MaterialCapacitacionController mat, Libro material){
-//        this.matController = mat;
-//        this.libro=material;
-//        this.armarPanel();
-//    }
-//       public PanelBusquedaArbol(MaterialCapacitacionController mat,Video material){
-//        this.matController = mat;
-//        this.video=material;
-//        this.armarPanel();
-//    }
-//      public PanelBusquedaArbol(MaterialCapacitacionController mat, Publicacion material){
-//        this.matController = mat;
-//        this.publicacion=material;
-//        this.armarPanel();
-//    }
     
      private void armarPanel(){
          TipoNodo[] listaTipo = {TipoNodo.AUTOR, TipoNodo.CAPITULO, TipoNodo.EDITORIAL, TipoNodo.FECHA_PUBLICACON, TipoNodo.METADATO, TipoNodo.PALABRA_CLAVE, TipoNodo.PARRAFO, TipoNodo.RESUMEN, TipoNodo.SECCION, TipoNodo.TITULO};
@@ -129,12 +114,12 @@ private static void crearShowGUI(){
         ventana.setVisible(true);
 }
 
-public static void main(String[] args) {
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-           PanelBusquedaArbol pBuscar=new PanelBusquedaArbol();
-          pBuscar.crearShowGUI();
-        }
-    });
-}
+//public static void main(String[] args) {
+//    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//        public void run() {
+//           PanelBusquedaArbol pBuscar=new PanelBusquedaArbol();
+//          pBuscar.crearShowGUI();
+//        }
+//    });
+//}
 }

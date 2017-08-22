@@ -1,22 +1,6 @@
 [
   {
     "nombre": "suscriptor",
-    "apellido": "dos",
-    "nroDocumento": 12341,
-    "credito": 1000.0,
-    "material": [],
-    "suscriptores": {}
-  },
-  {
-    "nombre": "suscriptor",
-    "apellido": "tres",
-    "nroDocumento": 12342,
-    "credito": 3000.0,
-    "material": [],
-    "suscriptores": {}
-  },
-  {
-    "nombre": "suscriptor",
     "apellido": "cinco",
     "nroDocumento": 12346,
     "credito": 50.0,
@@ -69,6 +53,57 @@
         "calificacion": 10,
         "costo": 0.0,
         "fechaPublicacion": "25/07/2017",
+        "suscriptores": []
+      }
+    ],
+    "suscriptores": {}
+  },
+  {
+    "nombre": "suscriptor",
+    "apellido": "dos",
+    "nroDocumento": 12341,
+    "credito": 523.0,
+    "material": [
+      {
+        "precioCompra": 500.0,
+        "isbn": "111120",
+        "paginas": 300,
+        "tema": "PROGRAMACION",
+        "titulo": "Java1",
+        "calificacion": 6,
+        "costo": 0.0,
+        "fechaPublicacion": "22/08/2017",
+        "suscriptores": []
+      }
+    ],
+    "suscriptores": {}
+  },
+  {
+    "nombre": "suscriptor",
+    "apellido": "tres",
+    "nroDocumento": 12342,
+    "credito": 2046.0,
+    "material": [
+      {
+        "precioCompra": 500.0,
+        "isbn": "111120",
+        "paginas": 300,
+        "tema": "PROGRAMACION",
+        "titulo": "Java1",
+        "calificacion": 6,
+        "costo": 0.0,
+        "fechaPublicacion": "22/08/2017",
+        "suscriptores": []
+      },
+      {
+        "precioCompra": 500.0,
+        "isbn": "111120",
+        "paginas": 300,
+        "tema": "PROGRAMACION",
+        "titulo": "Java1",
+        "calificacion": 6,
+        "costo": 0.0,
+        "fechaPublicacion": "22/08/2017",
         "suscriptores": []
       }
     ],

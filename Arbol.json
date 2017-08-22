@@ -36,5 +36,43 @@
         }
       ]
     }
+  },
+  {
+    "raiz": {
+      "dato": "Java1",
+      "tipo": "TITULO",
+      "Hijos": [
+        {
+          "dato": "Capitulo1",
+          "tipo": "CAPITULO",
+          "Hijos": [
+            {
+              "dato": "Seccion1",
+              "tipo": "SECCION"
+            }
+          ]
+        },
+        {
+          "dato": "Metadato",
+          "tipo": "METADATO",
+          "Hijos": [
+            {
+              "dato": "Ejercicio 20",
+              "tipo": "EJERCICIOS"
+            }
+          ]
+        },
+        {
+          "dato": "es un libro didactico",
+          "tipo": "RESUMEN",
+          "Hijos": [
+            {
+              "dato": "Parrafo2",
+              "tipo": "PARRAFO"
+            }
+          ]
+        }
+      ]
+    }
   }
 ]
