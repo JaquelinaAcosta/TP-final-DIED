@@ -169,35 +169,53 @@ public class Grafo<T> {
     }
 
  
-   public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2,Integer saltos){        
-        return this.buscarCaminoAux(n1, n2, saltos, new ArrayList<Arista<T>>());
+   public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2,Integer saltos){    
+       ArrayList<Arista<T>> resultado = new ArrayList<>();
+       if(saltos==0)
+            return resultado; //retorno vacio
+       if(esAdyacente(n1, n2)&& saltos ==1) {
+            resultado.add(new Arista<>(n1,n2));
+            return resultado;
+       }
+       else{
+           for(Vertice<T> adyacente: this.getAdyacentes(n1)){
+               ArrayList<Arista<T>> siguientes = (ArrayList<Arista<T>>) this.buscarCamino(adyacente, n2, saltos-1);
+               if(siguientes.size() != 0){
+                   resultado.addAll(siguientes);
+                   resultado.add(new Arista<>(n1, adyacente));
+               }
+           }
+               
+       }
+       
+        return resultado;
          
     }
     
-    public List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,Integer saltos,ArrayList<Arista<T>> resultado){
-        ArrayList<Vertice<T>> listaVertice= new ArrayList<>();
-        if(saltos==0)
-            return new ArrayList<>(); //retorno vacio
-        if(esAdyacente(n1, n2)&& saltos ==1) {
-            resultado.add(new Arista(n1,n2));
-            return resultado;
-        }else{
-            if(saltos==1){
-                return new ArrayList<>();
-            }
-            
-            listaVertice=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
-
-            for(int i=0;i<listaVertice.size();i++)//empezamos a recorrer la lista de adyacentes de n1
-            {
-                ArrayList<Arista<T>> a=new ArrayList<>();
-                a.add(new Arista(n1, listaVertice.get(i)));
-                resultado.addAll(this.buscarCaminoAux(listaVertice.get(i), n2, saltos-1, a));                  
-                }        
-            }
-                
-        return resultado;
-    }
+//    public List<Arista<T>> buscarCaminoAux(Vertice<T> n1,Vertice<T> n2,Integer saltos,ArrayList<Arista<T>> resultado){
+//        ArrayList<Vertice<T>> listaVertice= new ArrayList<>();
+//        if(saltos==0)
+//            return new ArrayList<>(); //retorno vacio
+//        if(esAdyacente(n1, n2)&& saltos ==1) {
+//            resultado.add(new Arista(n1,n2));
+//            return resultado;
+//        }else{
+//            if(saltos==1){
+//                return new ArrayList<>();
+//            }
+//            
+//            listaVertice=(ArrayList<Vertice<T>>) this.getAdyacentes(n1);
+//
+//            for(int i=0;i<listaVertice.size();i++)//empezamos a recorrer la lista de adyacentes de n1
+//            {
+//                ArrayList<Arista<T>> a=new ArrayList<>();
+//                a.add(new Arista(n1, listaVertice.get(i)));
+//                resultado.addAll(this.buscarCaminoAux(listaVertice.get(i), n2, saltos-1, a));                  
+//                }        
+//            }
+//                
+//        return resultado;
+//    }
     
     public List<Arista<T>> buscarCamino(Vertice<T> n1,Vertice<T> n2){ 
      
